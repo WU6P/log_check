@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>log_check — contest log checker</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>log_check</h1>
+  <div class="bar">
+    <label class="btn">Open log…
+      <input type="file" id="file" accept=".adi,.adif,.log" hidden>
+    </label>
+    <span class="grp">
+      Exchange field:
+      <select id="field" disabled></select>
+    </span>
+    <label class="chk" title="Check the exchange even when its values look like serial numbers (mostly unique).">
+      <input type="checkbox" id="force"> force check (serial-like field)
+    </label>
+    <span class="spacer"></span>
+    <button id="save" class="btn" disabled>Save…</button>
+  </div>
+  <p id="summary" class="summary">Loading lookups… then open an <code>.adi</code> / <code>.adif</code> / <code>.log</code> file.</p>
+</header>
+
+<main>
+  <table id="table">
+    <thead><tr id="head"></tr></thead>
+    <tbody id="body"></tbody>
+  </table>
+  <p id="empty" class="empty">No log loaded.</p>
+</main>
+
+<footer>
+  <button id="review" class="btn primary" disabled>▸ Review issues</button>
+  <button id="edit" class="btn" disabled>Edit fields…</button>
+  <button id="del" class="btn danger" disabled>Delete QSO</button>
+  <span class="spacer"></span>
+  <span class="legend">
+    <span class="sw rare"></span> rare DXCC
+    <span class="sw exch"></span> exchange bust
+    <span class="sw both"></span> both
+  </span>
+</footer>
+
+<!-- Issue review window: one issue at a time, exchange issues grouped by station -->
+<div id="review-win" class="modal hidden">
+  <div class="review-box">
+    <div class="review-head">
+      <span id="rv-pos" class="rv-pos"></span>
+      <span class="spacer"></span>
+      <button id="rv-prev" class="btn">‹ Prev</button>
+      <button id="rv-next" class="btn">Next ›</button>
+      <button id="rv-close" class="btn">Close</button>
+    </div>
+    <div id="rv-body" class="rv-body"></div>
+    <div class="review-foot">
+      <button id="rv-prev2" class="btn">‹ Prev</button>
+      <span class="spacer"></span>
+      <span id="rv-hint" class="rv-hint">Edit a cell, Apply the suggested fix, or delete a QSO. ← → to move, Esc to close.</span>
+      <span class="spacer"></span>
+      <button id="rv-next2" class="btn">Next ›</button>
+    </div>
+  </div>
+</div>
+
+<!-- Full-field editor modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <h2 id="modal-title">Edit QSO</h2>
+    <div id="modal-fields" class="modal-fields"></div>
+    <div class="modal-add">
+      <input id="new-key" placeholder="NEW_FIELD_NAME">
+      <input id="new-val" placeholder="value">
+    </div>
+    <div class="modal-actions">
+      <button id="modal-cancel" class="btn">Cancel</button>
+      <button id="modal-ok" class="btn primary">OK</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

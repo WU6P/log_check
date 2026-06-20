@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>log_check selftest</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<!-- same markup app.js binds to -->
+<header><h1>log_check</h1>
+  <div class="bar">
+    <label class="btn">Open<input type="file" id="file" hidden></label>
+    <span class="grp">Exchange field: <select id="field" disabled></select></span>
+    <label class="chk"><input type="checkbox" id="force"> force</label>
+    <span class="spacer"></span><button id="save" class="btn" disabled>Save…</button>
+  </div>
+  <p id="summary" class="summary">Loading…</p>
+</header>
+<main><table id="table"><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table>
+  <p id="empty" class="empty">No log loaded.</p></main>
+<footer>
+  <button id="review" class="btn primary" disabled>▸ Review issues</button>
+  <button id="edit" class="btn" disabled>Edit fields…</button>
+  <button id="del" class="btn danger" disabled>Delete QSO</button>
+</footer>
+<div id="review-win" class="modal hidden"><div class="review-box">
+  <div class="review-head"><span id="rv-pos" class="rv-pos"></span><span class="spacer"></span>
+    <button id="rv-prev" class="btn">‹ Prev</button><button id="rv-next" class="btn">Next ›</button>
+    <button id="rv-close" class="btn">Close</button></div>
+  <div id="rv-body" class="rv-body"></div>
+  <div class="review-foot"><button id="rv-prev2" class="btn">‹ Prev</button><span class="spacer"></span>
+    <span id="rv-hint" class="rv-hint"></span><span class="spacer"></span>
+    <button id="rv-next2" class="btn">Next ›</button></div>
+</div></div>
+<div id="modal" class="modal hidden"><div class="modal-box"><h2 id="modal-title"></h2>
+  <div id="modal-fields" class="modal-fields"></div>
+  <div class="modal-add"><input id="new-key"><input id="new-val"></div>
+  <div class="modal-actions"><button id="modal-cancel" class="btn">Cancel</button>
+  <button id="modal-ok" class="btn primary">OK</button></div></div></div>
+
+<pre id="result">running…</pre>
+<script type="module" src="app.js"></script>
+<script type="module">
+const out = document.getElementById("result");
+const log = [];
+let failed = 0;
+const ok = (c, m) => { log.push((c ? "ok   " : "FAIL ") + m); if (!c) failed++; };
+
+// Build a synthetic log: 8 common stations + a rare one + a fixable bust group.
+function adif(recs) {
+  const head = "x <EOH>\n";
+  return head + recs.map(r => Object.entries(r)
+    .map(([k, v]) => `<${k}:${String(v).length}>${v}`).join(" ") + " <EOR>").join("\n");
+}
+const recs = [];
+for (let i = 0; i < 8; i++) recs.push({ CALL: `W${i}AW`, QSO_DATE: "20260101", TIME_ON: `00${String(i).padStart(2,"0")}00`, BAND: "20M", CQZ: "5" });
+recs.push({ CALL: "P5DX", QSO_DATE: "20260101", TIME_ON: "001000", BAND: "20M" });   // rare
+recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: "001100", BAND: "20M", CQZ: "9" });  // early wrong
+recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: "001200", BAND: "15M", CQZ: "5" });
+recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: "001300", BAND: "10M", CQZ: "5" });
+const text = adif(recs);
+
+window.confirm = () => true;          // auto-accept fix/delete dialogs
+
+function waitReady() {
+  return new Promise((res) => {
+    const t = setInterval(() => {
+      if (window.__lcLoad && document.getElementById("summary").textContent.startsWith("Ready")) {
+        clearInterval(t); res();
+      }
+    }, 50);
+  });
+}
+
+window.addEventListener("error", (e) => {
+  out.textContent = log.join("\n") + "\n\nUNCAUGHT: " + e.message + "\n" + (e.error && e.error.stack || "");
+  document.title = "SELFTEST FAIL";
+});
+
+(async () => {
+ try {
+  await waitReady();
+  window.__lcLoad(text, "selftest");
+
+  const rows = () => document.querySelectorAll("#body tr").length;
+  const summary = () => document.getElementById("summary").textContent;
+
+  ok(rows() === 12, `rendered 12 rows (got ${rows()})`);
+  ok(document.querySelectorAll("#body tr.rare").length === 1, "one rare row highlighted");
+  ok(document.querySelectorAll("#body tr.exch").length === 1, "one exchange-bust row highlighted");
+  ok(/\b1 rare DXCC/.test(summary()), "summary reports 1 rare");
+  ok(/1 auto-fixable/.test(summary()), "summary reports 1 auto-fixable");
+
+  // --- review window: 2 issues (rare P5DX, exchange DL1ABC) ---
+  const pos = () => document.getElementById("rv-pos").textContent;
+  const rvBody = () => document.getElementById("rv-body").textContent;
+  ok(/Review issues \(2\)/.test(document.getElementById("review").textContent), "review button shows 2 issues");
+  document.getElementById("review").click();
+  ok(!document.getElementById("review-win").classList.contains("hidden"), "review window opened");
+  ok(/Issue 1 of 2/.test(pos()), "first issue is 'Issue 1 of 2'");
+  ok(/P5DX/.test(rvBody()) && /RARE/.test(rvBody()), "issue 1 is the rare station P5DX");
+  document.getElementById("rv-next").click();
+  ok(/Issue 2 of 2/.test(pos()), "navigated to 'Issue 2 of 2'");
+  ok(/DL1ABC/.test(rvBody()), "issue 2 is exchange station DL1ABC");
+  ok(document.querySelectorAll("#rv-body table.rv-table tbody tr").length === 3,
+     "exchange issue groups all 3 of DL1ABC's QSOs");
+  const applyBtn = [...document.querySelectorAll("#rv-body .rv-fix .btn")][0];
+  ok(!!applyBtn, "suggested-fix Apply button present");
+  applyBtn.click();                              // fix DL1ABC's exchange from the window
+  await new Promise(r => setTimeout(r, 20));
+  ok(/Issue 1 of 1/.test(pos()), "after applying fix only the rare issue remains");
+  ok(document.querySelectorAll("#body tr.exch").length === 0, "no exchange busts after review fix");
+  document.getElementById("rv-close").click();
+  ok(document.getElementById("review-win").classList.contains("hidden"), "review window closed");
+
+  // Select the first row's checkbox and delete it.
+  const cb = document.querySelector('#body input[data-sel="0"]');
+  cb.checked = true; cb.dispatchEvent(new Event("change", { bubbles: true }));
+  ok(!document.getElementById("del").disabled, "delete enabled after selecting a row");
+  document.getElementById("del").click();
+  await new Promise(r => setTimeout(r, 20));
+  ok(rows() === 11, `11 rows after delete (got ${rows()})`);
+
+  // Save produces a non-empty ADIF blob (exercise serialize path).
+  ok(window.__lcLoad && rows() === 11, "state consistent post-delete");
+
+  out.textContent = log.join("\n") + `\n\nSELFTEST: ${failed ? "FAIL (" + failed + ")" : "PASS"}`;
+  document.title = failed ? "SELFTEST FAIL" : "SELFTEST PASS";
+ } catch (err) {
+  out.textContent = log.join("\n") + "\n\nTHREW: " + (err && err.stack || err);
+  document.title = "SELFTEST FAIL";
+ }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10270 @@
+{
+"entities": [
+{
+"prefixes": [
+"1A"
+],
+"entity": "Sov. Mil. Order of Malta",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "246",
+"lat": 41.9,
+"lon": 12.43
+},
+{
+"prefixes": [
+"3A"
+],
+"entity": "Monaco",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "260",
+"lat": 43.73,
+"lon": 7.4
+},
+{
+"prefixes": [
+"3B6"
+],
+"entity": "Agalega & St. Brandon Is.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "004",
+"lat": -10.45,
+"lon": 56.67
+},
+{
+"prefixes": [
+"3B8"
+],
+"entity": "Mauritius",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "165",
+"lat": -20.35,
+"lon": 57.5
+},
+{
+"prefixes": [
+"3B9"
+],
+"entity": "Rodrigues I.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "207",
+"lat": -19.7,
+"lon": 63.42
+},
+{
+"prefixes": [
+"3C"
+],
+"entity": "Equatorial Guinea",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "049",
+"lat": 1.7,
+"lon": 10.33
+},
+{
+"prefixes": [
+"3C0"
+],
+"entity": "Annobon I.",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "195",
+"lat": -1.43,
+"lon": 5.62
+},
+{
+"prefixes": [
+"3D2"
+],
+"entity": "Fiji",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "176",
+"lat": -17.78,
+"lon": 177.92
+},
+{
+"prefixes": [
+"3D2"
+],
+"entity": "Conway Reef",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "489",
+"lat": -17.78,
+"lon": 177.92
+},
+{
+"prefixes": [
+"3D2"
+],
+"entity": "Rotuma I.",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "460",
+"lat": -17.78,
+"lon": 177.92
+},
+{
+"prefixes": [
+"3DA"
+],
+"entity": "Kingdom of Eswatini",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "468",
+"lat": -26.65,
+"lon": 31.48
+},
+{
+"prefixes": [
+"3V"
+],
+"entity": "Tunisia",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "474",
+"lat": 35.4,
+"lon": 9.32
+},
+{
+"prefixes": [
+"3W",
+"XV"
+],
+"entity": "Viet Nam",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "293",
+"lat": 15.8,
+"lon": 107.9
+},
+{
+"prefixes": [
+"3X"
+],
+"entity": "Guinea",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "107",
+"lat": 11.0,
+"lon": -10.68
+},
+{
+"prefixes": [
+"3Y"
+],
+"entity": "Bouvet",
+"cont": "AF",
+"itu": "67",
+"cq": "38",
+"code": "024",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"3Y"
+],
+"entity": "Peter 1 I.",
+"cont": "AN",
+"itu": "72",
+"cq": "12",
+"code": "199",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"4J",
+"4K"
+],
+"entity": "Azerbaijan",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "018",
+"lat": 40.45,
+"lon": 47.37
+},
+{
+"prefixes": [
+"4L"
+],
+"entity": "Georgia",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "075",
+"lat": 42.0,
+"lon": 45.0
+},
+{
+"prefixes": [
+"4O"
+],
+"entity": "Montenegro",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "514",
+"lat": 42.5,
+"lon": 19.28
+},
+{
+"prefixes": [
+"4S"
+],
+"entity": "Sri Lanka",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "315",
+"lat": 7.6,
+"lon": 80.7
+},
+{
+"prefixes": [
+"4U_ITU"
+],
+"entity": "ITU HQ",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "117",
+"lat": 46.17,
+"lon": 6.05
+},
+{
+"prefixes": [
+"4U_UN"
+],
+"entity": "United Nations HQ",
+"cont": "NA",
+"itu": "08",
+"cq": "05",
+"code": "289",
+"lat": 40.75,
+"lon": -73.97
+},
+{
+"prefixes": [
+"4W"
+],
+"entity": "Timor - Leste",
+"cont": "OC",
+"itu": "54",
+"cq": "28",
+"code": "511",
+"lat": -8.8,
+"lon": 126.05
+},
+{
+"prefixes": [
+"4X",
+"4Z"
+],
+"entity": "Israel",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "336",
+"lat": 31.32,
+"lon": 34.82
+},
+{
+"prefixes": [
+"5A"
+],
+"entity": "Libya",
+"cont": "AF",
+"itu": "38",
+"cq": "34",
+"code": "436",
+"lat": 27.2,
+"lon": 16.6
+},
+{
+"prefixes": [
+"5B",
+"C4",
+"P3"
+],
+"entity": "Cyprus",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "215",
+"lat": 35.0,
+"lon": 33.0
+},
+{
+"prefixes": [
+"5H",
+"5I"
+],
+"entity": "Tanzania",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "470",
+"lat": -5.75,
+"lon": 33.92
+},
+{
+"prefixes": [
+"5N"
+],
+"entity": "Nigeria",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "450",
+"lat": 9.87,
+"lon": 7.55
+},
+{
+"prefixes": [
+"5R"
+],
+"entity": "Madagascar",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "438",
+"lat": -19.0,
+"lon": 46.58
+},
+{
+"prefixes": [
+"5T2"
+],
+"entity": "Mauritania",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "444",
+"lat": 20.6,
+"lon": -10.5
+},
+{
+"prefixes": [
+"5U3"
+],
+"entity": "Niger",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "187",
+"lat": 17.63,
+"lon": 9.43
+},
+{
+"prefixes": [
+"5V"
+],
+"entity": "Togo",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "483",
+"lat": 8.4,
+"lon": 1.28
+},
+{
+"prefixes": [
+"5W"
+],
+"entity": "Samoa",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "190",
+"lat": -13.93,
+"lon": -171.7
+},
+{
+"prefixes": [
+"5X"
+],
+"entity": "Uganda",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "286",
+"lat": 1.92,
+"lon": 32.6
+},
+{
+"prefixes": [
+"5Y",
+"5Z"
+],
+"entity": "Kenya",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "430",
+"lat": 0.32,
+"lon": 38.15
+},
+{
+"prefixes": [
+"6V",
+"6W"
+],
+"entity": "Senegal",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "456",
+"lat": 15.2,
+"lon": -14.63
+},
+{
+"prefixes": [
+"6Y"
+],
+"entity": "Jamaica",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "082",
+"lat": 18.2,
+"lon": -77.47
+},
+{
+"prefixes": [
+"7O5"
+],
+"entity": "Yemen",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "492",
+"lat": 15.65,
+"lon": 48.12
+},
+{
+"prefixes": [
+"7P"
+],
+"entity": "Lesotho",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "432",
+"lat": -29.22,
+"lon": 27.88
+},
+{
+"prefixes": [
+"7Q"
+],
+"entity": "Malawi",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "440",
+"lat": -14.0,
+"lon": 34.0
+},
+{
+"prefixes": [
+"7T",
+"7U",
+"7V",
+"7W",
+"7X",
+"7Y"
+],
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+{
+"prefixes": [
+"8P"
+],
+"entity": "Barbados",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "062",
+"lat": 13.18,
+"lon": -59.53
+},
+{
+"prefixes": [
+"8Q"
+],
+"entity": "Maldives",
+"cont": "AS/AF",
+"itu": "41",
+"cq": "22",
+"code": "159",
+"lat": 4.15,
+"lon": 73.45
+},
+{
+"prefixes": [
+"8R"
+],
+"entity": "Guyana",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "129",
+"lat": 6.02,
+"lon": -59.45
+},
+{
+"prefixes": [
+"9A6"
+],
+"entity": "Croatia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "497",
+"lat": 45.18,
+"lon": 15.3
+},
+{
+"prefixes": [
+"9G7"
+],
+"entity": "Ghana",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "424",
+"lat": 7.7,
+"lon": -1.57
+},
+{
+"prefixes": [
+"9H"
+],
+"entity": "Malta",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "257",
+"lat": 35.88,
+"lon": 14.42
+},
+{
+"prefixes": [
+"9I",
+"9J"
+],
+"entity": "Zambia",
+"cont": "AF",
+"itu": "53",
+"cq": "36",
+"code": "482",
+"lat": -14.22,
+"lon": 26.73
+},
+{
+"prefixes": [
+"9K"
+],
+"entity": "Kuwait",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "348",
+"lat": 29.38,
+"lon": 47.38
+},
+{
+"prefixes": [
+"9L"
+],
+"entity": "Sierra Leone",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "458",
+"lat": 8.5,
+"lon": -13.25
+},
+{
+"prefixes": [
+"9M2"
+],
+"entity": "West Malaysia",
+"cont": "AS",
+"itu": "54",
+"cq": "28",
+"code": "299",
+"lat": 9.88,
+"lon": 114.23
+},
+{
+"prefixes": [
+"9M6"
+],
+"entity": "East Malaysia",
+"cont": "OC",
+"itu": "54",
+"cq": "28",
+"code": "046",
+"lat": 9.88,
+"lon": 114.23
+},
+{
+"prefixes": [
+"9N"
+],
+"entity": "Nepal",
+"cont": "AS",
+"itu": "42",
+"cq": "22",
+"code": "369",
+"lat": 27.7,
+"lon": 85.33
+},
+{
+"prefixes": [
+"9Q",
+"9R",
+"9S",
+"9T"
+],
+"entity": "Dem. Rep. of Congo",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "414",
+"lat": -3.12,
+"lon": 23.03
+},
+{
+"prefixes": [
+"9U9"
+],
+"entity": "Burundi",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "404",
+"lat": -3.17,
+"lon": 29.78
+},
+{
+"prefixes": [
+"9V"
+],
+"entity": "Singapore",
+"cont": "AS",
+"itu": "54",
+"cq": "28",
+"code": "381",
+"lat": 1.37,
+"lon": 103.78
+},
+{
+"prefixes": [
+"9X9"
+],
+"entity": "Rwanda",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "454",
+"lat": -1.75,
+"lon": 29.82
+},
+{
+"prefixes": [
+"9Y",
+"9Z"
+],
+"entity": "Trinidad & Tobago",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "090",
+"lat": 10.38,
+"lon": -61.28
+},
+{
+"prefixes": [
+"A2"
+],
+"entity": "Botswana",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "402",
+"lat": -22.0,
+"lon": 24.0
+},
+{
+"prefixes": [
+"A3"
+],
+"entity": "Tonga",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "160",
+"lat": -21.22,
+"lon": -175.13
+},
+{
+"prefixes": [
+"A4"
+],
+"entity": "Oman",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "370",
+"lat": 23.6,
+"lon": 58.55
+},
+{
+"prefixes": [
+"A5"
+],
+"entity": "Bhutan",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "306",
+"lat": 27.4,
+"lon": 90.18
+},
+{
+"prefixes": [
+"A6"
+],
+"entity": "United Arab Emirates",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "391",
+"lat": 24.0,
+"lon": 54.0
+},
+{
+"prefixes": [
+"A7"
+],
+"entity": "Qatar",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "376",
+"lat": 25.25,
+"lon": 51.13
+},
+{
+"prefixes": [
+"A9"
+],
+"entity": "Bahrain",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "304",
+"lat": 26.03,
+"lon": 50.53
+},
+{
+"prefixes": [
+"AP"
+],
+"entity": "Pakistan",
+"cont": "AS",
+"itu": "41",
+"cq": "21",
+"code": "372",
+"lat": 30.0,
+"lon": 70.0
+},
+{
+"prefixes": [
+"B"
+],
+"entity": "China",
+"cont": "AS",
+"itu": "(A)",
+"cq": "23,24",
+"code": "318",
+"lat": 36.0,
+"lon": 102.0
+},
+{
+"prefixes": [
+"BS7"
+],
+"entity": "Scarborough Reef",
+"cont": "AS",
+"itu": "50",
+"cq": "27",
+"code": "506",
+"lat": 15.08,
+"lon": 117.72
+},
+{
+"prefixes": [
+"BU",
+"BV",
+"BW",
+"BX"
+],
+"entity": "Taiwan",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "386",
+"lat": 23.72,
+"lon": 120.88
+},
+{
+"prefixes": [
+"BV9P"
+],
+"entity": "Pratas I.",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "505",
+"lat": 20.7,
+"lon": 116.7
+},
+{
+"prefixes": [
+"C2"
+],
+"entity": "Nauru",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "157",
+"lat": -0.52,
+"lon": 166.92
+},
+{
+"prefixes": [
+"C3"
+],
+"entity": "Andorra",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "203",
+"lat": 42.58,
+"lon": 1.62
+},
+{
+"prefixes": [
+"C5"
+],
+"entity": "The Gambia",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "422",
+"lat": 13.4,
+"lon": -16.38
+},
+{
+"prefixes": [
+"C6"
+],
+"entity": "Bahamas",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "060",
+"lat": 24.25,
+"lon": -76.0
+},
+{
+"prefixes": [
+"C8"
+],
+"entity": "Mozambique",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "181",
+"lat": -18.25,
+"lon": 35.0
+},
+{
+"prefixes": [
+"CA",
+"CB",
+"CC",
+"CD",
+"CE"
+],
+"entity": "Chile",
+"cont": "SA",
+"itu": "14,16",
+"cq": "12",
+"code": "112",
+"lat": -30.0,
+"lon": -71.0
+},
+{
+"prefixes": [
+"CE0"
+],
+"entity": "Easter I.",
+"cont": "SA",
+"itu": "63",
+"cq": "12",
+"code": "047",
+"lat": -27.1,
+"lon": -109.37
+},
+{
+"prefixes": [
+"CE0"
+],
+"entity": "Juan Fernandez Is.",
+"cont": "SA",
+"itu": "14",
+"cq": "12",
+"code": "125",
+"lat": -27.1,
+"lon": -109.37
+},
+{
+"prefixes": [
+"CE0"
+],
+"entity": "San Felix & San Ambrosio",
+"cont": "SA",
+"itu": "14",
+"cq": "12",
+"code": "217",
+"lat": -27.1,
+"lon": -109.37
+},
+{
+"prefixes": [
+"CE9"
+],
+"entity": "Antarctica",
+"cont": "AN",
+"itu": "(B)",
+"cq": "(C)",
+"code": "013",
+"lat": -30.0,
+"lon": -71.0
+},
+{
+"prefixes": [
+"CM",
+"CO"
+],
+"entity": "Cuba",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "070",
+"lat": 21.5,
+"lon": -80.0
+},
+{
+"prefixes": [
+"CN"
+],
+"entity": "Morocco",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "446",
+"lat": 32.0,
+"lon": -5.0
+},
+{
+"prefixes": [
+"CP"
+],
+"entity": "Bolivia",
+"cont": "SA",
+"itu": "12,14",
+"cq": "10",
+"code": "104",
+"lat": -17.0,
+"lon": -65.0
+},
+{
+"prefixes": [
+"CT"
+],
+"entity": "Portugal",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "272",
+"lat": 39.5,
+"lon": -8.0
+},
+{
+"prefixes": [
+"CT3"
+],
+"entity": "Madeira Is.",
+"cont": "AF",
+"itu": "36",
+"cq": "33",
+"code": "256",
+"lat": 32.75,
+"lon": -16.95
+},
+{
+"prefixes": [
+"CU"
+],
+"entity": "Azores",
+"cont": "EU",
+"itu": "36",
+"cq": "14",
+"code": "149",
+"lat": 38.7,
+"lon": -27.23
+},
+{
+"prefixes": [
+"CV",
+"CW",
+"CX"
+],
+"entity": "Uruguay",
+"cont": "SA",
+"itu": "14",
+"cq": "13",
+"code": "144",
+"lat": -33.0,
+"lon": -56.0
+},
+{
+"prefixes": [
+"CY0"
+],
+"entity": "Sable I.",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "211",
+"lat": 43.93,
+"lon": -59.9
+},
+{
+"prefixes": [
+"CY9"
+],
+"entity": "St. Paul I.",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "252",
+"lat": 47.0,
+"lon": -60.0
+},
+{
+"prefixes": [
+"D2"
+],
+"entity": "Angola",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "401",
+"lat": -12.5,
+"lon": 18.5
+},
+{
+"prefixes": [
+"D4"
+],
+"entity": "Cape Verde",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "409",
+"lat": 16.0,
+"lon": -24.0
+},
+{
+"prefixes": [
+"D6*#"
+],
+"entity": "Comoros",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "411",
+"lat": -11.63,
+"lon": 43.3
+},
+{
+"prefixes": [
+"DA",
+"DB",
+"DC",
+"DD",
+"DE",
+"DF",
+"DG",
+"DH",
+"DI",
+"DJ",
+"DK",
+"DL",
+"DM",
+"DN",
+"DO",
+"DP",
+"DQ",
+"DR"
+],
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+{
+"prefixes": [
+"DU",
+"DV",
+"DW",
+"DX",
+"DY",
+"DZ",
+"4D",
+"4E",
+"4F",
+"4G",
+"4H",
+"4I"
+],
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+{
+"prefixes": [
+"E3"
+],
+"entity": "Eritrea",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "051",
+"lat": 15.0,
+"lon": 39.0
+},
+{
+"prefixes": [
+"E4"
+],
+"entity": "Palestine",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "510",
+"lat": 31.28,
+"lon": 34.27
+},
+{
+"prefixes": [
+"E5"
+],
+"entity": "Cook Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "191"
+},
+{
+"prefixes": [
+"E5"
+],
+"entity": "Cook Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "234"
+},
+{
+"prefixes": [
+"E6"
+],
+"entity": "Niue",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "188",
+"lat": -19.03,
+"lon": -169.85
+},
+{
+"prefixes": [
+"E7"
+],
+"entity": "Bosnia-Herzegovina",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "501",
+"lat": 44.32,
+"lon": 17.57
+},
+{
+"prefixes": [
+"EA",
+"EB",
+"EC",
+"ED",
+"EE",
+"EF",
+"EG",
+"EH"
+],
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+{
+"prefixes": [
+"EA6"
+],
+"entity": "Balearic Is.",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "021",
+"lat": 39.6,
+"lon": 2.95
+},
+{
+"prefixes": [
+"EA8"
+],
+"entity": "Canary Is.",
+"cont": "AF",
+"itu": "36",
+"cq": "33",
+"code": "029",
+"lat": 28.32,
+"lon": -15.85
+},
+{
+"prefixes": [
+"EA9"
+],
+"entity": "Ceuta & Melilla",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "032",
+"lat": 35.9,
+"lon": -5.27
+},
+{
+"prefixes": [
+"EI",
+"EJ"
+],
+"entity": "Ireland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "245",
+"lat": 53.13,
+"lon": -8.02
+},
+{
+"prefixes": [
+"EK"
+],
+"entity": "Armenia",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "014",
+"lat": 40.4,
+"lon": 44.9
+},
+{
+"prefixes": [
+"EL"
+],
+"entity": "Liberia",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "434",
+"lat": 6.5,
+"lon": -9.5
+},
+{
+"prefixes": [
+"EP",
+"EQ"
+],
+"entity": "Iran",
+"cont": "AS",
+"itu": "40",
+"cq": "21",
+"code": "330",
+"lat": 32.0,
+"lon": 53.0
+},
+{
+"prefixes": [
+"ER"
+],
+"entity": "Moldova",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "179",
+"lat": 47.0,
+"lon": 29.0
+},
+{
+"prefixes": [
+"ES"
+],
+"entity": "Estonia",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "052",
+"lat": 59.0,
+"lon": 25.0
+},
+{
+"prefixes": [
+"ET"
+],
+"entity": "Ethiopia",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "053",
+"lat": 9.0,
+"lon": 39.0
+},
+{
+"prefixes": [
+"EU",
+"EV",
+"EW"
+],
+"entity": "Belarus",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "027",
+"lat": 54.0,
+"lon": 28.0
+},
+{
+"prefixes": [
+"EX"
+],
+"entity": "Kyrgyzstan",
+"cont": "AS",
+"itu": "30,31",
+"cq": "17",
+"code": "135",
+"lat": 41.7,
+"lon": 74.13
+},
+{
+"prefixes": [
+"EY"
+],
+"entity": "Tajikistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "262",
+"lat": 38.82,
+"lon": 71.22
+},
+{
+"prefixes": [
+"EZ"
+],
+"entity": "Turkmenistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "280",
+"lat": 38.0,
+"lon": 58.0
+},
+{
+"prefixes": [
+"F"
+],
+"entity": "France",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "227",
+"lat": 46.0,
+"lon": 2.0
+},
+{
+"prefixes": [
+"FG",
+"TO"
+],
+"entity": "Guadeloupe",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "079",
+"lat": 16.13,
+"lon": -61.67
+},
+{
+"prefixes": [
+"FH",
+"TO"
+],
+"entity": "Mayotte",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "169",
+"lat": -12.88,
+"lon": 45.15
+},
+{
+"prefixes": [
+"FJ",
+"TO"
+],
+"entity": "Saint Barthelemy",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "516",
+"lat": 17.9,
+"lon": -62.83
+},
+{
+"prefixes": [
+"FK",
+"TX"
+],
+"entity": "New Caledonia",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "162",
+"lat": -21.5,
+"lon": 165.5
+},
+{
+"prefixes": [
+"FK",
+"TX"
+],
+"entity": "Chesterfield Is.",
+"cont": "OC",
+"itu": "56",
+"cq": "30",
+"code": "512",
+"lat": -21.5,
+"lon": 165.5
+},
+{
+"prefixes": [
+"FM",
+"TO"
+],
+"entity": "Martinique",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "084",
+"lat": 14.7,
+"lon": -61.03
+},
+{
+"prefixes": [
+"FO",
+"TX"
+],
+"entity": "Austral I.",
+"cont": "OC",
+"itu": "63",
+"cq": "32",
+"code": "508",
+"lat": -17.65,
+"lon": -149.4
+},
+{
+"prefixes": [
+"FO",
+"TX"
+],
+"entity": "Clipperton I.",
+"cont": "NA",
+"itu": "10",
+"cq": "07",
+"code": "036",
+"lat": -17.65,
+"lon": -149.4
+},
+{
+"prefixes": [
+"FO",
+"TX"
+],
+"entity": "French Polynesia",
+"cont": "OC",
+"itu": "63",
+"cq": "32",
+"code": "175",
+"lat": -17.65,
+"lon": -149.4
+},
+{
+"prefixes": [
+"FO",
+"TX"
+],
+"entity": "Marquesas Is.",
+"cont": "OC",
+"itu": "63",
+"cq": "31",
+"code": "509",
+"lat": -17.65,
+"lon": -149.4
+},
+{
+"prefixes": [
+"FP"
+],
+"entity": "St. Pierre & Miquelon",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "277",
+"lat": 46.77,
+"lon": -56.2
+},
+{
+"prefixes": [
+"FR",
+"TO"
+],
+"entity": "Reunion I.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "453",
+"lat": -21.12,
+"lon": 55.48
+},
+{
+"prefixes": [
+"FT",
+"TO"
+],
+"entity": "Glorioso Is.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "099",
+"lat": 46.0,
+"lon": 2.0
+},
+{
+"prefixes": [
+"FT",
+"E",
+"TO"
+],
+"entity": "Juan de Nova, Europa",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "124",
+"lat": 46.0,
+"lon": 2.0
+},
+{
+"prefixes": [
+"FT",
+"TO"
+],
+"entity": "Tromelin I.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "276",
+"lat": 46.0,
+"lon": 2.0
+},
+{
+"prefixes": [
+"FS",
+"TO"
+],
+"entity": "Saint Martin",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "213",
+"lat": 18.08,
+"lon": -63.03
+},
+{
+"prefixes": [
+"FT"
+],
+"entity": "Crozet I.",
+"cont": "AF",
+"itu": "68",
+"cq": "39",
+"code": "041"
+},
+{
+"prefixes": [
+"FT"
+],
+"entity": "Kerguelen Is.",
+"cont": "AF",
+"itu": "68",
+"cq": "39",
+"code": "131"
+},
+{
+"prefixes": [
+"FT"
+],
+"entity": "Amsterdam & St. Paul Is.",
+"cont": "AF",
+"itu": "68",
+"cq": "39",
+"code": "010"
+},
+{
+"prefixes": [
+"FW"
+],
+"entity": "Wallis & Futuna Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "298",
+"lat": -13.3,
+"lon": -176.2
+},
+{
+"prefixes": [
+"FY"
+],
+"entity": "French Guiana",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "063",
+"lat": 4.0,
+"lon": -53.0
+},
+{
+"prefixes": [
+"G",
+"GX",
+"M"
+],
+"entity": "England",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "223",
+"lat": 52.77,
+"lon": -1.47
+},
+{
+"prefixes": [
+"GD",
+"GT"
+],
+"entity": "Isle of Man",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "114",
+"lat": 54.2,
+"lon": -4.53
+},
+{
+"prefixes": [
+"GI",
+"GN"
+],
+"entity": "Northern Ireland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "265",
+"lat": 54.73,
+"lon": -6.68
+},
+{
+"prefixes": [
+"GJ",
+"GH"
+],
+"entity": "Jersey",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "122",
+"lat": 49.22,
+"lon": -2.18
+},
+{
+"prefixes": [
+"GM",
+"GS"
+],
+"entity": "Scotland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "279",
+"lat": 56.82,
+"lon": -4.18
+},
+{
+"prefixes": [
+"GU",
+"GP"
+],
+"entity": "Guernsey",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "106",
+"lat": 49.45,
+"lon": -2.58
+},
+{
+"prefixes": [
+"GW",
+"GC"
+],
+"entity": "Wales",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "294",
+"lat": 52.28,
+"lon": -3.73
+},
+{
+"prefixes": [
+"H4"
+],
+"entity": "Solomon Is.",
+"cont": "OC",
+"itu": "51",
+"cq": "28",
+"code": "185",
+"lat": -9.0,
+"lon": 160.0
+},
+{
+"prefixes": [
+"H40"
+],
+"entity": "Temotu Province",
+"cont": "OC",
+"itu": "51",
+"cq": "32",
+"code": "507",
+"lat": -9.0,
+"lon": 160.0
+},
+{
+"prefixes": [
+"HA",
+"HG"
+],
+"entity": "Hungary",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "239",
+"lat": 47.12,
+"lon": 19.28
+},
+{
+"prefixes": [
+"HB"
+],
+"entity": "Switzerland",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "287",
+"lat": 46.87,
+"lon": 8.12
+},
+{
+"prefixes": [
+"HB0"
+],
+"entity": "Liechtenstein",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "251",
+"lat": 47.13,
+"lon": 9.57
+},
+{
+"prefixes": [
+"HC",
+"HD"
+],
+"entity": "Ecuador",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "120",
+"lat": -1.4,
+"lon": -78.4
+},
+{
+"prefixes": [
+"HC8"
+],
+"entity": "Galapagos Is.",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "071",
+"lat": -0.78,
+"lon": -91.03
+},
+{
+"prefixes": [
+"HH"
+],
+"entity": "Haiti",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "078",
+"lat": 19.02,
+"lon": -72.18
+},
+{
+"prefixes": [
+"HI"
+],
+"entity": "Dominican Republic",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "072",
+"lat": 19.13,
+"lon": -70.68
+},
+{
+"prefixes": [
+"HJ",
+"HK",
+"5J",
+"5K"
+],
+"entity": "Colombia",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "116",
+"lat": 5.0,
+"lon": -74.0
+},
+{
+"prefixes": [
+"HK0"
+],
+"entity": "Malpelo I.",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "161",
+"lat": 5.0,
+"lon": -74.0
+},
+{
+"prefixes": [
+"HK0"
+],
+"entity": "San Andres & Providencia",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "216",
+"lat": 5.0,
+"lon": -74.0
+},
+{
+"prefixes": [
+"HL",
+"6K",
+"6L",
+"6M",
+"6N"
+],
+"entity": "Republic of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "137",
+"lat": 36.23,
+"lon": 127.9
+},
+{
+"prefixes": [
+"HO",
+"HP"
+],
+"entity": "Panama",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "088",
+"lat": 9.0,
+"lon": -80.0
+},
+{
+"prefixes": [
+"HQ",
+"HR"
+],
+"entity": "Honduras",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "080",
+"lat": 15.0,
+"lon": -87.0
+},
+{
+"prefixes": [
+"HS",
+"E2"
+],
+"entity": "Thailand",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "387",
+"lat": 12.6,
+"lon": 99.7
+},
+{
+"prefixes": [
+"HV"
+],
+"entity": "Vatican",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "295",
+"lat": 41.9,
+"lon": 12.47
+},
+{
+"prefixes": [
+"HZ"
+],
+"entity": "Saudi Arabia",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "378",
+"lat": 24.2,
+"lon": 43.83
+},
+{
+"prefixes": [
+"I"
+],
+"entity": "Italy",
+"cont": "EU",
+"itu": "28",
+"cq": "15,33",
+"code": "248",
+"lat": 42.82,
+"lon": 12.58
+},
+{
+"prefixes": [
+"IS0",
+"IM0"
+],
+"entity": "Sardinia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "225",
+"lat": 40.15,
+"lon": 9.27
+},
+{
+"prefixes": [
+"J2"
+],
+"entity": "Djibouti",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "382",
+"lat": 11.75,
+"lon": 42.35
+},
+{
+"prefixes": [
+"J3"
+],
+"entity": "Grenada",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "077",
+"lat": 12.13,
+"lon": -61.68
+},
+{
+"prefixes": [
+"J5"
+],
+"entity": "Guinea-Bissau",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "109",
+"lat": 12.02,
+"lon": -14.8
+},
+{
+"prefixes": [
+"J6"
+],
+"entity": "St. Lucia",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "097",
+"lat": 13.87,
+"lon": -61.0
+},
+{
+"prefixes": [
+"J7"
+],
+"entity": "Dominica",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "095",
+"lat": 15.43,
+"lon": -61.35
+},
+{
+"prefixes": [
+"J8"
+],
+"entity": "St. Vincent",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "098",
+"lat": 13.23,
+"lon": -61.2
+},
+{
+"prefixes": [
+"JA",
+"JB",
+"JC",
+"JD",
+"JE",
+"JF",
+"JG",
+"JH",
+"JI",
+"JJ",
+"JK",
+"JL",
+"JM",
+"JN",
+"JO",
+"JP",
+"JQ",
+"JR",
+"JS",
+"7J",
+"7K",
+"7L",
+"7M",
+"7N"
+],
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+{
+"prefixes": [
+"JD1"
+],
+"entity": "Minami Torishima",
+"cont": "OC",
+"itu": "90",
+"cq": "27",
+"code": "177"
+},
+{
+"prefixes": [
+"JD1"
+],
+"entity": "Ogasawara",
+"cont": "AS",
+"itu": "45",
+"cq": "27",
+"code": "192"
+},
+{
+"prefixes": [
+"JT",
+"JU",
+"JV"
+],
+"entity": "Mongolia",
+"cont": "AS",
+"itu": "32,33",
+"cq": "23",
+"code": "363",
+"lat": 46.77,
+"lon": 102.17
+},
+{
+"prefixes": [
+"JW"
+],
+"entity": "Svalbard",
+"cont": "EU",
+"itu": "18",
+"cq": "40",
+"code": "259",
+"lat": 78.0,
+"lon": 16.0
+},
+{
+"prefixes": [
+"JX"
+],
+"entity": "Jan Mayen",
+"cont": "EU",
+"itu": "18",
+"cq": "40",
+"code": "118",
+"lat": 71.05,
+"lon": -8.28
+},
+{
+"prefixes": [
+"JY"
+],
+"entity": "Jordan",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "342",
+"lat": 31.18,
+"lon": 36.42
+},
+{
+"prefixes": [
+"K",
+"W",
+"N",
+"AA",
+"AB",
+"AC",
+"AD",
+"AE",
+"AF",
+"AG",
+"AH",
+"AI",
+"AJ",
+"AK"
+],
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+{
+"prefixes": [
+"KG4"
+],
+"entity": "Guantanamo Bay",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "105",
+"lat": 20.0,
+"lon": -75.0
+},
+{
+"prefixes": [
+"KH0"
+],
+"entity": "Mariana Is.",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "166",
+"lat": 15.18,
+"lon": 145.72
+},
+{
+"prefixes": [
+"KH1"
+],
+"entity": "Baker & Howland Is.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "020",
+"lat": 0.0,
+"lon": -176.0
+},
+{
+"prefixes": [
+"KH2"
+],
+"entity": "Guam",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "103",
+"lat": 13.37,
+"lon": 144.7
+},
+{
+"prefixes": [
+"KH3"
+],
+"entity": "Johnston I.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "123",
+"lat": 16.72,
+"lon": -169.53
+},
+{
+"prefixes": [
+"KH4"
+],
+"entity": "Midway I.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "174",
+"lat": 28.2,
+"lon": -177.37
+},
+{
+"prefixes": [
+"KH5"
+],
+"entity": "Palmyra & Jarvis Is.",
+"cont": "OC",
+"itu": "61,62",
+"cq": "31",
+"code": "197",
+"lat": 5.87,
+"lon": -162.07
+},
+{
+"prefixes": [
+"KH6"
+],
+"entity": "Hawaii",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "110",
+"lat": 21.12,
+"lon": -157.48
+},
+{
+"prefixes": [
+"KH7K"
+],
+"entity": "Kure I.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "138",
+"lat": 29.0,
+"lon": -178.0
+},
+{
+"prefixes": [
+"KH8"
+],
+"entity": "American Samoa",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "009",
+"lat": -14.32,
+"lon": -170.78
+},
+{
+"prefixes": [
+"KH8"
+],
+"entity": "Swains I.",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "515",
+"lat": -14.32,
+"lon": -170.78
+},
+{
+"prefixes": [
+"KH9"
+],
+"entity": "Wake I.",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "297",
+"lat": 19.28,
+"lon": 166.63
+},
+{
+"prefixes": [
+"KL",
+"AL",
+"NL",
+"WL"
+],
+"entity": "Alaska",
+"cont": "NA",
+"itu": "1,2",
+"cq": "1",
+"code": "006",
+"lat": 61.4,
+"lon": -148.87
+},
+{
+"prefixes": [
+"KP1"
+],
+"entity": "Navassa I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "182",
+"lat": 18.4,
+"lon": -75.0
+},
+{
+"prefixes": [
+"KP2"
+],
+"entity": "Virgin Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "285",
+"lat": 17.73,
+"lon": -64.8
+},
+{
+"prefixes": [
+"KP3"
+],
+"entity": "Puerto Rico",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "202",
+"lat": 18.18,
+"lon": -66.55
+},
+{
+"prefixes": [
+"KP5"
+],
+"entity": "Desecheo I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "043",
+"lat": 18.08,
+"lon": -67.88
+},
+{
+"prefixes": [
+"LA",
+"LB",
+"LC",
+"LD",
+"LE",
+"LF",
+"LG",
+"LH",
+"LI",
+"LJ",
+"LK",
+"LL",
+"LM",
+"LN"
+],
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+{
+"prefixes": [
+"LO",
+"LP",
+"LQ",
+"LR",
+"LS",
+"LT",
+"LU",
+"LV",
+"LW"
+],
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+{
+"prefixes": [
+"LX"
+],
+"entity": "Luxembourg",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "254",
+"lat": 50.0,
+"lon": 6.0
+},
+{
+"prefixes": [
+"LY"
+],
+"entity": "Lithuania",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "146",
+"lat": 55.45,
+"lon": 23.63
+},
+{
+"prefixes": [
+"LZ"
+],
+"entity": "Bulgaria",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "212",
+"lat": 42.83,
+"lon": 25.08
+},
+{
+"prefixes": [
+"OA",
+"OB",
+"OC"
+],
+"entity": "Peru",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "136",
+"lat": -10.0,
+"lon": -76.0
+},
+{
+"prefixes": [
+"OD"
+],
+"entity": "Lebanon",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "354",
+"lat": 33.83,
+"lon": 35.83
+},
+{
+"prefixes": [
+"OE"
+],
+"entity": "Austria",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "206",
+"lat": 47.33,
+"lon": 13.33
+},
+{
+"prefixes": [
+"OF",
+"OG",
+"OH",
+"OI"
+],
+"entity": "Finland",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "224",
+"lat": 61.38,
+"lon": 24.82
+},
+{
+"prefixes": [
+"OH0"
+],
+"entity": "Aland Is.",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "005",
+"lat": 60.13,
+"lon": 20.37
+},
+{
+"prefixes": [
+"OJ0"
+],
+"entity": "Market Reef",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "167",
+"lat": 60.0,
+"lon": 19.0
+},
+{
+"prefixes": [
+"OK",
+"OL"
+],
+"entity": "Czech Republic",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "503",
+"lat": 50.0,
+"lon": 16.0
+},
+{
+"prefixes": [
+"OM"
+],
+"entity": "Slovak Republic",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "504",
+"lat": 49.0,
+"lon": 20.0
+},
+{
+"prefixes": [
+"ON",
+"OO",
+"OP",
+"OQ",
+"OR",
+"OS",
+"OT"
+],
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+{
+"prefixes": [
+"OU",
+"OV",
+"OW",
+"OZ"
+],
+"entity": "Denmark",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "221",
+"lat": 56.0,
+"lon": 10.0
+},
+{
+"prefixes": [
+"OX"
+],
+"entity": "Greenland",
+"cont": "NA",
+"itu": "5,75",
+"cq": "40",
+"code": "237",
+"lat": 74.0,
+"lon": -42.78
+},
+{
+"prefixes": [
+"OY"
+],
+"entity": "Faroe Is.",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "222",
+"lat": 62.07,
+"lon": -6.93
+},
+{
+"prefixes": [
+"P2"
+],
+"entity": "Papua New Guinea",
+"cont": "OC",
+"itu": "51",
+"cq": "28",
+"code": "163",
+"lat": -9.5,
+"lon": 147.12
+},
+{
+"prefixes": [
+"P4"
+],
+"entity": "Aruba",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "091",
+"lat": 12.53,
+"lon": -69.98
+},
+{
+"prefixes": [
+"P5"
+],
+"entity": "DPR of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "344",
+"lat": 39.78,
+"lon": 126.3
+},
+{
+"prefixes": [
+"PA",
+"PB",
+"PC",
+"PD",
+"PE",
+"PF",
+"PG",
+"PH",
+"PI"
+],
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+{
+"prefixes": [
+"PJ2"
+],
+"entity": "Curacao",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "517",
+"lat": 12.17,
+"lon": -69.0
+},
+{
+"prefixes": [
+"PJ4"
+],
+"entity": "Bonaire",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "520",
+"lat": 12.2,
+"lon": -68.25
+},
+{
+"prefixes": [
+"PJ5"
+],
+"entity": "Saba & St. Eustatius",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "519",
+"lat": 17.57,
+"lon": -63.1
+},
+{
+"prefixes": [
+"PJ7"
+],
+"entity": "Sint Maarten",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "518",
+"lat": 18.07,
+"lon": -63.07
+},
+{
+"prefixes": [
+"PP",
+"PQ",
+"PR",
+"PS",
+"PT",
+"PU",
+"PV",
+"PW",
+"PX",
+"PY",
+"ZV",
+"ZW",
+"ZX",
+"ZY",
+"ZZ"
+],
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+{
+"prefixes": [
+"PP0"
+],
+"entity": "Fernando de Noronha",
+"cont": "SA",
+"itu": "13",
+"cq": "11",
+"code": "056",
+"lat": -10.0,
+"lon": -53.0
+},
+{
+"prefixes": [
+"PP0"
+],
+"entity": "St. Peter & St. Paul Rocks",
+"cont": "SA",
+"itu": "13",
+"cq": "11",
+"code": "253",
+"lat": -10.0,
+"lon": -53.0
+},
+{
+"prefixes": [
+"PP0"
+],
+"entity": "Trindade & Martim Vaz Is.",
+"cont": "SA",
+"itu": "15",
+"cq": "11",
+"code": "273",
+"lat": -10.0,
+"lon": -53.0
+},
+{
+"prefixes": [
+"PZ"
+],
+"entity": "Suriname",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "140",
+"lat": 4.0,
+"lon": -56.0
+},
+{
+"prefixes": [
+"R1"
+],
+"entity": "Franz Josef Land",
+"cont": "EU",
+"itu": "75",
+"cq": "40",
+"code": "061",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"S01"
+],
+"entity": "Western Sahara",
+"cont": "AF",
+"itu": "46",
+"cq": "33",
+"code": "302",
+"lat": 24.82,
+"lon": -13.85
+},
+{
+"prefixes": [
+"S2"
+],
+"entity": "Bangladesh",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "305",
+"lat": 24.12,
+"lon": 89.65
+},
+{
+"prefixes": [
+"S56"
+],
+"entity": "Slovenia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "499",
+"lat": 46.0,
+"lon": 14.0
+},
+{
+"prefixes": [
+"S7"
+],
+"entity": "Seychelles",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "379",
+"lat": -4.67,
+"lon": 55.47
+},
+{
+"prefixes": [
+"S9"
+],
+"entity": "Sao Tome & Principe",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "219",
+"lat": 0.22,
+"lon": 6.57
+},
+{
+"prefixes": [
+"SA",
+"SB",
+"SC",
+"SD",
+"SE",
+"SF",
+"SG",
+"SH",
+"SI",
+"SJ",
+"SK",
+"SL",
+"SM",
+"7S"
+],
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+{
+"prefixes": [
+"SN",
+"SO",
+"SP",
+"SQ",
+"SR"
+],
+"entity": "Poland",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "269",
+"lat": 52.28,
+"lon": 18.67
+},
+{
+"prefixes": [
+"ST"
+],
+"entity": "Sudan",
+"cont": "AF",
+"itu": "47,48",
+"cq": "34",
+"code": "466",
+"lat": 14.47,
+"lon": 28.62
+},
+{
+"prefixes": [
+"SU"
+],
+"entity": "Egypt",
+"cont": "AF",
+"itu": "38",
+"cq": "34",
+"code": "478",
+"lat": 26.28,
+"lon": 28.6
+},
+{
+"prefixes": [
+"SV",
+"SW",
+"SX",
+"SY",
+"SZ",
+"J4"
+],
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+{
+"prefixes": [
+"SV"
+],
+"entity": "Mount Athos",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "180",
+"lat": 39.78,
+"lon": 21.78
+},
+{
+"prefixes": [
+"SV5",
+"J"
+],
+"entity": "Dodecanese",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "045",
+"lat": 36.17,
+"lon": 27.93
+},
+{
+"prefixes": [
+"SV9",
+"J"
+],
+"entity": "Crete",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "040",
+"lat": 35.23,
+"lon": 24.78
+},
+{
+"prefixes": [
+"T2"
+],
+"entity": "Tuvalu",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "282",
+"lat": -8.5,
+"lon": 179.2
+},
+{
+"prefixes": [
+"T"
+],
+"entity": "Kiribati (Gilbert Is. )",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "301"
+},
+{
+"prefixes": [
+"T"
+],
+"entity": "Kiribati",
+"cont": "OC",
+"itu": "62",
+"cq": "31",
+"code": "031",
+"lat": 1.42,
+"lon": 173.0
+},
+{
+"prefixes": [
+"T"
+],
+"entity": "Kiribati (Line Is.)",
+"cont": "OC",
+"itu": "61,63",
+"cq": "31",
+"code": "048"
+},
+{
+"prefixes": [
+"T"
+],
+"entity": "Banaba I. (Ocean I.)",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "490"
+},
+{
+"prefixes": [
+"T5",
+"6O"
+],
+"entity": "Somalia",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "232",
+"lat": 2.03,
+"lon": 45.35
+},
+{
+"prefixes": [
+"T7"
+],
+"entity": "San Marino",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "278",
+"lat": 43.95,
+"lon": 12.45
+},
+{
+"prefixes": [
+"T8"
+],
+"entity": "Palau",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "022",
+"lat": 7.45,
+"lon": 134.53
+},
+{
+"prefixes": [
+"TA",
+"TB",
+"TC"
+],
+"entity": "Turkey",
+"cont": "EU/AS",
+"itu": "39",
+"cq": "20",
+"code": "390",
+"lat": 39.18,
+"lon": 35.65
+},
+{
+"prefixes": [
+"TF"
+],
+"entity": "Iceland",
+"cont": "EU",
+"itu": "17",
+"cq": "40",
+"code": "242",
+"lat": 64.8,
+"lon": -18.73
+},
+{
+"prefixes": [
+"TG",
+"TD"
+],
+"entity": "Guatemala",
+"cont": "NA",
+"itu": "12",
+"cq": "07",
+"code": "076",
+"lat": 15.5,
+"lon": -90.3
+},
+{
+"prefixes": [
+"TI",
+"TE"
+],
+"entity": "Costa Rica",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "308",
+"lat": 10.0,
+"lon": -84.0
+},
+{
+"prefixes": [
+"TI9"
+],
+"entity": "Cocos I.",
+"cont": "NA",
+"itu": "12",
+"cq": "07",
+"code": "037",
+"lat": 5.52,
+"lon": -87.05
+},
+{
+"prefixes": [
+"TJ"
+],
+"entity": "Cameroon",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "406",
+"lat": 5.38,
+"lon": 11.87
+},
+{
+"prefixes": [
+"TK"
+],
+"entity": "Corsica",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "214",
+"lat": 42.0,
+"lon": 9.0
+},
+{
+"prefixes": [
+"TL"
+],
+"entity": "Central Africa",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "408",
+"lat": 6.75,
+"lon": 20.33
+},
+{
+"prefixes": [
+"TN"
+],
+"entity": "Congo (Republic of the)",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "412",
+"lat": -1.02,
+"lon": 15.37
+},
+{
+"prefixes": [
+"TR"
+],
+"entity": "Gabon",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "420",
+"lat": -0.37,
+"lon": 11.73
+},
+{
+"prefixes": [
+"TT"
+],
+"entity": "Chad",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "410",
+"lat": 15.8,
+"lon": 18.17
+},
+{
+"prefixes": [
+"TU"
+],
+"entity": "Cote d'Ivoire",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "428",
+"lat": 7.58,
+"lon": -5.8
+},
+{
+"prefixes": [
+"TY"
+],
+"entity": "Benin",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "416",
+"lat": 9.87,
+"lon": 2.25
+},
+{
+"prefixes": [
+"TZ"
+],
+"entity": "Mali",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "442",
+"lat": 18.0,
+"lon": -2.58
+},
+{
+"prefixes": [
+"UA",
+"UB",
+"UC",
+"UD",
+"UE",
+"UF",
+"UG",
+"UH",
+"UI",
+"RA",
+"RB",
+"RC",
+"RD",
+"RE",
+"RF",
+"RG",
+"RH",
+"RI",
+"RJ",
+"RK",
+"RL",
+"RM",
+"RN",
+"RO",
+"RP",
+"RQ",
+"RR",
+"RS",
+"RT",
+"RU",
+"RV",
+"RW",
+"RX",
+"RY",
+"RZ"
+],
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+{
+"prefixes": [
+"UA2",
+"RA2"
+],
+"entity": "Kaliningrad",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "126",
+"lat": 54.72,
+"lon": 20.52
+},
+{
+"prefixes": [
+"UA",
+"UB",
+"UC",
+"UD",
+"UE",
+"UF",
+"UG",
+"UH",
+"UI",
+"RA",
+"RB",
+"RC",
+"RD",
+"RE",
+"RF",
+"RG",
+"RH",
+"RI",
+"RJ",
+"RK",
+"RL",
+"RM",
+"RN",
+"RO",
+"RP",
+"RQ",
+"RR",
+"RS",
+"RT",
+"RU",
+"RV",
+"RW",
+"RX",
+"RY",
+"RZ"
+],
+"entity": "Asiatic Russia",
+"cont": "AS",
+"itu": "(F)",
+"cq": "(G)",
+"code": "015",
+"lat": 53.65,
+"lon": 41.37
+},
+{
+"prefixes": [
+"UJ",
+"UK",
+"UL",
+"UM"
+],
+"entity": "Uzbekistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "292",
+"lat": 41.4,
+"lon": 63.97
+},
+{
+"prefixes": [
+"UN",
+"UO",
+"UP",
+"UQ"
+],
+"entity": "Kazakhstan",
+"cont": "AS",
+"itu": "29-31",
+"cq": "17",
+"code": "130",
+"lat": 48.17,
+"lon": 65.18
+},
+{
+"prefixes": [
+"UR",
+"US",
+"UT",
+"UU",
+"UV",
+"UW",
+"UX",
+"UY",
+"UZ",
+"EM",
+"EN",
+"EO"
+],
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+{
+"prefixes": [
+"V2"
+],
+"entity": "Antigua & Barbuda",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "094",
+"lat": 17.07,
+"lon": -61.8
+},
+{
+"prefixes": [
+"V3"
+],
+"entity": "Belize",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "066",
+"lat": 16.97,
+"lon": -88.67
+},
+{
+"prefixes": [
+"V4"
+],
+"entity": "St. Kitts & Nevis",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "249",
+"lat": 17.37,
+"lon": -62.78
+},
+{
+"prefixes": [
+"V5"
+],
+"entity": "Namibia",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "464",
+"lat": -22.0,
+"lon": 17.0
+},
+{
+"prefixes": [
+"V6"
+],
+"entity": "Micronesia",
+"cont": "OC",
+"itu": "65",
+"cq": "27",
+"code": "173",
+"lat": 6.88,
+"lon": 158.2
+},
+{
+"prefixes": [
+"V7"
+],
+"entity": "Marshall Is.",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "168",
+"lat": 9.08,
+"lon": 167.33
+},
+{
+"prefixes": [
+"V8"
+],
+"entity": "Brunei Darussalam",
+"cont": "OC",
+"itu": "54",
+"cq": "28",
+"code": "345",
+"lat": 4.5,
+"lon": 114.6
+},
+{
+"prefixes": [
+"VA",
+"VB",
+"VC",
+"VD",
+"VE",
+"VF",
+"VG",
+"VO",
+"VY"
+],
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+{
+"prefixes": [
+"VK",
+"AX"
+],
+"entity": "Australia",
+"cont": "OC",
+"itu": "(I)",
+"cq": "29,30",
+"code": "150",
+"lat": -23.7,
+"lon": 132.33
+},
+{
+"prefixes": [
+"VK0"
+],
+"entity": "Heard I.",
+"cont": "AF",
+"itu": "68",
+"cq": "39",
+"code": "111",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VK0"
+],
+"entity": "Macquarie I.",
+"cont": "OC",
+"itu": "60",
+"cq": "30",
+"code": "153",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VK9C"
+],
+"entity": "Cocos (Keeling) Is.",
+"cont": "OC",
+"itu": "54",
+"cq": "29",
+"code": "038",
+"lat": -12.15,
+"lon": 96.82
+},
+{
+"prefixes": [
+"VK9L"
+],
+"entity": "Lord Howe I.",
+"cont": "OC",
+"itu": "60",
+"cq": "30",
+"code": "147",
+"lat": -31.55,
+"lon": 159.08
+},
+{
+"prefixes": [
+"VK9M"
+],
+"entity": "Mellish Reef",
+"cont": "OC",
+"itu": "56",
+"cq": "30",
+"code": "171",
+"lat": -17.4,
+"lon": 155.85
+},
+{
+"prefixes": [
+"VK9N"
+],
+"entity": "Norfolk I.",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "189",
+"lat": -29.03,
+"lon": 167.93
+},
+{
+"prefixes": [
+"VK9W"
+],
+"entity": "Willis I.",
+"cont": "OC",
+"itu": "55",
+"cq": "30",
+"code": "303",
+"lat": -16.22,
+"lon": 150.02
+},
+{
+"prefixes": [
+"VK9X"
+],
+"entity": "Christmas I.",
+"cont": "OC",
+"itu": "54",
+"cq": "29",
+"code": "035",
+"lat": -10.48,
+"lon": 105.63
+},
+{
+"prefixes": [
+"VP2E"
+],
+"entity": "Anguilla",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "012",
+"lat": 18.23,
+"lon": -63.0
+},
+{
+"prefixes": [
+"VP2M"
+],
+"entity": "Montserrat",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "096",
+"lat": 16.75,
+"lon": -62.18
+},
+{
+"prefixes": [
+"VP2V"
+],
+"entity": "British Virgin Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "065",
+"lat": 18.33,
+"lon": -64.75
+},
+{
+"prefixes": [
+"VP5"
+],
+"entity": "Turks & Caicos Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "089",
+"lat": 21.77,
+"lon": -71.75
+},
+{
+"prefixes": [
+"VP6"
+],
+"entity": "Pitcairn I.",
+"cont": "OC",
+"itu": "63",
+"cq": "32",
+"code": "172",
+"lat": -25.07,
+"lon": -130.1
+},
+{
+"prefixes": [
+"VP6"
+],
+"entity": "Ducie I.",
+"cont": "OC",
+"itu": "63",
+"cq": "32",
+"code": "513",
+"lat": -25.07,
+"lon": -130.1
+},
+{
+"prefixes": [
+"VP8"
+],
+"entity": "Falkland Is.",
+"cont": "SA",
+"itu": "16",
+"cq": "13",
+"code": "141",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VP8",
+"LU"
+],
+"entity": "South Georgia I.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "235",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VP8",
+"LU"
+],
+"entity": "South Orkney Is.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "238",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VP8",
+"LU"
+],
+"entity": "South Sandwich Is.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "240",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VP8",
+"LU",
+"CE9",
+"HF0",
+"4K1"
+],
+"entity": "South Shetland Is.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "241",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VP9"
+],
+"entity": "Bermuda",
+"cont": "NA",
+"itu": "11",
+"cq": "05",
+"code": "064",
+"lat": 32.32,
+"lon": -64.73
+},
+{
+"prefixes": [
+"VQ9"
+],
+"entity": "Chagos Is.",
+"cont": "AF",
+"itu": "41",
+"cq": "39",
+"code": "033",
+"lat": -7.32,
+"lon": 72.42
+},
+{
+"prefixes": [
+"VR"
+],
+"entity": "Hong Kong",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "321",
+"lat": 22.28,
+"lon": 114.18
+},
+{
+"prefixes": [
+"VU"
+],
+"entity": "India",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "324",
+"lat": -90.0,
+"lon": -0.0
+},
+{
+"prefixes": [
+"VU4"
+],
+"entity": "Andaman & Nicobar Is.",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "011",
+"lat": 12.37,
+"lon": 92.78
+},
+{
+"prefixes": [
+"VU7"
+],
+"entity": "Lakshadweep Is.",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "142",
+"lat": 11.23,
+"lon": 72.78
+},
+{
+"prefixes": [
+"XA",
+"XB",
+"XC",
+"XD",
+"XE",
+"XF",
+"XG",
+"XH",
+"XI"
+],
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+{
+"prefixes": [
+"XA4"
+],
+"entity": "Revillagigedo",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "204",
+"lat": 18.77,
+"lon": -110.97
+},
+{
+"prefixes": [
+"XT"
+],
+"entity": "Burkina Faso",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "480",
+"lat": 12.0,
+"lon": -2.0
+},
+{
+"prefixes": [
+"XU"
+],
+"entity": "Cambodia",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "312",
+"lat": 12.93,
+"lon": 105.13
+},
+{
+"prefixes": [
+"XW"
+],
+"entity": "Laos",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "143",
+"lat": 18.2,
+"lon": 104.55
+},
+{
+"prefixes": [
+"XX9"
+],
+"entity": "Macao",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "152",
+"lat": 22.1,
+"lon": 113.5
+},
+{
+"prefixes": [
+"XY",
+"XZ"
+],
+"entity": "Myanmar",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "309",
+"lat": 20.0,
+"lon": 96.37
+},
+{
+"prefixes": [
+"YA",
+"T6"
+],
+"entity": "Afghanistan",
+"cont": "AS",
+"itu": "40",
+"cq": "21",
+"code": "003",
+"lat": 34.7,
+"lon": 65.8
+},
+{
+"prefixes": [
+"YB",
+"YC",
+"YD",
+"YE",
+"YF",
+"YG",
+"YH"
+],
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+{
+"prefixes": [
+"YI"
+],
+"entity": "Iraq",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "333",
+"lat": 33.92,
+"lon": 42.78
+},
+{
+"prefixes": [
+"YJ"
+],
+"entity": "Vanuatu",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "158",
+"lat": -17.67,
+"lon": 168.38
+},
+{
+"prefixes": [
+"YK"
+],
+"entity": "Syria",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "384",
+"lat": 35.38,
+"lon": 38.2
+},
+{
+"prefixes": [
+"YL"
+],
+"entity": "Latvia",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "145",
+"lat": 55.45,
+"lon": 23.63
+},
+{
+"prefixes": [
+"YN",
+"H6",
+"HT"
+],
+"entity": "Nicaragua",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "086",
+"lat": 12.88,
+"lon": -85.05
+},
+{
+"prefixes": [
+"YO",
+"YP",
+"YQ",
+"YR"
+],
+"entity": "Romania",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "275",
+"lat": 45.78,
+"lon": 24.7
+},
+{
+"prefixes": [
+"YS",
+"HU"
+],
+"entity": "El Salvador",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "074",
+"lat": 14.0,
+"lon": -89.0
+},
+{
+"prefixes": [
+"YT",
+"YU"
+],
+"entity": "Serbia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "296",
+"lat": 44.0,
+"lon": 21.0
+},
+{
+"prefixes": [
+"YV",
+"YW",
+"YX",
+"YY",
+"4M"
+],
+"entity": "Venezuela",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "148",
+"lat": 8.0,
+"lon": -66.0
+},
+{
+"prefixes": [
+"YV0"
+],
+"entity": "Aves I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "017",
+"lat": 15.67,
+"lon": -63.6
+},
+{
+"prefixes": [
+"Z2"
+],
+"entity": "Zimbabwe",
+"cont": "AF",
+"itu": "53",
+"cq": "38",
+"code": "452",
+"lat": -18.0,
+"lon": 31.0
+},
+{
+"prefixes": [
+"Z3"
+],
+"entity": "North Macedonia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "502",
+"lat": 41.6,
+"lon": 21.65
+},
+{
+"prefixes": [
+"Z61"
+],
+"entity": "Republic of Kosovo",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "522",
+"lat": 42.67,
+"lon": 21.17
+},
+{
+"prefixes": [
+"Z8"
+],
+"entity": "South Sudan (Rep of)",
+"cont": "AF",
+"itu": "48",
+"cq": "34",
+"code": "521",
+"lat": 4.85,
+"lon": 31.6
+},
+{
+"prefixes": [
+"ZA"
+],
+"entity": "Albania",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "007",
+"lat": 41.0,
+"lon": 20.0
+},
+{
+"prefixes": [
+"ZB2"
+],
+"entity": "Gibraltar",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "233",
+"lat": 36.15,
+"lon": -5.37
+},
+{
+"prefixes": [
+"ZC4",
+"UK"
+],
+"entity": "Sov. Base Areas",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "283",
+"lat": 35.32,
+"lon": 33.57
+},
+{
+"prefixes": [
+"ZD7"
+],
+"entity": "St. Helena",
+"cont": "AF",
+"itu": "66",
+"cq": "36",
+"code": "250",
+"lat": -15.97,
+"lon": -5.72
+},
+{
+"prefixes": [
+"ZD8"
+],
+"entity": "Ascension I.",
+"cont": "AF",
+"itu": "66",
+"cq": "36",
+"code": "205",
+"lat": -7.93,
+"lon": -14.37
+},
+{
+"prefixes": [
+"ZD9"
+],
+"entity": "Tristan da Cunha &",
+"cont": "AF",
+"itu": "66",
+"cq": "38",
+"code": "274",
+"lat": -37.13,
+"lon": -12.3
+},
+{
+"prefixes": [
+"ZF"
+],
+"entity": "Cayman Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "069",
+"lat": 19.32,
+"lon": -81.22
+},
+{
+"prefixes": [
+"ZK3"
+],
+"entity": "Tokelau Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "31",
+"code": "270",
+"lat": -9.4,
+"lon": -171.2
+},
+{
+"prefixes": [
+"ZL",
+"ZM"
+],
+"entity": "New Zealand",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "170",
+"lat": -39.03,
+"lon": 174.47
+},
+{
+"prefixes": [
+"ZL7"
+],
+"entity": "Chatham Is.",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "034",
+"lat": -43.85,
+"lon": -176.48
+},
+{
+"prefixes": [
+"ZL8"
+],
+"entity": "Kermadec Is.",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "133",
+"lat": -29.25,
+"lon": -177.92
+},
+{
+"prefixes": [
+"ZL9"
+],
+"entity": "New Zealand Subantarctic Islands",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "016",
+"lat": -51.62,
+"lon": 167.62
+},
+{
+"prefixes": [
+"ZP"
+],
+"entity": "Paraguay",
+"cont": "SA",
+"itu": "14",
+"cq": "11",
+"code": "132",
+"lat": -25.27,
+"lon": -57.67
+},
+{
+"prefixes": [
+"ZR",
+"ZS",
+"ZT",
+"ZU"
+],
+"entity": "South Africa",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "462",
+"lat": -29.07,
+"lon": 22.63
+},
+{
+"prefixes": [
+"ZS8"
+],
+"entity": "Prince Edward & Marion Is.",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "201",
+"lat": -46.88,
+"lon": 37.72
+}
+],
+"lookup": {
+"1A": {
+"entity": "Sov. Mil. Order of Malta",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "246",
+"lat": 41.9,
+"lon": 12.43
+},
+"3A": {
+"entity": "Monaco",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "260",
+"lat": 43.73,
+"lon": 7.4
+},
+"3B6": {
+"entity": "Agalega & St. Brandon Is.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "004",
+"lat": -10.45,
+"lon": 56.67
+},
+"3B8": {
+"entity": "Mauritius",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "165",
+"lat": -20.35,
+"lon": 57.5
+},
+"3B9": {
+"entity": "Rodrigues I.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "207",
+"lat": -19.7,
+"lon": 63.42
+},
+"3C": {
+"entity": "Equatorial Guinea",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "049",
+"lat": 1.7,
+"lon": 10.33
+},
+"3C0": {
+"entity": "Annobon I.",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "195",
+"lat": -1.43,
+"lon": 5.62
+},
+"3D2": {
+"entity": "Fiji",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "176",
+"lat": -17.78,
+"lon": 177.92
+},
+"3DA": {
+"entity": "Kingdom of Eswatini",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "468",
+"lat": -26.65,
+"lon": 31.48
+},
+"3V": {
+"entity": "Tunisia",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "474",
+"lat": 35.4,
+"lon": 9.32
+},
+"3W": {
+"entity": "Viet Nam",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "293",
+"lat": 15.8,
+"lon": 107.9
+},
+"XV": {
+"entity": "Viet Nam",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "293",
+"lat": 15.8,
+"lon": 107.9
+},
+"3X": {
+"entity": "Guinea",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "107",
+"lat": 11.0,
+"lon": -10.68
+},
+"3Y": {
+"entity": "Bouvet",
+"cont": "AF",
+"itu": "67",
+"cq": "38",
+"code": "024",
+"lat": -90.0,
+"lon": -0.0
+},
+"4J": {
+"entity": "Azerbaijan",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "018",
+"lat": 40.45,
+"lon": 47.37
+},
+"4K": {
+"entity": "Azerbaijan",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "018",
+"lat": 40.45,
+"lon": 47.37
+},
+"4L": {
+"entity": "Georgia",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "075",
+"lat": 42.0,
+"lon": 45.0
+},
+"4O": {
+"entity": "Montenegro",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "514",
+"lat": 42.5,
+"lon": 19.28
+},
+"4S": {
+"entity": "Sri Lanka",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "315",
+"lat": 7.6,
+"lon": 80.7
+},
+"4U_ITU": {
+"entity": "ITU HQ",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "117",
+"lat": 46.17,
+"lon": 6.05
+},
+"4U_UN": {
+"entity": "United Nations HQ",
+"cont": "NA",
+"itu": "08",
+"cq": "05",
+"code": "289",
+"lat": 40.75,
+"lon": -73.97
+},
+"4W": {
+"entity": "Timor - Leste",
+"cont": "OC",
+"itu": "54",
+"cq": "28",
+"code": "511",
+"lat": -8.8,
+"lon": 126.05
+},
+"4X": {
+"entity": "Israel",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "336",
+"lat": 31.32,
+"lon": 34.82
+},
+"4Z": {
+"entity": "Israel",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "336",
+"lat": 31.32,
+"lon": 34.82
+},
+"5A": {
+"entity": "Libya",
+"cont": "AF",
+"itu": "38",
+"cq": "34",
+"code": "436",
+"lat": 27.2,
+"lon": 16.6
+},
+"5B": {
+"entity": "Cyprus",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "215",
+"lat": 35.0,
+"lon": 33.0
+},
+"C4": {
+"entity": "Cyprus",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "215",
+"lat": 35.0,
+"lon": 33.0
+},
+"P3": {
+"entity": "Cyprus",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "215",
+"lat": 35.0,
+"lon": 33.0
+},
+"5H": {
+"entity": "Tanzania",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "470",
+"lat": -5.75,
+"lon": 33.92
+},
+"5I": {
+"entity": "Tanzania",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "470",
+"lat": -5.75,
+"lon": 33.92
+},
+"5N": {
+"entity": "Nigeria",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "450",
+"lat": 9.87,
+"lon": 7.55
+},
+"5R": {
+"entity": "Madagascar",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "438",
+"lat": -19.0,
+"lon": 46.58
+},
+"5T2": {
+"entity": "Mauritania",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "444",
+"lat": 20.6,
+"lon": -10.5
+},
+"5U3": {
+"entity": "Niger",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "187",
+"lat": 17.63,
+"lon": 9.43
+},
+"5V": {
+"entity": "Togo",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "483",
+"lat": 8.4,
+"lon": 1.28
+},
+"5W": {
+"entity": "Samoa",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "190",
+"lat": -13.93,
+"lon": -171.7
+},
+"5X": {
+"entity": "Uganda",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "286",
+"lat": 1.92,
+"lon": 32.6
+},
+"5Y": {
+"entity": "Kenya",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "430",
+"lat": 0.32,
+"lon": 38.15
+},
+"5Z": {
+"entity": "Kenya",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "430",
+"lat": 0.32,
+"lon": 38.15
+},
+"6V": {
+"entity": "Senegal",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "456",
+"lat": 15.2,
+"lon": -14.63
+},
+"6W": {
+"entity": "Senegal",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "456",
+"lat": 15.2,
+"lon": -14.63
+},
+"6Y": {
+"entity": "Jamaica",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "082",
+"lat": 18.2,
+"lon": -77.47
+},
+"7O5": {
+"entity": "Yemen",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "492",
+"lat": 15.65,
+"lon": 48.12
+},
+"7P": {
+"entity": "Lesotho",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "432",
+"lat": -29.22,
+"lon": 27.88
+},
+"7Q": {
+"entity": "Malawi",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "440",
+"lat": -14.0,
+"lon": 34.0
+},
+"7T": {
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+"7U": {
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+"7V": {
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+"7W": {
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+"7X": {
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+"7Y": {
+"entity": "Algeria",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "400",
+"lat": 28.0,
+"lon": 2.0
+},
+"8P": {
+"entity": "Barbados",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "062",
+"lat": 13.18,
+"lon": -59.53
+},
+"8Q": {
+"entity": "Maldives",
+"cont": "AS/AF",
+"itu": "41",
+"cq": "22",
+"code": "159",
+"lat": 4.15,
+"lon": 73.45
+},
+"8R": {
+"entity": "Guyana",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "129",
+"lat": 6.02,
+"lon": -59.45
+},
+"9A6": {
+"entity": "Croatia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "497",
+"lat": 45.18,
+"lon": 15.3
+},
+"9G7": {
+"entity": "Ghana",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "424",
+"lat": 7.7,
+"lon": -1.57
+},
+"9H": {
+"entity": "Malta",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "257",
+"lat": 35.88,
+"lon": 14.42
+},
+"9I": {
+"entity": "Zambia",
+"cont": "AF",
+"itu": "53",
+"cq": "36",
+"code": "482",
+"lat": -14.22,
+"lon": 26.73
+},
+"9J": {
+"entity": "Zambia",
+"cont": "AF",
+"itu": "53",
+"cq": "36",
+"code": "482",
+"lat": -14.22,
+"lon": 26.73
+},
+"9K": {
+"entity": "Kuwait",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "348",
+"lat": 29.38,
+"lon": 47.38
+},
+"9L": {
+"entity": "Sierra Leone",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "458",
+"lat": 8.5,
+"lon": -13.25
+},
+"9M2": {
+"entity": "West Malaysia",
+"cont": "AS",
+"itu": "54",
+"cq": "28",
+"code": "299",
+"lat": 9.88,
+"lon": 114.23
+},
+"9M6": {
+"entity": "East Malaysia",
+"cont": "OC",
+"itu": "54",
+"cq": "28",
+"code": "046",
+"lat": 9.88,
+"lon": 114.23
+},
+"9N": {
+"entity": "Nepal",
+"cont": "AS",
+"itu": "42",
+"cq": "22",
+"code": "369",
+"lat": 27.7,
+"lon": 85.33
+},
+"9Q": {
+"entity": "Dem. Rep. of Congo",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "414",
+"lat": -3.12,
+"lon": 23.03
+},
+"9R": {
+"entity": "Dem. Rep. of Congo",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "414",
+"lat": -3.12,
+"lon": 23.03
+},
+"9S": {
+"entity": "Dem. Rep. of Congo",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "414",
+"lat": -3.12,
+"lon": 23.03
+},
+"9T": {
+"entity": "Dem. Rep. of Congo",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "414",
+"lat": -3.12,
+"lon": 23.03
+},
+"9U9": {
+"entity": "Burundi",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "404",
+"lat": -3.17,
+"lon": 29.78
+},
+"9V": {
+"entity": "Singapore",
+"cont": "AS",
+"itu": "54",
+"cq": "28",
+"code": "381",
+"lat": 1.37,
+"lon": 103.78
+},
+"9X9": {
+"entity": "Rwanda",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "454",
+"lat": -1.75,
+"lon": 29.82
+},
+"9Y": {
+"entity": "Trinidad & Tobago",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "090",
+"lat": 10.38,
+"lon": -61.28
+},
+"9Z": {
+"entity": "Trinidad & Tobago",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "090",
+"lat": 10.38,
+"lon": -61.28
+},
+"A2": {
+"entity": "Botswana",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "402",
+"lat": -22.0,
+"lon": 24.0
+},
+"A3": {
+"entity": "Tonga",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "160",
+"lat": -21.22,
+"lon": -175.13
+},
+"A4": {
+"entity": "Oman",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "370",
+"lat": 23.6,
+"lon": 58.55
+},
+"A5": {
+"entity": "Bhutan",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "306",
+"lat": 27.4,
+"lon": 90.18
+},
+"A6": {
+"entity": "United Arab Emirates",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "391",
+"lat": 24.0,
+"lon": 54.0
+},
+"A7": {
+"entity": "Qatar",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "376",
+"lat": 25.25,
+"lon": 51.13
+},
+"A9": {
+"entity": "Bahrain",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "304",
+"lat": 26.03,
+"lon": 50.53
+},
+"AP": {
+"entity": "Pakistan",
+"cont": "AS",
+"itu": "41",
+"cq": "21",
+"code": "372",
+"lat": 30.0,
+"lon": 70.0
+},
+"B": {
+"entity": "China",
+"cont": "AS",
+"itu": "(A)",
+"cq": "23,24",
+"code": "318",
+"lat": 36.0,
+"lon": 102.0
+},
+"BS7": {
+"entity": "Scarborough Reef",
+"cont": "AS",
+"itu": "50",
+"cq": "27",
+"code": "506",
+"lat": 15.08,
+"lon": 117.72
+},
+"BU": {
+"entity": "Taiwan",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "386",
+"lat": 23.72,
+"lon": 120.88
+},
+"BV": {
+"entity": "Taiwan",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "386",
+"lat": 23.72,
+"lon": 120.88
+},
+"BW": {
+"entity": "Taiwan",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "386",
+"lat": 23.72,
+"lon": 120.88
+},
+"BX": {
+"entity": "Taiwan",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "386",
+"lat": 23.72,
+"lon": 120.88
+},
+"BV9P": {
+"entity": "Pratas I.",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "505",
+"lat": 20.7,
+"lon": 116.7
+},
+"C2": {
+"entity": "Nauru",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "157",
+"lat": -0.52,
+"lon": 166.92
+},
+"C3": {
+"entity": "Andorra",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "203",
+"lat": 42.58,
+"lon": 1.62
+},
+"C5": {
+"entity": "The Gambia",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "422",
+"lat": 13.4,
+"lon": -16.38
+},
+"C6": {
+"entity": "Bahamas",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "060",
+"lat": 24.25,
+"lon": -76.0
+},
+"C8": {
+"entity": "Mozambique",
+"cont": "AF",
+"itu": "53",
+"cq": "37",
+"code": "181",
+"lat": -18.25,
+"lon": 35.0
+},
+"CA": {
+"entity": "Chile",
+"cont": "SA",
+"itu": "14,16",
+"cq": "12",
+"code": "112",
+"lat": -30.0,
+"lon": -71.0
+},
+"CB": {
+"entity": "Chile",
+"cont": "SA",
+"itu": "14,16",
+"cq": "12",
+"code": "112",
+"lat": -30.0,
+"lon": -71.0
+},
+"CC": {
+"entity": "Chile",
+"cont": "SA",
+"itu": "14,16",
+"cq": "12",
+"code": "112",
+"lat": -30.0,
+"lon": -71.0
+},
+"CD": {
+"entity": "Chile",
+"cont": "SA",
+"itu": "14,16",
+"cq": "12",
+"code": "112",
+"lat": -30.0,
+"lon": -71.0
+},
+"CE": {
+"entity": "Chile",
+"cont": "SA",
+"itu": "14,16",
+"cq": "12",
+"code": "112",
+"lat": -30.0,
+"lon": -71.0
+},
+"CE0": {
+"entity": "Easter I.",
+"cont": "SA",
+"itu": "63",
+"cq": "12",
+"code": "047",
+"lat": -27.1,
+"lon": -109.37
+},
+"CE9": {
+"entity": "Antarctica",
+"cont": "AN",
+"itu": "(B)",
+"cq": "(C)",
+"code": "013",
+"lat": -30.0,
+"lon": -71.0
+},
+"CM": {
+"entity": "Cuba",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "070",
+"lat": 21.5,
+"lon": -80.0
+},
+"CO": {
+"entity": "Cuba",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "070",
+"lat": 21.5,
+"lon": -80.0
+},
+"CN": {
+"entity": "Morocco",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "446",
+"lat": 32.0,
+"lon": -5.0
+},
+"CP": {
+"entity": "Bolivia",
+"cont": "SA",
+"itu": "12,14",
+"cq": "10",
+"code": "104",
+"lat": -17.0,
+"lon": -65.0
+},
+"CT": {
+"entity": "Portugal",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "272",
+"lat": 39.5,
+"lon": -8.0
+},
+"CT3": {
+"entity": "Madeira Is.",
+"cont": "AF",
+"itu": "36",
+"cq": "33",
+"code": "256",
+"lat": 32.75,
+"lon": -16.95
+},
+"CU": {
+"entity": "Azores",
+"cont": "EU",
+"itu": "36",
+"cq": "14",
+"code": "149",
+"lat": 38.7,
+"lon": -27.23
+},
+"CV": {
+"entity": "Uruguay",
+"cont": "SA",
+"itu": "14",
+"cq": "13",
+"code": "144",
+"lat": -33.0,
+"lon": -56.0
+},
+"CW": {
+"entity": "Uruguay",
+"cont": "SA",
+"itu": "14",
+"cq": "13",
+"code": "144",
+"lat": -33.0,
+"lon": -56.0
+},
+"CX": {
+"entity": "Uruguay",
+"cont": "SA",
+"itu": "14",
+"cq": "13",
+"code": "144",
+"lat": -33.0,
+"lon": -56.0
+},
+"CY0": {
+"entity": "Sable I.",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "211",
+"lat": 43.93,
+"lon": -59.9
+},
+"CY9": {
+"entity": "St. Paul I.",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "252",
+"lat": 47.0,
+"lon": -60.0
+},
+"D2": {
+"entity": "Angola",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "401",
+"lat": -12.5,
+"lon": 18.5
+},
+"D4": {
+"entity": "Cape Verde",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "409",
+"lat": 16.0,
+"lon": -24.0
+},
+"D6*#": {
+"entity": "Comoros",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "411",
+"lat": -11.63,
+"lon": 43.3
+},
+"DA": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DB": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DC": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DD": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DE": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DF": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DG": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DH": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DI": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DJ": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DK": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DL": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DM": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DN": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DO": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DP": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DQ": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DR": {
+"entity": "Fed. Rep. of Germany",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "230",
+"lat": 51.0,
+"lon": 10.0
+},
+"DU": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"DV": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"DW": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"DX": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"DY": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"DZ": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"4D": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"4E": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"4F": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"4G": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"4H": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"4I": {
+"entity": "Philippines",
+"cont": "OC",
+"itu": "50",
+"cq": "27",
+"code": "375",
+"lat": 13.0,
+"lon": 122.0
+},
+"E3": {
+"entity": "Eritrea",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "051",
+"lat": 15.0,
+"lon": 39.0
+},
+"E4": {
+"entity": "Palestine",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "510",
+"lat": 31.28,
+"lon": 34.27
+},
+"E5": {
+"entity": "Cook Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "191",
+"lat": null,
+"lon": null
+},
+"E6": {
+"entity": "Niue",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "188",
+"lat": -19.03,
+"lon": -169.85
+},
+"E7": {
+"entity": "Bosnia-Herzegovina",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "501",
+"lat": 44.32,
+"lon": 17.57
+},
+"EA": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EB": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EC": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"ED": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EE": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EF": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EG": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EH": {
+"entity": "Spain",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "281",
+"lat": 40.32,
+"lon": -3.43
+},
+"EA6": {
+"entity": "Balearic Is.",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "021",
+"lat": 39.6,
+"lon": 2.95
+},
+"EA8": {
+"entity": "Canary Is.",
+"cont": "AF",
+"itu": "36",
+"cq": "33",
+"code": "029",
+"lat": 28.32,
+"lon": -15.85
+},
+"EA9": {
+"entity": "Ceuta & Melilla",
+"cont": "AF",
+"itu": "37",
+"cq": "33",
+"code": "032",
+"lat": 35.9,
+"lon": -5.27
+},
+"EI": {
+"entity": "Ireland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "245",
+"lat": 53.13,
+"lon": -8.02
+},
+"EJ": {
+"entity": "Ireland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "245",
+"lat": 53.13,
+"lon": -8.02
+},
+"EK": {
+"entity": "Armenia",
+"cont": "AS",
+"itu": "29",
+"cq": "21",
+"code": "014",
+"lat": 40.4,
+"lon": 44.9
+},
+"EL": {
+"entity": "Liberia",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "434",
+"lat": 6.5,
+"lon": -9.5
+},
+"EP": {
+"entity": "Iran",
+"cont": "AS",
+"itu": "40",
+"cq": "21",
+"code": "330",
+"lat": 32.0,
+"lon": 53.0
+},
+"EQ": {
+"entity": "Iran",
+"cont": "AS",
+"itu": "40",
+"cq": "21",
+"code": "330",
+"lat": 32.0,
+"lon": 53.0
+},
+"ER": {
+"entity": "Moldova",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "179",
+"lat": 47.0,
+"lon": 29.0
+},
+"ES": {
+"entity": "Estonia",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "052",
+"lat": 59.0,
+"lon": 25.0
+},
+"ET": {
+"entity": "Ethiopia",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "053",
+"lat": 9.0,
+"lon": 39.0
+},
+"EU": {
+"entity": "Belarus",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "027",
+"lat": 54.0,
+"lon": 28.0
+},
+"EV": {
+"entity": "Belarus",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "027",
+"lat": 54.0,
+"lon": 28.0
+},
+"EW": {
+"entity": "Belarus",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "027",
+"lat": 54.0,
+"lon": 28.0
+},
+"EX": {
+"entity": "Kyrgyzstan",
+"cont": "AS",
+"itu": "30,31",
+"cq": "17",
+"code": "135",
+"lat": 41.7,
+"lon": 74.13
+},
+"EY": {
+"entity": "Tajikistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "262",
+"lat": 38.82,
+"lon": 71.22
+},
+"EZ": {
+"entity": "Turkmenistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "280",
+"lat": 38.0,
+"lon": 58.0
+},
+"F": {
+"entity": "France",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "227",
+"lat": 46.0,
+"lon": 2.0
+},
+"FG": {
+"entity": "Guadeloupe",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "079",
+"lat": 16.13,
+"lon": -61.67
+},
+"TO": {
+"entity": "Guadeloupe",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "079",
+"lat": 16.13,
+"lon": -61.67
+},
+"FH": {
+"entity": "Mayotte",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "169",
+"lat": -12.88,
+"lon": 45.15
+},
+"FJ": {
+"entity": "Saint Barthelemy",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "516",
+"lat": 17.9,
+"lon": -62.83
+},
+"FK": {
+"entity": "New Caledonia",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "162",
+"lat": -21.5,
+"lon": 165.5
+},
+"TX": {
+"entity": "New Caledonia",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "162",
+"lat": -21.5,
+"lon": 165.5
+},
+"FM": {
+"entity": "Martinique",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "084",
+"lat": 14.7,
+"lon": -61.03
+},
+"FO": {
+"entity": "Austral I.",
+"cont": "OC",
+"itu": "63",
+"cq": "32",
+"code": "508",
+"lat": -17.65,
+"lon": -149.4
+},
+"FP": {
+"entity": "St. Pierre & Miquelon",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "277",
+"lat": 46.77,
+"lon": -56.2
+},
+"FR": {
+"entity": "Reunion I.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "453",
+"lat": -21.12,
+"lon": 55.48
+},
+"FT": {
+"entity": "Glorioso Is.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "099",
+"lat": 46.0,
+"lon": 2.0
+},
+"E": {
+"entity": "Juan de Nova, Europa",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "124",
+"lat": 46.0,
+"lon": 2.0
+},
+"FS": {
+"entity": "Saint Martin",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "213",
+"lat": 18.08,
+"lon": -63.03
+},
+"FW": {
+"entity": "Wallis & Futuna Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "298",
+"lat": -13.3,
+"lon": -176.2
+},
+"FY": {
+"entity": "French Guiana",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "063",
+"lat": 4.0,
+"lon": -53.0
+},
+"G": {
+"entity": "England",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "223",
+"lat": 52.77,
+"lon": -1.47
+},
+"GX": {
+"entity": "England",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "223",
+"lat": 52.77,
+"lon": -1.47
+},
+"M": {
+"entity": "England",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "223",
+"lat": 52.77,
+"lon": -1.47
+},
+"GD": {
+"entity": "Isle of Man",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "114",
+"lat": 54.2,
+"lon": -4.53
+},
+"GT": {
+"entity": "Isle of Man",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "114",
+"lat": 54.2,
+"lon": -4.53
+},
+"GI": {
+"entity": "Northern Ireland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "265",
+"lat": 54.73,
+"lon": -6.68
+},
+"GN": {
+"entity": "Northern Ireland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "265",
+"lat": 54.73,
+"lon": -6.68
+},
+"GJ": {
+"entity": "Jersey",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "122",
+"lat": 49.22,
+"lon": -2.18
+},
+"GH": {
+"entity": "Jersey",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "122",
+"lat": 49.22,
+"lon": -2.18
+},
+"GM": {
+"entity": "Scotland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "279",
+"lat": 56.82,
+"lon": -4.18
+},
+"GS": {
+"entity": "Scotland",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "279",
+"lat": 56.82,
+"lon": -4.18
+},
+"GU": {
+"entity": "Guernsey",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "106",
+"lat": 49.45,
+"lon": -2.58
+},
+"GP": {
+"entity": "Guernsey",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "106",
+"lat": 49.45,
+"lon": -2.58
+},
+"GW": {
+"entity": "Wales",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "294",
+"lat": 52.28,
+"lon": -3.73
+},
+"GC": {
+"entity": "Wales",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "294",
+"lat": 52.28,
+"lon": -3.73
+},
+"H4": {
+"entity": "Solomon Is.",
+"cont": "OC",
+"itu": "51",
+"cq": "28",
+"code": "185",
+"lat": -9.0,
+"lon": 160.0
+},
+"H40": {
+"entity": "Temotu Province",
+"cont": "OC",
+"itu": "51",
+"cq": "32",
+"code": "507",
+"lat": -9.0,
+"lon": 160.0
+},
+"HA": {
+"entity": "Hungary",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "239",
+"lat": 47.12,
+"lon": 19.28
+},
+"HG": {
+"entity": "Hungary",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "239",
+"lat": 47.12,
+"lon": 19.28
+},
+"HB": {
+"entity": "Switzerland",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "287",
+"lat": 46.87,
+"lon": 8.12
+},
+"HB0": {
+"entity": "Liechtenstein",
+"cont": "EU",
+"itu": "28",
+"cq": "14",
+"code": "251",
+"lat": 47.13,
+"lon": 9.57
+},
+"HC": {
+"entity": "Ecuador",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "120",
+"lat": -1.4,
+"lon": -78.4
+},
+"HD": {
+"entity": "Ecuador",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "120",
+"lat": -1.4,
+"lon": -78.4
+},
+"HC8": {
+"entity": "Galapagos Is.",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "071",
+"lat": -0.78,
+"lon": -91.03
+},
+"HH": {
+"entity": "Haiti",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "078",
+"lat": 19.02,
+"lon": -72.18
+},
+"HI": {
+"entity": "Dominican Republic",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "072",
+"lat": 19.13,
+"lon": -70.68
+},
+"HJ": {
+"entity": "Colombia",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "116",
+"lat": 5.0,
+"lon": -74.0
+},
+"HK": {
+"entity": "Colombia",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "116",
+"lat": 5.0,
+"lon": -74.0
+},
+"5J": {
+"entity": "Colombia",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "116",
+"lat": 5.0,
+"lon": -74.0
+},
+"5K": {
+"entity": "Colombia",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "116",
+"lat": 5.0,
+"lon": -74.0
+},
+"HK0": {
+"entity": "Malpelo I.",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "161",
+"lat": 5.0,
+"lon": -74.0
+},
+"HL": {
+"entity": "Republic of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "137",
+"lat": 36.23,
+"lon": 127.9
+},
+"6K": {
+"entity": "Republic of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "137",
+"lat": 36.23,
+"lon": 127.9
+},
+"6L": {
+"entity": "Republic of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "137",
+"lat": 36.23,
+"lon": 127.9
+},
+"6M": {
+"entity": "Republic of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "137",
+"lat": 36.23,
+"lon": 127.9
+},
+"6N": {
+"entity": "Republic of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "137",
+"lat": 36.23,
+"lon": 127.9
+},
+"HO": {
+"entity": "Panama",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "088",
+"lat": 9.0,
+"lon": -80.0
+},
+"HP": {
+"entity": "Panama",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "088",
+"lat": 9.0,
+"lon": -80.0
+},
+"HQ": {
+"entity": "Honduras",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "080",
+"lat": 15.0,
+"lon": -87.0
+},
+"HR": {
+"entity": "Honduras",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "080",
+"lat": 15.0,
+"lon": -87.0
+},
+"HS": {
+"entity": "Thailand",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "387",
+"lat": 12.6,
+"lon": 99.7
+},
+"E2": {
+"entity": "Thailand",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "387",
+"lat": 12.6,
+"lon": 99.7
+},
+"HV": {
+"entity": "Vatican",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "295",
+"lat": 41.9,
+"lon": 12.47
+},
+"HZ": {
+"entity": "Saudi Arabia",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "378",
+"lat": 24.2,
+"lon": 43.83
+},
+"I": {
+"entity": "Italy",
+"cont": "EU",
+"itu": "28",
+"cq": "15,33",
+"code": "248",
+"lat": 42.82,
+"lon": 12.58
+},
+"IS0": {
+"entity": "Sardinia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "225",
+"lat": 40.15,
+"lon": 9.27
+},
+"IM0": {
+"entity": "Sardinia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "225",
+"lat": 40.15,
+"lon": 9.27
+},
+"J2": {
+"entity": "Djibouti",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "382",
+"lat": 11.75,
+"lon": 42.35
+},
+"J3": {
+"entity": "Grenada",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "077",
+"lat": 12.13,
+"lon": -61.68
+},
+"J5": {
+"entity": "Guinea-Bissau",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "109",
+"lat": 12.02,
+"lon": -14.8
+},
+"J6": {
+"entity": "St. Lucia",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "097",
+"lat": 13.87,
+"lon": -61.0
+},
+"J7": {
+"entity": "Dominica",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "095",
+"lat": 15.43,
+"lon": -61.35
+},
+"J8": {
+"entity": "St. Vincent",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "098",
+"lat": 13.23,
+"lon": -61.2
+},
+"JA": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JB": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JC": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JD": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JE": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JF": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JG": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JH": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JI": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JJ": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JK": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JL": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JM": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JN": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JO": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JP": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JQ": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JR": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JS": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"7J": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"7K": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"7L": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"7M": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"7N": {
+"entity": "Japan",
+"cont": "AS",
+"itu": "45",
+"cq": "25",
+"code": "339",
+"lat": 36.4,
+"lon": 138.38
+},
+"JD1": {
+"entity": "Minami Torishima",
+"cont": "OC",
+"itu": "90",
+"cq": "27",
+"code": "177",
+"lat": null,
+"lon": null
+},
+"JT": {
+"entity": "Mongolia",
+"cont": "AS",
+"itu": "32,33",
+"cq": "23",
+"code": "363",
+"lat": 46.77,
+"lon": 102.17
+},
+"JU": {
+"entity": "Mongolia",
+"cont": "AS",
+"itu": "32,33",
+"cq": "23",
+"code": "363",
+"lat": 46.77,
+"lon": 102.17
+},
+"JV": {
+"entity": "Mongolia",
+"cont": "AS",
+"itu": "32,33",
+"cq": "23",
+"code": "363",
+"lat": 46.77,
+"lon": 102.17
+},
+"JW": {
+"entity": "Svalbard",
+"cont": "EU",
+"itu": "18",
+"cq": "40",
+"code": "259",
+"lat": 78.0,
+"lon": 16.0
+},
+"JX": {
+"entity": "Jan Mayen",
+"cont": "EU",
+"itu": "18",
+"cq": "40",
+"code": "118",
+"lat": 71.05,
+"lon": -8.28
+},
+"JY": {
+"entity": "Jordan",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "342",
+"lat": 31.18,
+"lon": 36.42
+},
+"K": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"W": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"N": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AA": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AB": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AC": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AD": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AE": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AF": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AG": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AH": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AI": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AJ": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"AK": {
+"entity": "United States of America",
+"cont": "NA",
+"itu": "6,7,8",
+"cq": "3,4,5",
+"code": "291",
+"lat": 37.6,
+"lon": -91.87
+},
+"KG4": {
+"entity": "Guantanamo Bay",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "105",
+"lat": 20.0,
+"lon": -75.0
+},
+"KH0": {
+"entity": "Mariana Is.",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "166",
+"lat": 15.18,
+"lon": 145.72
+},
+"KH1": {
+"entity": "Baker & Howland Is.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "020",
+"lat": 0.0,
+"lon": -176.0
+},
+"KH2": {
+"entity": "Guam",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "103",
+"lat": 13.37,
+"lon": 144.7
+},
+"KH3": {
+"entity": "Johnston I.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "123",
+"lat": 16.72,
+"lon": -169.53
+},
+"KH4": {
+"entity": "Midway I.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "174",
+"lat": 28.2,
+"lon": -177.37
+},
+"KH5": {
+"entity": "Palmyra & Jarvis Is.",
+"cont": "OC",
+"itu": "61,62",
+"cq": "31",
+"code": "197",
+"lat": 5.87,
+"lon": -162.07
+},
+"KH6": {
+"entity": "Hawaii",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "110",
+"lat": 21.12,
+"lon": -157.48
+},
+"KH7K": {
+"entity": "Kure I.",
+"cont": "OC",
+"itu": "61",
+"cq": "31",
+"code": "138",
+"lat": 29.0,
+"lon": -178.0
+},
+"KH8": {
+"entity": "American Samoa",
+"cont": "OC",
+"itu": "62",
+"cq": "32",
+"code": "009",
+"lat": -14.32,
+"lon": -170.78
+},
+"KH9": {
+"entity": "Wake I.",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "297",
+"lat": 19.28,
+"lon": 166.63
+},
+"KL": {
+"entity": "Alaska",
+"cont": "NA",
+"itu": "1,2",
+"cq": "1",
+"code": "006",
+"lat": 61.4,
+"lon": -148.87
+},
+"AL": {
+"entity": "Alaska",
+"cont": "NA",
+"itu": "1,2",
+"cq": "1",
+"code": "006",
+"lat": 61.4,
+"lon": -148.87
+},
+"NL": {
+"entity": "Alaska",
+"cont": "NA",
+"itu": "1,2",
+"cq": "1",
+"code": "006",
+"lat": 61.4,
+"lon": -148.87
+},
+"WL": {
+"entity": "Alaska",
+"cont": "NA",
+"itu": "1,2",
+"cq": "1",
+"code": "006",
+"lat": 61.4,
+"lon": -148.87
+},
+"KP1": {
+"entity": "Navassa I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "182",
+"lat": 18.4,
+"lon": -75.0
+},
+"KP2": {
+"entity": "Virgin Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "285",
+"lat": 17.73,
+"lon": -64.8
+},
+"KP3": {
+"entity": "Puerto Rico",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "202",
+"lat": 18.18,
+"lon": -66.55
+},
+"KP5": {
+"entity": "Desecheo I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "043",
+"lat": 18.08,
+"lon": -67.88
+},
+"LA": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LB": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LC": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LD": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LE": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LF": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LG": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LH": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LI": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LJ": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LK": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LL": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LM": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LN": {
+"entity": "Norway",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "266",
+"lat": 61.0,
+"lon": 9.0
+},
+"LO": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LP": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LQ": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LR": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LS": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LT": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LU": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LV": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LW": {
+"entity": "Argentina",
+"cont": "SA",
+"itu": "14,16",
+"cq": "13",
+"code": "100",
+"lat": -32.5,
+"lon": -62.13
+},
+"LX": {
+"entity": "Luxembourg",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "254",
+"lat": 50.0,
+"lon": 6.0
+},
+"LY": {
+"entity": "Lithuania",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "146",
+"lat": 55.45,
+"lon": 23.63
+},
+"LZ": {
+"entity": "Bulgaria",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "212",
+"lat": 42.83,
+"lon": 25.08
+},
+"OA": {
+"entity": "Peru",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "136",
+"lat": -10.0,
+"lon": -76.0
+},
+"OB": {
+"entity": "Peru",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "136",
+"lat": -10.0,
+"lon": -76.0
+},
+"OC": {
+"entity": "Peru",
+"cont": "SA",
+"itu": "12",
+"cq": "10",
+"code": "136",
+"lat": -10.0,
+"lon": -76.0
+},
+"OD": {
+"entity": "Lebanon",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "354",
+"lat": 33.83,
+"lon": 35.83
+},
+"OE": {
+"entity": "Austria",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "206",
+"lat": 47.33,
+"lon": 13.33
+},
+"OF": {
+"entity": "Finland",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "224",
+"lat": 61.38,
+"lon": 24.82
+},
+"OG": {
+"entity": "Finland",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "224",
+"lat": 61.38,
+"lon": 24.82
+},
+"OH": {
+"entity": "Finland",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "224",
+"lat": 61.38,
+"lon": 24.82
+},
+"OI": {
+"entity": "Finland",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "224",
+"lat": 61.38,
+"lon": 24.82
+},
+"OH0": {
+"entity": "Aland Is.",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "005",
+"lat": 60.13,
+"lon": 20.37
+},
+"OJ0": {
+"entity": "Market Reef",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "167",
+"lat": 60.0,
+"lon": 19.0
+},
+"OK": {
+"entity": "Czech Republic",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "503",
+"lat": 50.0,
+"lon": 16.0
+},
+"OL": {
+"entity": "Czech Republic",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "503",
+"lat": 50.0,
+"lon": 16.0
+},
+"OM": {
+"entity": "Slovak Republic",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "504",
+"lat": 49.0,
+"lon": 20.0
+},
+"ON": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OO": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OP": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OQ": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OR": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OS": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OT": {
+"entity": "Belgium",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "209",
+"lat": 50.7,
+"lon": 4.85
+},
+"OU": {
+"entity": "Denmark",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "221",
+"lat": 56.0,
+"lon": 10.0
+},
+"OV": {
+"entity": "Denmark",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "221",
+"lat": 56.0,
+"lon": 10.0
+},
+"OW": {
+"entity": "Denmark",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "221",
+"lat": 56.0,
+"lon": 10.0
+},
+"OZ": {
+"entity": "Denmark",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "221",
+"lat": 56.0,
+"lon": 10.0
+},
+"OX": {
+"entity": "Greenland",
+"cont": "NA",
+"itu": "5,75",
+"cq": "40",
+"code": "237",
+"lat": 74.0,
+"lon": -42.78
+},
+"OY": {
+"entity": "Faroe Is.",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "222",
+"lat": 62.07,
+"lon": -6.93
+},
+"P2": {
+"entity": "Papua New Guinea",
+"cont": "OC",
+"itu": "51",
+"cq": "28",
+"code": "163",
+"lat": -9.5,
+"lon": 147.12
+},
+"P4": {
+"entity": "Aruba",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "091",
+"lat": 12.53,
+"lon": -69.98
+},
+"P5": {
+"entity": "DPR of Korea",
+"cont": "AS",
+"itu": "44",
+"cq": "25",
+"code": "344",
+"lat": 39.78,
+"lon": 126.3
+},
+"PA": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PB": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PC": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PD": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PE": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PF": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PG": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PH": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PI": {
+"entity": "Netherlands",
+"cont": "EU",
+"itu": "27",
+"cq": "14",
+"code": "263",
+"lat": 52.28,
+"lon": 5.47
+},
+"PJ2": {
+"entity": "Curacao",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "517",
+"lat": 12.17,
+"lon": -69.0
+},
+"PJ4": {
+"entity": "Bonaire",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "520",
+"lat": 12.2,
+"lon": -68.25
+},
+"PJ5": {
+"entity": "Saba & St. Eustatius",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "519",
+"lat": 17.57,
+"lon": -63.1
+},
+"PJ7": {
+"entity": "Sint Maarten",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "518",
+"lat": 18.07,
+"lon": -63.07
+},
+"PP": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PQ": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PR": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PS": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PT": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PU": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PV": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PW": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PX": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PY": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"ZV": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"ZW": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"ZX": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"ZY": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"ZZ": {
+"entity": "Brazil",
+"cont": "SA",
+"itu": "(D)",
+"cq": "11",
+"code": "108",
+"lat": -10.0,
+"lon": -53.0
+},
+"PP0": {
+"entity": "Fernando de Noronha",
+"cont": "SA",
+"itu": "13",
+"cq": "11",
+"code": "056",
+"lat": -10.0,
+"lon": -53.0
+},
+"PZ": {
+"entity": "Suriname",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "140",
+"lat": 4.0,
+"lon": -56.0
+},
+"R1": {
+"entity": "Franz Josef Land",
+"cont": "EU",
+"itu": "75",
+"cq": "40",
+"code": "061",
+"lat": -90.0,
+"lon": -0.0
+},
+"S01": {
+"entity": "Western Sahara",
+"cont": "AF",
+"itu": "46",
+"cq": "33",
+"code": "302",
+"lat": 24.82,
+"lon": -13.85
+},
+"S2": {
+"entity": "Bangladesh",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "305",
+"lat": 24.12,
+"lon": 89.65
+},
+"S56": {
+"entity": "Slovenia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "499",
+"lat": 46.0,
+"lon": 14.0
+},
+"S7": {
+"entity": "Seychelles",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "379",
+"lat": -4.67,
+"lon": 55.47
+},
+"S9": {
+"entity": "Sao Tome & Principe",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "219",
+"lat": 0.22,
+"lon": 6.57
+},
+"SA": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SB": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SC": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SD": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SE": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SF": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SG": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SH": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SI": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SJ": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SK": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SL": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SM": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"7S": {
+"entity": "Sweden",
+"cont": "EU",
+"itu": "18",
+"cq": "14",
+"code": "284",
+"lat": 58.9,
+"lon": 15.33
+},
+"SN": {
+"entity": "Poland",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "269",
+"lat": 52.28,
+"lon": 18.67
+},
+"SO": {
+"entity": "Poland",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "269",
+"lat": 52.28,
+"lon": 18.67
+},
+"SP": {
+"entity": "Poland",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "269",
+"lat": 52.28,
+"lon": 18.67
+},
+"SQ": {
+"entity": "Poland",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "269",
+"lat": 52.28,
+"lon": 18.67
+},
+"SR": {
+"entity": "Poland",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "269",
+"lat": 52.28,
+"lon": 18.67
+},
+"ST": {
+"entity": "Sudan",
+"cont": "AF",
+"itu": "47,48",
+"cq": "34",
+"code": "466",
+"lat": 14.47,
+"lon": 28.62
+},
+"SU": {
+"entity": "Egypt",
+"cont": "AF",
+"itu": "38",
+"cq": "34",
+"code": "478",
+"lat": 26.28,
+"lon": 28.6
+},
+"SV": {
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+"SW": {
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+"SX": {
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+"SY": {
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+"SZ": {
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+"J4": {
+"entity": "Greece",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "236",
+"lat": 39.78,
+"lon": 21.78
+},
+"SV5": {
+"entity": "Dodecanese",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "045",
+"lat": 36.17,
+"lon": 27.93
+},
+"J": {
+"entity": "Dodecanese",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "045",
+"lat": 36.17,
+"lon": 27.93
+},
+"SV9": {
+"entity": "Crete",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "040",
+"lat": 35.23,
+"lon": 24.78
+},
+"T2": {
+"entity": "Tuvalu",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "282",
+"lat": -8.5,
+"lon": 179.2
+},
+"T": {
+"entity": "Kiribati (Gilbert Is. )",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "301",
+"lat": null,
+"lon": null
+},
+"T5": {
+"entity": "Somalia",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "232",
+"lat": 2.03,
+"lon": 45.35
+},
+"6O": {
+"entity": "Somalia",
+"cont": "AF",
+"itu": "48",
+"cq": "37",
+"code": "232",
+"lat": 2.03,
+"lon": 45.35
+},
+"T7": {
+"entity": "San Marino",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "278",
+"lat": 43.95,
+"lon": 12.45
+},
+"T8": {
+"entity": "Palau",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "022",
+"lat": 7.45,
+"lon": 134.53
+},
+"TA": {
+"entity": "Turkey",
+"cont": "EU/AS",
+"itu": "39",
+"cq": "20",
+"code": "390",
+"lat": 39.18,
+"lon": 35.65
+},
+"TB": {
+"entity": "Turkey",
+"cont": "EU/AS",
+"itu": "39",
+"cq": "20",
+"code": "390",
+"lat": 39.18,
+"lon": 35.65
+},
+"TC": {
+"entity": "Turkey",
+"cont": "EU/AS",
+"itu": "39",
+"cq": "20",
+"code": "390",
+"lat": 39.18,
+"lon": 35.65
+},
+"TF": {
+"entity": "Iceland",
+"cont": "EU",
+"itu": "17",
+"cq": "40",
+"code": "242",
+"lat": 64.8,
+"lon": -18.73
+},
+"TG": {
+"entity": "Guatemala",
+"cont": "NA",
+"itu": "12",
+"cq": "07",
+"code": "076",
+"lat": 15.5,
+"lon": -90.3
+},
+"TD": {
+"entity": "Guatemala",
+"cont": "NA",
+"itu": "12",
+"cq": "07",
+"code": "076",
+"lat": 15.5,
+"lon": -90.3
+},
+"TI": {
+"entity": "Costa Rica",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "308",
+"lat": 10.0,
+"lon": -84.0
+},
+"TE": {
+"entity": "Costa Rica",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "308",
+"lat": 10.0,
+"lon": -84.0
+},
+"TI9": {
+"entity": "Cocos I.",
+"cont": "NA",
+"itu": "12",
+"cq": "07",
+"code": "037",
+"lat": 5.52,
+"lon": -87.05
+},
+"TJ": {
+"entity": "Cameroon",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "406",
+"lat": 5.38,
+"lon": 11.87
+},
+"TK": {
+"entity": "Corsica",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "214",
+"lat": 42.0,
+"lon": 9.0
+},
+"TL": {
+"entity": "Central Africa",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "408",
+"lat": 6.75,
+"lon": 20.33
+},
+"TN": {
+"entity": "Congo (Republic of the)",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "412",
+"lat": -1.02,
+"lon": 15.37
+},
+"TR": {
+"entity": "Gabon",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "420",
+"lat": -0.37,
+"lon": 11.73
+},
+"TT": {
+"entity": "Chad",
+"cont": "AF",
+"itu": "47",
+"cq": "36",
+"code": "410",
+"lat": 15.8,
+"lon": 18.17
+},
+"TU": {
+"entity": "Cote d'Ivoire",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "428",
+"lat": 7.58,
+"lon": -5.8
+},
+"TY": {
+"entity": "Benin",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "416",
+"lat": 9.87,
+"lon": 2.25
+},
+"TZ": {
+"entity": "Mali",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "442",
+"lat": 18.0,
+"lon": -2.58
+},
+"UA": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UB": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UC": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UD": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UE": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UF": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UG": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UH": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UI": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RA": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RB": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RC": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RD": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RE": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RF": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RG": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RH": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RI": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RJ": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RK": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RL": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RM": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RN": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RO": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RP": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RQ": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RR": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RS": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RT": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RU": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RV": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RW": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RX": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RY": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"RZ": {
+"entity": "European Russia",
+"cont": "EU",
+"itu": "(E)",
+"cq": "16",
+"code": "054",
+"lat": 53.65,
+"lon": 41.37
+},
+"UA2": {
+"entity": "Kaliningrad",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "126",
+"lat": 54.72,
+"lon": 20.52
+},
+"RA2": {
+"entity": "Kaliningrad",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "126",
+"lat": 54.72,
+"lon": 20.52
+},
+"UJ": {
+"entity": "Uzbekistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "292",
+"lat": 41.4,
+"lon": 63.97
+},
+"UK": {
+"entity": "Uzbekistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "292",
+"lat": 41.4,
+"lon": 63.97
+},
+"UL": {
+"entity": "Uzbekistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "292",
+"lat": 41.4,
+"lon": 63.97
+},
+"UM": {
+"entity": "Uzbekistan",
+"cont": "AS",
+"itu": "30",
+"cq": "17",
+"code": "292",
+"lat": 41.4,
+"lon": 63.97
+},
+"UN": {
+"entity": "Kazakhstan",
+"cont": "AS",
+"itu": "29-31",
+"cq": "17",
+"code": "130",
+"lat": 48.17,
+"lon": 65.18
+},
+"UO": {
+"entity": "Kazakhstan",
+"cont": "AS",
+"itu": "29-31",
+"cq": "17",
+"code": "130",
+"lat": 48.17,
+"lon": 65.18
+},
+"UP": {
+"entity": "Kazakhstan",
+"cont": "AS",
+"itu": "29-31",
+"cq": "17",
+"code": "130",
+"lat": 48.17,
+"lon": 65.18
+},
+"UQ": {
+"entity": "Kazakhstan",
+"cont": "AS",
+"itu": "29-31",
+"cq": "17",
+"code": "130",
+"lat": 48.17,
+"lon": 65.18
+},
+"UR": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"US": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UT": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UU": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UV": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UW": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UX": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UY": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"UZ": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"EM": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"EN": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"EO": {
+"entity": "Ukraine",
+"cont": "EU",
+"itu": "29",
+"cq": "16",
+"code": "288",
+"lat": 50.0,
+"lon": 30.0
+},
+"V2": {
+"entity": "Antigua & Barbuda",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "094",
+"lat": 17.07,
+"lon": -61.8
+},
+"V3": {
+"entity": "Belize",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "066",
+"lat": 16.97,
+"lon": -88.67
+},
+"V4": {
+"entity": "St. Kitts & Nevis",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "249",
+"lat": 17.37,
+"lon": -62.78
+},
+"V5": {
+"entity": "Namibia",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "464",
+"lat": -22.0,
+"lon": 17.0
+},
+"V6": {
+"entity": "Micronesia",
+"cont": "OC",
+"itu": "65",
+"cq": "27",
+"code": "173",
+"lat": 6.88,
+"lon": 158.2
+},
+"V7": {
+"entity": "Marshall Is.",
+"cont": "OC",
+"itu": "65",
+"cq": "31",
+"code": "168",
+"lat": 9.08,
+"lon": 167.33
+},
+"V8": {
+"entity": "Brunei Darussalam",
+"cont": "OC",
+"itu": "54",
+"cq": "28",
+"code": "345",
+"lat": 4.5,
+"lon": 114.6
+},
+"VA": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VB": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VC": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VD": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VE": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VF": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VG": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VO": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VY": {
+"entity": "Canada",
+"cont": "NA",
+"itu": "(H)",
+"cq": "1-5",
+"code": "001",
+"lat": 44.35,
+"lon": -78.75
+},
+"VK": {
+"entity": "Australia",
+"cont": "OC",
+"itu": "(I)",
+"cq": "29,30",
+"code": "150",
+"lat": -23.7,
+"lon": 132.33
+},
+"AX": {
+"entity": "Australia",
+"cont": "OC",
+"itu": "(I)",
+"cq": "29,30",
+"code": "150",
+"lat": -23.7,
+"lon": 132.33
+},
+"VK0": {
+"entity": "Heard I.",
+"cont": "AF",
+"itu": "68",
+"cq": "39",
+"code": "111",
+"lat": -90.0,
+"lon": -0.0
+},
+"VK9C": {
+"entity": "Cocos (Keeling) Is.",
+"cont": "OC",
+"itu": "54",
+"cq": "29",
+"code": "038",
+"lat": -12.15,
+"lon": 96.82
+},
+"VK9L": {
+"entity": "Lord Howe I.",
+"cont": "OC",
+"itu": "60",
+"cq": "30",
+"code": "147",
+"lat": -31.55,
+"lon": 159.08
+},
+"VK9M": {
+"entity": "Mellish Reef",
+"cont": "OC",
+"itu": "56",
+"cq": "30",
+"code": "171",
+"lat": -17.4,
+"lon": 155.85
+},
+"VK9N": {
+"entity": "Norfolk I.",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "189",
+"lat": -29.03,
+"lon": 167.93
+},
+"VK9W": {
+"entity": "Willis I.",
+"cont": "OC",
+"itu": "55",
+"cq": "30",
+"code": "303",
+"lat": -16.22,
+"lon": 150.02
+},
+"VK9X": {
+"entity": "Christmas I.",
+"cont": "OC",
+"itu": "54",
+"cq": "29",
+"code": "035",
+"lat": -10.48,
+"lon": 105.63
+},
+"VP2E": {
+"entity": "Anguilla",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "012",
+"lat": 18.23,
+"lon": -63.0
+},
+"VP2M": {
+"entity": "Montserrat",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "096",
+"lat": 16.75,
+"lon": -62.18
+},
+"VP2V": {
+"entity": "British Virgin Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "065",
+"lat": 18.33,
+"lon": -64.75
+},
+"VP5": {
+"entity": "Turks & Caicos Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "089",
+"lat": 21.77,
+"lon": -71.75
+},
+"VP6": {
+"entity": "Pitcairn I.",
+"cont": "OC",
+"itu": "63",
+"cq": "32",
+"code": "172",
+"lat": -25.07,
+"lon": -130.1
+},
+"VP8": {
+"entity": "Falkland Is.",
+"cont": "SA",
+"itu": "16",
+"cq": "13",
+"code": "141",
+"lat": -90.0,
+"lon": -0.0
+},
+"HF0": {
+"entity": "South Shetland Is.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "241",
+"lat": -90.0,
+"lon": -0.0
+},
+"4K1": {
+"entity": "South Shetland Is.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "241",
+"lat": -90.0,
+"lon": -0.0
+},
+"VP9": {
+"entity": "Bermuda",
+"cont": "NA",
+"itu": "11",
+"cq": "05",
+"code": "064",
+"lat": 32.32,
+"lon": -64.73
+},
+"VQ9": {
+"entity": "Chagos Is.",
+"cont": "AF",
+"itu": "41",
+"cq": "39",
+"code": "033",
+"lat": -7.32,
+"lon": 72.42
+},
+"VR": {
+"entity": "Hong Kong",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "321",
+"lat": 22.28,
+"lon": 114.18
+},
+"VU": {
+"entity": "India",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "324",
+"lat": -90.0,
+"lon": -0.0
+},
+"VU4": {
+"entity": "Andaman & Nicobar Is.",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "011",
+"lat": 12.37,
+"lon": 92.78
+},
+"VU7": {
+"entity": "Lakshadweep Is.",
+"cont": "AS",
+"itu": "41",
+"cq": "22",
+"code": "142",
+"lat": 11.23,
+"lon": 72.78
+},
+"XA": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XB": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XC": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XD": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XE": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XF": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XG": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XH": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XI": {
+"entity": "Mexico",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "050",
+"lat": 21.32,
+"lon": -100.23
+},
+"XA4": {
+"entity": "Revillagigedo",
+"cont": "NA",
+"itu": "10",
+"cq": "06",
+"code": "204",
+"lat": 18.77,
+"lon": -110.97
+},
+"XT": {
+"entity": "Burkina Faso",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "480",
+"lat": 12.0,
+"lon": -2.0
+},
+"XU": {
+"entity": "Cambodia",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "312",
+"lat": 12.93,
+"lon": 105.13
+},
+"XW": {
+"entity": "Laos",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "143",
+"lat": 18.2,
+"lon": 104.55
+},
+"XX9": {
+"entity": "Macao",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "152",
+"lat": 22.1,
+"lon": 113.5
+},
+"XY": {
+"entity": "Myanmar",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "309",
+"lat": 20.0,
+"lon": 96.37
+},
+"XZ": {
+"entity": "Myanmar",
+"cont": "AS",
+"itu": "49",
+"cq": "26",
+"code": "309",
+"lat": 20.0,
+"lon": 96.37
+},
+"YA": {
+"entity": "Afghanistan",
+"cont": "AS",
+"itu": "40",
+"cq": "21",
+"code": "003",
+"lat": 34.7,
+"lon": 65.8
+},
+"T6": {
+"entity": "Afghanistan",
+"cont": "AS",
+"itu": "40",
+"cq": "21",
+"code": "003",
+"lat": 34.7,
+"lon": 65.8
+},
+"YB": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YC": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YD": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YE": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YF": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YG": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YH": {
+"entity": "Indonesia",
+"cont": "OC",
+"itu": "51,54",
+"cq": "28",
+"code": "327",
+"lat": -7.3,
+"lon": 109.88
+},
+"YI": {
+"entity": "Iraq",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "333",
+"lat": 33.92,
+"lon": 42.78
+},
+"YJ": {
+"entity": "Vanuatu",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "158",
+"lat": -17.67,
+"lon": 168.38
+},
+"YK": {
+"entity": "Syria",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "384",
+"lat": 35.38,
+"lon": 38.2
+},
+"YL": {
+"entity": "Latvia",
+"cont": "EU",
+"itu": "29",
+"cq": "15",
+"code": "145",
+"lat": 55.45,
+"lon": 23.63
+},
+"YN": {
+"entity": "Nicaragua",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "086",
+"lat": 12.88,
+"lon": -85.05
+},
+"H6": {
+"entity": "Nicaragua",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "086",
+"lat": 12.88,
+"lon": -85.05
+},
+"HT": {
+"entity": "Nicaragua",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "086",
+"lat": 12.88,
+"lon": -85.05
+},
+"YO": {
+"entity": "Romania",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "275",
+"lat": 45.78,
+"lon": 24.7
+},
+"YP": {
+"entity": "Romania",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "275",
+"lat": 45.78,
+"lon": 24.7
+},
+"YQ": {
+"entity": "Romania",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "275",
+"lat": 45.78,
+"lon": 24.7
+},
+"YR": {
+"entity": "Romania",
+"cont": "EU",
+"itu": "28",
+"cq": "20",
+"code": "275",
+"lat": 45.78,
+"lon": 24.7
+},
+"YS": {
+"entity": "El Salvador",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "074",
+"lat": 14.0,
+"lon": -89.0
+},
+"HU": {
+"entity": "El Salvador",
+"cont": "NA",
+"itu": "11",
+"cq": "07",
+"code": "074",
+"lat": 14.0,
+"lon": -89.0
+},
+"YT": {
+"entity": "Serbia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "296",
+"lat": 44.0,
+"lon": 21.0
+},
+"YU": {
+"entity": "Serbia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "296",
+"lat": 44.0,
+"lon": 21.0
+},
+"YV": {
+"entity": "Venezuela",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "148",
+"lat": 8.0,
+"lon": -66.0
+},
+"YW": {
+"entity": "Venezuela",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "148",
+"lat": 8.0,
+"lon": -66.0
+},
+"YX": {
+"entity": "Venezuela",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "148",
+"lat": 8.0,
+"lon": -66.0
+},
+"YY": {
+"entity": "Venezuela",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "148",
+"lat": 8.0,
+"lon": -66.0
+},
+"4M": {
+"entity": "Venezuela",
+"cont": "SA",
+"itu": "12",
+"cq": "09",
+"code": "148",
+"lat": 8.0,
+"lon": -66.0
+},
+"YV0": {
+"entity": "Aves I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "017",
+"lat": 15.67,
+"lon": -63.6
+},
+"Z2": {
+"entity": "Zimbabwe",
+"cont": "AF",
+"itu": "53",
+"cq": "38",
+"code": "452",
+"lat": -18.0,
+"lon": 31.0
+},
+"Z3": {
+"entity": "North Macedonia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "502",
+"lat": 41.6,
+"lon": 21.65
+},
+"Z61": {
+"entity": "Republic of Kosovo",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "522",
+"lat": 42.67,
+"lon": 21.17
+},
+"Z8": {
+"entity": "South Sudan (Rep of)",
+"cont": "AF",
+"itu": "48",
+"cq": "34",
+"code": "521",
+"lat": 4.85,
+"lon": 31.6
+},
+"ZA": {
+"entity": "Albania",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "007",
+"lat": 41.0,
+"lon": 20.0
+},
+"ZB2": {
+"entity": "Gibraltar",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "233",
+"lat": 36.15,
+"lon": -5.37
+},
+"ZC4": {
+"entity": "Sov. Base Areas",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "283",
+"lat": 35.32,
+"lon": 33.57
+},
+"ZD7": {
+"entity": "St. Helena",
+"cont": "AF",
+"itu": "66",
+"cq": "36",
+"code": "250",
+"lat": -15.97,
+"lon": -5.72
+},
+"ZD8": {
+"entity": "Ascension I.",
+"cont": "AF",
+"itu": "66",
+"cq": "36",
+"code": "205",
+"lat": -7.93,
+"lon": -14.37
+},
+"ZD9": {
+"entity": "Tristan da Cunha &",
+"cont": "AF",
+"itu": "66",
+"cq": "38",
+"code": "274",
+"lat": -37.13,
+"lon": -12.3
+},
+"ZF": {
+"entity": "Cayman Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "069",
+"lat": 19.32,
+"lon": -81.22
+},
+"ZK3": {
+"entity": "Tokelau Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "31",
+"code": "270",
+"lat": -9.4,
+"lon": -171.2
+},
+"ZL": {
+"entity": "New Zealand",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "170",
+"lat": -39.03,
+"lon": 174.47
+},
+"ZM": {
+"entity": "New Zealand",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "170",
+"lat": -39.03,
+"lon": 174.47
+},
+"ZL7": {
+"entity": "Chatham Is.",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "034",
+"lat": -43.85,
+"lon": -176.48
+},
+"ZL8": {
+"entity": "Kermadec Is.",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "133",
+"lat": -29.25,
+"lon": -177.92
+},
+"ZL9": {
+"entity": "New Zealand Subantarctic Islands",
+"cont": "OC",
+"itu": "60",
+"cq": "32",
+"code": "016",
+"lat": -51.62,
+"lon": 167.62
+},
+"ZP": {
+"entity": "Paraguay",
+"cont": "SA",
+"itu": "14",
+"cq": "11",
+"code": "132",
+"lat": -25.27,
+"lon": -57.67
+},
+"ZR": {
+"entity": "South Africa",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "462",
+"lat": -29.07,
+"lon": 22.63
+},
+"ZS": {
+"entity": "South Africa",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "462",
+"lat": -29.07,
+"lon": 22.63
+},
+"ZT": {
+"entity": "South Africa",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "462",
+"lat": -29.07,
+"lon": 22.63
+},
+"ZU": {
+"entity": "South Africa",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "462",
+"lat": -29.07,
+"lon": 22.63
+},
+"ZS8": {
+"entity": "Prince Edward & Marion Is.",
+"cont": "AF",
+"itu": "57",
+"cq": "38",
+"code": "201",
+"lat": -46.88,
+"lon": 37.72
+},
+"3B": {
+"entity": "Agalega & St. Brandon Is.",
+"cont": "AF",
+"itu": "53",
+"cq": "39",
+"code": "004",
+"lat": -10.45,
+"lon": 56.67
+},
+"3D": {
+"entity": "Fiji",
+"cont": "OC",
+"itu": "56",
+"cq": "32",
+"code": "176",
+"lat": -17.78,
+"lon": 177.92
+},
+"5T": {
+"entity": "Mauritania",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "444",
+"lat": 20.6,
+"lon": -10.5
+},
+"5U": {
+"entity": "Niger",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "187",
+"lat": 17.63,
+"lon": 9.43
+},
+"7O": {
+"entity": "Yemen",
+"cont": "AS",
+"itu": "39",
+"cq": "21",
+"code": "492",
+"lat": 15.65,
+"lon": 48.12
+},
+"9A": {
+"entity": "Croatia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "497",
+"lat": 45.18,
+"lon": 15.3
+},
+"9G": {
+"entity": "Ghana",
+"cont": "AF",
+"itu": "46",
+"cq": "35",
+"code": "424",
+"lat": 7.7,
+"lon": -1.57
+},
+"9M": {
+"entity": "West Malaysia",
+"cont": "AS",
+"itu": "54",
+"cq": "28",
+"code": "299",
+"lat": 9.88,
+"lon": 114.23
+},
+"9U": {
+"entity": "Burundi",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "404",
+"lat": -3.17,
+"lon": 29.78
+},
+"9X": {
+"entity": "Rwanda",
+"cont": "AF",
+"itu": "52",
+"cq": "36",
+"code": "454",
+"lat": -1.75,
+"lon": 29.82
+},
+"BS": {
+"entity": "Scarborough Reef",
+"cont": "AS",
+"itu": "50",
+"cq": "27",
+"code": "506",
+"lat": 15.08,
+"lon": 117.72
+},
+"CY": {
+"entity": "Sable I.",
+"cont": "NA",
+"itu": "09",
+"cq": "05",
+"code": "211",
+"lat": 43.93,
+"lon": -59.9
+},
+"IS": {
+"entity": "Sardinia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "225",
+"lat": 40.15,
+"lon": 9.27
+},
+"IM": {
+"entity": "Sardinia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "225",
+"lat": 40.15,
+"lon": 9.27
+},
+"KG": {
+"entity": "Guantanamo Bay",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "105",
+"lat": 20.0,
+"lon": -75.0
+},
+"KH": {
+"entity": "Mariana Is.",
+"cont": "OC",
+"itu": "64",
+"cq": "27",
+"code": "166",
+"lat": 15.18,
+"lon": 145.72
+},
+"KP": {
+"entity": "Navassa I.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "182",
+"lat": 18.4,
+"lon": -75.0
+},
+"OJ": {
+"entity": "Market Reef",
+"cont": "EU",
+"itu": "18",
+"cq": "15",
+"code": "167",
+"lat": 60.0,
+"lon": 19.0
+},
+"PJ": {
+"entity": "Curacao",
+"cont": "SA",
+"itu": "11",
+"cq": "09",
+"code": "517",
+"lat": 12.17,
+"lon": -69.0
+},
+"S0": {
+"entity": "Western Sahara",
+"cont": "AF",
+"itu": "46",
+"cq": "33",
+"code": "302",
+"lat": 24.82,
+"lon": -13.85
+},
+"S5": {
+"entity": "Slovenia",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "499",
+"lat": 46.0,
+"lon": 14.0
+},
+"VP": {
+"entity": "Turks & Caicos Is.",
+"cont": "NA",
+"itu": "11",
+"cq": "08",
+"code": "089",
+"lat": 21.77,
+"lon": -71.75
+},
+"HF": {
+"entity": "South Shetland Is.",
+"cont": "SA",
+"itu": "73",
+"cq": "13",
+"code": "241",
+"lat": -90.0,
+"lon": -0.0
+},
+"VQ": {
+"entity": "Chagos Is.",
+"cont": "AF",
+"itu": "41",
+"cq": "39",
+"code": "033",
+"lat": -7.32,
+"lon": 72.42
+},
+"XX": {
+"entity": "Macao",
+"cont": "AS",
+"itu": "44",
+"cq": "24",
+"code": "152",
+"lat": 22.1,
+"lon": 113.5
+},
+"Z6": {
+"entity": "Republic of Kosovo",
+"cont": "EU",
+"itu": "28",
+"cq": "15",
+"code": "522",
+"lat": 42.67,
+"lon": 21.17
+},
+"ZB": {
+"entity": "Gibraltar",
+"cont": "EU",
+"itu": "37",
+"cq": "14",
+"code": "233",
+"lat": 36.15,
+"lon": -5.37
+},
+"ZC": {
+"entity": "Sov. Base Areas",
+"cont": "AS",
+"itu": "39",
+"cq": "20",
+"code": "283",
+"lat": 35.32,
+"lon": 33.57
+},
+"ZD": {
+"entity": "St. Helena",
+"cont": "AF",
+"itu": "66",
+"cq": "36",
+"code": "250",
+"lat": -15.97,
+"lon": -5.72
+},
+"ZK": {
+"entity": "Tokelau Is.",
+"cont": "OC",
+"itu": "62",
+"cq": "31",
+"code": "270",
+"lat": -9.4,
+"lon": -171.2
+}
+}
+}

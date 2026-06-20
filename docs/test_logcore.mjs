@@ -1,0 +1,208 @@
+// Node test suite for logcore.js — mirrors test_log_check.py so the JS port
+// and the Python original stay in step. No dependencies:
+//     node test_logcore.mjs
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import * as lc from "./logcore.js";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const j = (f) => JSON.parse(readFileSync(join(HERE, f), "utf-8"));
+lc.init({ dxcc: j("dxcc.json"), itu: j("itu.json"), rare: j("rare.json") });
+
+let passed = 0, failed = 0;
+function test(name, fn) {
+  try { fn(); passed++; console.log("ok   " + name); }
+  catch (e) { failed++; console.log("FAIL " + name + "\n     " + e.message); }
+}
+
+const qso = (call, date = "20260101", time = "000000", extra = {}) =>
+  ({ CALL: call, QSO_DATE: date, TIME_ON: time, ...extra });
+
+// --- parsing ---------------------------------------------------------------
+test("adif basic", () => {
+  const r = lc.parseAdifRecords(
+    "x <EOH> <CALL:4>W1AW <BAND:3>20M <MODE:2>CW <EOR>" +
+    " <CALL:5>K3EST <BAND:3>15M <MODE:3>SSB <EOR>");
+  assert.equal(r.length, 2);
+  assert.equal(r[0].CALL, "W1AW");
+  assert.equal(r[1].MODE, "SSB");
+});
+
+test("adif tag inside value", () => {
+  const r = lc.parseAdifRecords("<EOH> <CALL:4>W1AW <COMMENT:10><EOR> hack <EOR>");
+  assert.equal(r.length, 1);
+  assert.equal(r[0].COMMENT, "<EOR> hack");
+});
+
+test("cabrillo basic", () => {
+  const text = "START-OF-LOG: 3.0\n" +
+    "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 JJ0VNR 599 KW\n" +
+    "QSO: 21025 CW 2026-01-01 0001 N6RO 599 25 BD3TE 599 100\n" +
+    "X-QSO: 21025 CW 2026-01-01 0002 N6RO 599 25 DUPE 599 100\n";
+  const r = lc.parseCabrilloRecords(text);
+  assert.equal(r.length, 2);
+  assert.equal(r[0].CALL, "JJ0VNR");
+  assert.equal(r[0].BAND, "20M");
+  assert.equal(r[0].SRX_STRING, "KW");
+  assert.equal(r[1].SRX_STRING, "100");
+});
+
+test("records_from_text dispatch", () => {
+  assert.equal(lc.recordsFromText("<EOH> <CALL:4>W1AW <EOR>").length, 1);
+  assert.equal(
+    lc.recordsFromText("QSO: 14025 CW 2026-01-01 0000 N6RO 599 1 W1AW 599 2").length, 1);
+});
+
+test("serialize roundtrip", () => {
+  const recs = lc.parseAdifRecords("<EOH> <CALL:4>W1AW <BAND:3>20M <EOR>");
+  recs[0]._internal = "ignore me";
+  const again = lc.parseAdifRecords(lc.serializeAdif(recs));
+  assert.equal(again[0].CALL, "W1AW");
+  assert.equal(again[0].BAND, "20M");
+  assert.ok(!("_INTERNAL" in again[0]));
+});
+
+test("qsoDatetime", () => {
+  assert.equal(lc.qsoDatetime({ QSO_DATE: "bad" }), null);
+  const ts = lc.qsoDatetime({ QSO_DATE: "20260101", TIME_ON: "0102" });
+  const d = new Date(ts);
+  assert.equal(d.getUTCHours(), 1);
+  assert.equal(d.getUTCMinutes(), 2);
+});
+
+// --- rare ------------------------------------------------------------------
+test("entity resolution", () => {
+  assert.equal(lc.entityOf("W1AW"), "United States of America");
+  assert.equal(lc.entityOf("JJ0VNR"), "Japan");
+});
+
+test("rare flag", () => {
+  assert.equal(lc.rareRank("P5DX"), 1);
+  assert.equal(lc.rareRank("W1AW"), null);
+});
+
+test("rare slash call", () => {
+  assert.equal(lc.rareRank("W1AW/M"), null);
+});
+
+test("multiletter prefix not swallowed", () => {
+  assert.equal(lc.entityOf("TM6M"), "France");
+  assert.equal(lc.rareRank("TM6M"), null);
+  assert.notEqual(lc.rareRank("KP5/NP3VI"), null);
+});
+
+test("coarse prefix overrides", () => {
+  assert.equal(lc.entityOf("KP4CC"), "Puerto Rico");
+  assert.equal(lc.rareRank("KP4CC"), null);
+  assert.equal(lc.entityOf("R1DX"), "European Russia");
+  assert.equal(lc.rareRank("R1DX"), null);
+  assert.equal(lc.rareRank("R1FJ"), 51);
+  assert.equal(lc.rareRank("KP1AA"), 31);
+});
+
+test("analyze counts rare", () => {
+  const res = lc.analyze([qso("W1AW"), qso("P5DX"), qso("K3EST")], "");
+  assert.equal(res.rare_count, 1);
+  assert.equal(res.per_record[1].rank, 1);
+  assert.equal(res.per_record[0].rank, null);
+});
+
+// --- exchange detection ----------------------------------------------------
+test("candidates exclude universal and app", () => {
+  const cands = lc.exchangeCandidates([qso("W1AW", "20260101", "000000",
+    { BAND: "20M", CQZ: "5", APP_N1MM_X: "1" })]);
+  assert.ok(cands.includes("CQZ"));
+  assert.ok(!cands.includes("BAND"));
+  assert.ok(!cands.includes("APP_N1MM_X"));
+});
+
+test("detect priority", () => {
+  const recs = [];
+  for (let i = 0; i < 5; i++) recs.push(qso(`W${i}AW`, "20260101", "000000",
+    { STATE: "CA", RST_RCVD: "599" }));
+  assert.equal(lc.detectExchangeField(recs), "STATE");
+});
+
+// --- exchange busts --------------------------------------------------------
+test("fixed contest flags outlier", () => {
+  const recs = [];
+  for (let i = 0; i < 9; i++) recs.push(qso(`W${i}AW`, "20260101",
+    `00${String(i).padStart(2, "0")}00`, { CQZ: "3" }));
+  recs.push(qso("K9XYZ", "20260101", "001000", { CQZ: "8" }));
+  const res = lc.analyze(recs, "CQZ");
+  assert.ok(res.is_fixed);
+  assert.equal(res.per_record[res.per_record.length - 1].exch_bust, true);
+  assert.equal(res.bust_count, 1);
+});
+
+test("per station inconsistency", () => {
+  const recs = [
+    qso("DL1ABC", "20260101", "000000", { BAND: "20M", CQZ: "14" }),
+    qso("DL1ABC", "20260101", "010000", { BAND: "15M", CQZ: "14" }),
+    qso("DL1ABC", "20260101", "020000", { BAND: "10M", CQZ: "99" }),
+  ];
+  const res = lc.analyze(recs, "CQZ", { forceExchange: true });
+  assert.deepEqual(res.per_record.map((p) => p.exch_bust), [false, false, true]);
+});
+
+test("serial field not applicable", () => {
+  const recs = [];
+  for (let i = 0; i < 10; i++) recs.push(qso(`W${i}AW`, "20260101", "000000",
+    { SRX: String(i) }));
+  const res = lc.analyze(recs, "SRX");
+  assert.ok(res.is_serial);
+  assert.ok(!res.exch_applicable);
+  assert.equal(res.bust_count, 0);
+});
+
+// --- auto-fix --------------------------------------------------------------
+test("early wrong then consistent", () => {
+  const recs = [
+    qso("VK9XYZ", "20260101", "000000", { BAND: "20M", RX_PWR: "100" }),
+    qso("VK9XYZ", "20260101", "010000", { BAND: "15M", RX_PWR: "KW" }),
+    qso("VK9XYZ", "20260101", "020000", { BAND: "10M", RX_PWR: "KW" }),
+  ];
+  const res = lc.analyze(recs, "RX_PWR", { forceExchange: true });
+  assert.equal(res.fixes.length, 1);
+  assert.deepEqual(res.fixes[0], [0, "100", "KW"]);
+  lc.applyFixes(recs, "RX_PWR", res.fixes);
+  assert.equal(recs[0].RX_PWR, "KW");
+});
+
+test("no fix when tied", () => {
+  const recs = [
+    qso("DL1ABC", "20260101", "000000", { CQZ: "14" }),
+    qso("DL1ABC", "20260101", "010000", { CQZ: "14" }),
+    qso("DL1ABC", "20260101", "020000", { CQZ: "99" }),
+    qso("DL1ABC", "20260101", "030000", { CQZ: "99" }),
+  ];
+  assert.deepEqual(lc.analyze(recs, "CQZ", { forceExchange: true }).fixes, []);
+});
+
+test("no fix when scattered", () => {
+  const recs = [
+    qso("DL1ABC", "20260101", "000000", { CQZ: "14" }),
+    qso("DL1ABC", "20260101", "010000", { CQZ: "99" }),
+    qso("DL1ABC", "20260101", "020000", { CQZ: "14" }),
+  ];
+  assert.deepEqual(lc.analyze(recs, "CQZ", { forceExchange: true }).fixes, []);
+});
+
+test("fix multiple early", () => {
+  const recs = [
+    qso("ZL7AA", "20260101", "000000", { RX_PWR: "5" }),
+    qso("ZL7AA", "20260101", "010000", { RX_PWR: "5" }),
+    qso("ZL7AA", "20260101", "020000", { RX_PWR: "KW" }),
+    qso("ZL7AA", "20260101", "030000", { RX_PWR: "KW" }),
+    qso("ZL7AA", "20260101", "040000", { RX_PWR: "KW" }),
+  ];
+  const res = lc.analyze(recs, "RX_PWR", { forceExchange: true });
+  assert.deepEqual(res.fixes.map((f) => f[0]).sort(), [0, 1]);
+  lc.applyFixes(recs, "RX_PWR", res.fixes);
+  assert.ok(recs.every((r) => r.RX_PWR === "KW"));
+});
+
+console.log(`\n${passed} passed, ${failed} failed`);
+process.exit(failed ? 1 : 0);
