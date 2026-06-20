@@ -12,11 +12,16 @@ It's a JavaScript port of the Python engine: `logcore.js` mirrors `logcore.py`
 
 Identical to the desktop version — see the top-level `README.md`:
 
-* **Rare DXCC (pink)** — flags QSOs whose entity is on the most-wanted list.
-* **Exchange (yellow)** — flags a station whose received exchange disagrees
-  across its QSOs (and, in a ≥90 %-fixed contest, lone deviations from the
-  log-wide value). **Auto-fix** corrects the clear early-wrong-then-consistent
-  cases.
+Five checks (highlighted in the table, named in the **Flags** column):
+
+* **Rare DXCC (pink)** — entity on the most-wanted list.
+* **Exchange (yellow)** — a station whose received exchange disagrees across its
+  QSOs (and, in a ≥90 %-fixed contest, lone deviations). **Apply fix** corrects
+  the clear early-wrong-then-consistent cases.
+* **Zone** — a logged `CQZ`/`ITUZ` that doesn't match the entity's real zone.
+* **Call** — a malformed or country-unresolvable callsign.
+* **Near-dupe (UBN)** — a once-worked call one suffix-letter off a busier
+  same-prefix station; one-click correction in the review window.
 * Edit any cell inline, open a full-field editor (double-click the row number or
   use *Edit fields…*), delete selected QSOs (with confirmation), and **Save…**
   downloads the edited log as ADIF.
@@ -53,7 +58,7 @@ There's a self-test page that drives the UI and reports PASS/FAIL:
 Run the core unit tests under Node (no browser, no dependencies):
 
 ```sh
-node test_logcore.mjs        # 21 tests, mirrors the Python suite
+node test_logcore.mjs        # 29 tests, mirrors the Python suite
 ```
 
 ## Deploy to GitHub Pages

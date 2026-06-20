@@ -10,22 +10,29 @@
 // step. test_logcore.mjs mirrors test_log_check.py to keep them honest.
 
 // --- injected lookup state -------------------------------------------------
-let DXCC = {};        // prefix -> {entity, cont, code, ...}
+let DXCC = {};        // prefix -> {entity, cont, code, cq, itu, ...}
 let ITU = {};         // 2-char series -> {country, cont, lat, lon}
 let DXCC_CODE = {};   // entity name -> code
+let ENTITY_REC = {};  // entity name -> full record (with cq/itu zones)
 let RARE = {};        // code (string) -> rank
 
 const _entityCache = new Map();
 const _rareCache = new Map();
+const _callCache = new Map();
 
 export function init({ dxcc, itu, rare }) {
   DXCC = (dxcc && dxcc.lookup) || {};
   ITU = (itu && itu.lookup) || {};
   DXCC_CODE = {};
-  for (const e of (dxcc && dxcc.entities) || []) DXCC_CODE[e.entity] = e.code;
+  ENTITY_REC = {};
+  for (const e of (dxcc && dxcc.entities) || []) {
+    DXCC_CODE[e.entity] = e.code;
+    ENTITY_REC[e.entity] = e;
+  }
   RARE = (rare && rare.rare) || {};
   _entityCache.clear();
   _rareCache.clear();
+  _callCache.clear();
 }
 
 // ==========================================================================
@@ -188,6 +195,7 @@ function leadingAlpha(head) {
 }
 
 function lookupHead(core) {
+  if (core in DXCC) return [DXCC[core], core, core];   // full-call key (KH7K=Kure)
   const m = /^([A-Z0-9]+?\d)/.exec(core);
   const head = m ? m[1] : core;
   for (let n = head.length; n >= 1; n--) {
@@ -197,11 +205,22 @@ function lookupHead(core) {
   return [null, null, null];
 }
 
-// Curated fixes for coarse dxcc.json umbrella prefixes (see logcore.py).
+// Curated fixes for coarse dxcc.json prefixes — call-area splits the table maps
+// to the parent entity (and hence wrong zone). See logcore.py for the rationale.
 const PREFIX_OVERRIDES = [
   [/^KP[34]/, "Puerto Rico"],
   [/^KP2/, "Virgin Is."],
+  [/^[AKNW]H6/, "Hawaii"],
+  [/^[AKNW]H7(?!K)/, "Hawaii"],            // KH7K = rare Kure, leave it
+  [/^[AKNW]H2/, "Guam"],
+  [/^[AKNW]H0/, "Mariana Is."],
+  [/^[AKNW]L\d/, "Alaska"],
+  [/^E[A-H]8/, "Canary Is."],
+  [/^E[A-H]9/, "Ceuta & Melilla"],
+  [/^(?:R[A-Z]?|U[A-I])[890]/, "Asiatic Russia"],
+  [/^(?:R[A-Z]?|U[A-I])2F/, "Kaliningrad"],
   [/^R1(?!F)/, "European Russia"],
+  [/^(?:R[A-Z]?|U[A-I])[2-7]/, "European Russia"],
 ];
 
 function overrideEntity(call) {
@@ -212,7 +231,7 @@ function overrideEntity(call) {
 
 function dxccMatch(call) {
   const ent = overrideEntity(call);
-  if (ent) return [{ entity: ent }, true];
+  if (ent) return [ENTITY_REC[ent] || { entity: ent }, true];
   for (const core of callCores(call)) {
     const [rec, key, head] = lookupHead(core);
     if (rec) return [rec, key.length >= leadingAlpha(head)];
@@ -251,6 +270,95 @@ export function rareRank(call) {
     if (code != null && String(code) in RARE) out = parseInt(RARE[String(code)], 10);
   }
   _rareCache.set(call, out);
+  return out;
+}
+
+// ==========================================================================
+// Zone vs. entity  /  callsign plausibility  /  near-dupe (UBN)
+// ==========================================================================
+
+function parseZones(spec) {
+  if (!spec) return null;
+  const out = new Set();
+  for (let tok of String(spec).split(",")) {
+    tok = tok.trim();
+    const m = /^(\d+)-(\d+)$/.exec(tok);
+    if (m) {
+      const a = +m[1], b = +m[2];
+      for (let z = Math.min(a, b); z <= Math.max(a, b); z++) out.add(z);
+    } else if (/^\d+$/.test(tok)) {
+      out.add(+tok);
+    }
+  }
+  return out.size ? out : null;
+}
+
+export function expectedZones(call, kind) {
+  const [rec, confident] = dxccMatch(call);
+  if (!(rec && confident)) return null;
+  return parseZones(rec[kind]);
+}
+
+export function zoneProblem(qso) {
+  const call = qso.CALL || "";
+  for (const [field, kind] of [["CQZ", "cq"], ["ITUZ", "itu"]]) {
+    const v = ((qso[field] || "") + "").trim();
+    if (!(v && /^\d+$/.test(v))) continue;
+    const exp = expectedZones(call, kind);
+    if (exp && !exp.has(+v)) return { field, logged: +v, exp };
+    return null;
+  }
+  return null;
+}
+
+export function callProblem(call) {
+  if (_callCache.has(call)) return _callCache.get(call);
+  const c = (call || "").toUpperCase().trim();
+  let out;
+  if (!(c.length >= 3 && c.length <= 15 && /^[A-Z0-9/]+$/.test(c)
+        && /[A-Z]/.test(c) && /[0-9]/.test(c))) out = "malformed";
+  else out = entityOf(c) ? "" : "unresolved";
+  _callCache.set(call, out);
+  return out;
+}
+
+function suffixSplit(call) {
+  let last = -1;
+  for (let i = 0; i < call.length; i++) if (/[0-9]/.test(call[i])) last = i;
+  if (last < 0 || last === call.length - 1) return null;
+  return [call.slice(0, last + 1), call.slice(last + 1)];
+}
+
+export function nearDupes(records, freqMin = 3, suffixMin = 3) {
+  const counts = new Map();
+  for (const r of records) {
+    const c = ((r.CALL || "") + "").toUpperCase().trim();
+    if (c) counts.set(c, (counts.get(c) || 0) + 1);
+  }
+  const byPrefix = new Map();
+  const anchors = [...counts.entries()].filter(([, n]) => n >= freqMin)
+    .sort((a, b) => b[1] - a[1]).map((e) => e[0]);
+  for (const c of anchors) {
+    const sp = suffixSplit(c);
+    if (sp && sp[1].length >= suffixMin) {
+      if (!byPrefix.has(sp[0])) byPrefix.set(sp[0], []);
+      byPrefix.get(sp[0]).push([c, sp[1]]);
+    }
+  }
+  const out = new Map();
+  for (const [call, n] of counts) {
+    if (n !== 1) continue;
+    const sp = suffixSplit(call);
+    if (!sp || sp[1].length < suffixMin) continue;
+    const [pre, suf] = sp;
+    for (const [anchor, asuf] of byPrefix.get(pre) || []) {
+      if (asuf.length === suf.length) {
+        let d = 0;
+        for (let i = 0; i < suf.length; i++) if (suf[i] !== asuf[i]) d++;
+        if (d === 1) { out.set(call, anchor); break; }
+      }
+    }
+  }
   return out;
 }
 
@@ -323,8 +431,25 @@ export function analyze(records, exchangeField = null, opts = {}) {
   const per = records.map((r) => ({
     entity: entityOf(r.CALL || ""), rank: rareRank(r.CALL || ""),
     exch: field ? val(r, field) : "", exch_bust: false,
+    zone_bust: false, zone_exp: "", zone_logged: "",
+    call_bad: callProblem(r.CALL || ""), dupe_of: "",
   }));
   const rareCount = per.filter((p) => p.rank != null).length;
+
+  // zone vs. entity, and UBN near-dupe
+  records.forEach((r, i) => {
+    const zp = zoneProblem(r);
+    if (zp) {
+      per[i].zone_bust = true;
+      per[i].zone_logged = `${zp.field}=${zp.logged}`;
+      per[i].zone_exp = [...zp.exp].sort((a, b) => a - b).join(",");
+    }
+  });
+  const dupes = nearDupes(records);
+  records.forEach((r, i) => {
+    const sug = dupes.get(((r.CALL || "") + "").toUpperCase().trim());
+    if (sug) per[i].dupe_of = sug;
+  });
 
   let majVal = "", majShare = 0, isFixed = false, isSerial = false, applicable = false;
   const fixes = [];
@@ -370,6 +495,9 @@ export function analyze(records, exchangeField = null, opts = {}) {
     majority_share: majShare, is_fixed: isFixed, is_serial: isSerial,
     exch_applicable: applicable, rare_count: rareCount,
     bust_count: per.filter((p) => p.exch_bust).length, fixes,
+    zone_count: per.filter((p) => p.zone_bust).length,
+    callbad_count: per.filter((p) => p.call_bad).length,
+    dupe_count: per.filter((p) => p.dupe_of).length,
   };
 }
 

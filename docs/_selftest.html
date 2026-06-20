@@ -42,18 +42,24 @@ const log = [];
 let failed = 0;
 const ok = (c, m) => { log.push((c ? "ok   " : "FAIL ") + m); if (!c) failed++; };
 
-// Build a synthetic log: 8 common stations + a rare one + a fixable bust group.
+// Synthetic log exercising all five checks. RX_PWR is the exchange field (so it
+// doesn't collide with the CQZ zone check).
 function adif(recs) {
   const head = "x <EOH>\n";
   return head + recs.map(r => Object.entries(r)
     .map(([k, v]) => `<${k}:${String(v).length}>${v}`).join(" ") + " <EOR>").join("\n");
 }
+const T = (n) => `00${String(n).padStart(2, "0")}00`;
 const recs = [];
-for (let i = 0; i < 8; i++) recs.push({ CALL: `W${i}AW`, QSO_DATE: "20260101", TIME_ON: `00${String(i).padStart(2,"0")}00`, BAND: "20M", CQZ: "5" });
-recs.push({ CALL: "P5DX", QSO_DATE: "20260101", TIME_ON: "001000", BAND: "20M" });   // rare
-recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: "001100", BAND: "20M", CQZ: "9" });  // early wrong
-recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: "001200", BAND: "15M", CQZ: "5" });
-recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: "001300", BAND: "10M", CQZ: "5" });
+for (let i = 0; i < 8; i++) recs.push({ CALL: `W${i}AW`, QSO_DATE: "20260101", TIME_ON: T(i), BAND: "20M", RX_PWR: "KW" });
+recs.push({ CALL: "P5DX", QSO_DATE: "20260101", TIME_ON: T(10), BAND: "20M", RX_PWR: "KW" });   // rare
+recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: T(11), BAND: "20M", RX_PWR: "100" }); // exch early-wrong
+recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: T(12), BAND: "15M", RX_PWR: "KW" });
+recs.push({ CALL: "DL1ABC", QSO_DATE: "20260101", TIME_ON: T(13), BAND: "10M", RX_PWR: "KW" });
+recs.push({ CALL: "JA1ZZZ", QSO_DATE: "20260101", TIME_ON: T(14), BAND: "20M", RX_PWR: "KW", CQZ: "5" }); // zone: JA=25
+recs.push({ CALL: "0Q1QQ", QSO_DATE: "20260101", TIME_ON: T(15), BAND: "20M", RX_PWR: "KW" });  // unresolved call
+for (let i = 0; i < 3; i++) recs.push({ CALL: "DL5ABC", QSO_DATE: "20260101", TIME_ON: T(16 + i), BAND: "20M", RX_PWR: "KW" }); // anchor
+recs.push({ CALL: "DL5ABD", QSO_DATE: "20260101", TIME_ON: T(19), BAND: "20M", RX_PWR: "KW" });  // near-dupe of DL5ABC
 const text = adif(recs);
 
 window.confirm = () => true;          // auto-accept fix/delete dialogs
@@ -80,45 +86,60 @@ window.addEventListener("error", (e) => {
 
   const rows = () => document.querySelectorAll("#body tr").length;
   const summary = () => document.getElementById("summary").textContent;
-
-  ok(rows() === 12, `rendered 12 rows (got ${rows()})`);
-  ok(document.querySelectorAll("#body tr.rare").length === 1, "one rare row highlighted");
-  ok(document.querySelectorAll("#body tr.exch").length === 1, "one exchange-bust row highlighted");
-  ok(/\b1 rare DXCC/.test(summary()), "summary reports 1 rare");
-  ok(/1 auto-fixable/.test(summary()), "summary reports 1 auto-fixable");
-
-  // --- review window: 2 issues (rare P5DX, exchange DL1ABC) ---
   const pos = () => document.getElementById("rv-pos").textContent;
   const rvBody = () => document.getElementById("rv-body").textContent;
-  ok(/Review issues \(2\)/.test(document.getElementById("review").textContent), "review button shows 2 issues");
+  const nIssues = () => +(pos().match(/of (\d+)/) || [0, 0])[1];
+  const wait = () => new Promise(r => setTimeout(r, 20));
+
+  ok(rows() === 18, `rendered 18 rows (got ${rows()})`);
+  ok(document.querySelectorAll("#body tr.rare").length === 1, "one rare row highlighted");
+  ok(document.querySelectorAll("#body tr.exch").length === 4, "four other-issue rows highlighted (exch/zone/call/dupe)");
+  ok(/\b1 rare DXCC/.test(summary()), "summary: 1 rare");
+  ok(/1 auto-fixable/.test(summary()), "summary: 1 auto-fixable");
+  ok(/1<\/b> zone|1 zone/.test(summary()), "summary: 1 zone");
+  ok(/1 bad-call/.test(summary()), "summary: 1 bad-call");
+  ok(/1 near-dupe/.test(summary()), "summary: 1 near-dupe");
+
+  // --- review window: 5 issues, one per check ---
+  ok(/Review issues \(5\)/.test(document.getElementById("review").textContent), "review button shows 5 issues");
   document.getElementById("review").click();
-  ok(!document.getElementById("review-win").classList.contains("hidden"), "review window opened");
-  ok(/Issue 1 of 2/.test(pos()), "first issue is 'Issue 1 of 2'");
-  ok(/P5DX/.test(rvBody()) && /RARE/.test(rvBody()), "issue 1 is the rare station P5DX");
-  document.getElementById("rv-next").click();
-  ok(/Issue 2 of 2/.test(pos()), "navigated to 'Issue 2 of 2'");
-  ok(/DL1ABC/.test(rvBody()), "issue 2 is exchange station DL1ABC");
-  ok(document.querySelectorAll("#rv-body table.rv-table tbody tr").length === 3,
-     "exchange issue groups all 3 of DL1ABC's QSOs");
-  const applyBtn = [...document.querySelectorAll("#rv-body .rv-fix .btn")][0];
-  ok(!!applyBtn, "suggested-fix Apply button present");
-  applyBtn.click();                              // fix DL1ABC's exchange from the window
-  await new Promise(r => setTimeout(r, 20));
-  ok(/Issue 1 of 1/.test(pos()), "after applying fix only the rare issue remains");
-  ok(document.querySelectorAll("#body tr.exch").length === 0, "no exchange busts after review fix");
+  ok(/Issue 1 of 5/.test(pos()), "opens at Issue 1 of 5");
+  ok(/P5DX/.test(rvBody()) && /RARE/.test(rvBody()), "issue 1 is rare P5DX");
+
+  // walk all issues, collect their text
+  const goFirst = () => { for (let k = 0; k < 8; k++) document.getElementById("rv-prev").click(); };
+  goFirst();
+  const texts = [];
+  for (let k = 0, N = nIssues(); k < N; k++) { texts.push(rvBody()); if (k < N - 1) document.getElementById("rv-next").click(); }
+  const all = texts.join(" || ");
+  ok(/ZONE/.test(all) && /JA1ZZZ/.test(all) && /\b25\b/.test(all), "zone issue present (JA1ZZZ, expected 25)");
+  ok(/CALL/.test(all) && /0Q1QQ/.test(all), "bad-call issue present (0Q1QQ)");
+  ok(/NEAR-DUPE/.test(all) && /DL5ABD/.test(all) && /DL5ABC/.test(all), "near-dupe issue present (DL5ABD -> DL5ABC)");
+
+  // dupe fix: find & click the "Change call" button across issues
+  const findBtn = (re) => { goFirst(); for (let k = 0, N = nIssues(); k < N; k++) {
+    const b = [...document.querySelectorAll("#rv-body .rv-fix .btn")].find(x => re.test(x.textContent));
+    if (b) return b; document.getElementById("rv-next").click();
+  } return null; };
+  const dupeBtn = findBtn(/Change call to DL5ABC/);
+  ok(!!dupeBtn, "near-dupe 'Change call' button present");
+  dupeBtn.click(); await wait();
+  ok(/0 near-dupe/.test(summary()), "near-dupe cleared after Change call");
+
+  // exchange fix: find & click the "Apply fix" button
+  const applyBtn = findBtn(/Apply fix/);
+  ok(!!applyBtn, "exchange 'Apply fix' button present");
+  applyBtn.click(); await wait();
+  ok(/0 busts/.test(summary()), "no exchange busts after Apply fix");
+
   document.getElementById("rv-close").click();
   ok(document.getElementById("review-win").classList.contains("hidden"), "review window closed");
 
-  // Select the first row's checkbox and delete it.
+  // delete a row
   const cb = document.querySelector('#body input[data-sel="0"]');
   cb.checked = true; cb.dispatchEvent(new Event("change", { bubbles: true }));
-  ok(!document.getElementById("del").disabled, "delete enabled after selecting a row");
-  document.getElementById("del").click();
-  await new Promise(r => setTimeout(r, 20));
-  ok(rows() === 11, `11 rows after delete (got ${rows()})`);
-
-  // Save produces a non-empty ADIF blob (exercise serialize path).
-  ok(window.__lcLoad && rows() === 11, "state consistent post-delete");
+  document.getElementById("del").click(); await wait();
+  ok(rows() === 17, `17 rows after delete (got ${rows()})`);
 
   out.textContent = log.join("\n") + `\n\nSELFTEST: ${failed ? "FAIL (" + failed + ")" : "PASS"}`;
   document.title = failed ? "SELFTEST FAIL" : "SELFTEST PASS";

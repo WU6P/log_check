@@ -243,7 +243,17 @@ def _load_dxcc_codes():
     return {e["entity"]: e.get("code") for e in ents}
 
 
+def _load_entity_recs():
+    """entity name -> full record (with cq/itu zones), for prefix overrides."""
+    path = HERE / "dxcc.json"
+    if not path.exists():
+        return {}
+    ents = json.loads(path.read_text(encoding="utf-8")).get("entities", [])
+    return {e["entity"]: e for e in ents}
+
+
 DXCC_CODE = _load_dxcc_codes()
+ENTITY_REC = _load_entity_recs()
 RARE = (json.loads((HERE / "rare.json").read_text(encoding="utf-8")).get("rare", {})
         if (HERE / "rare.json").exists() else {})
 
@@ -273,6 +283,8 @@ def _lookup_head(core):
     The key is the prefix string that matched, so callers can judge confidence:
     a match that dropped leading letters (e.g. France 'TM' collapsing to the
     catch-all 'T' = Kiribati) is unreliable."""
+    if core in DXCC:                 # full-call exception key (e.g. KH7K = Kure I.)
+        return DXCC[core], core, core
     m = re.match(r"([A-Z0-9]+?\d)", core)
     head = m.group(1) if m else core
     for n in range(len(head), 0, -1):
@@ -283,15 +295,27 @@ def _lookup_head(core):
 
 
 # The shared dxcc.json (built from the ARRL DXCC PDF) keeps only coarse prefix
-# keys for a few entities, so an umbrella key resolves common calls to a rare
-# neighbour: bare 'KP' -> Navassa (but KP3/KP4 are Puerto Rico, KP2 the Virgin
-# Is.) and 'R1' -> Franz Josef Land (but only R1F* is Franz Josef; other R1
-# calls are European Russia). These curated overrides veto those false rare
-# flags. Add a row here if another umbrella prefix turns up over-flagged.
+# keys, so a call-area-split family resolves to the wrong entity (and hence the
+# wrong CQ/ITU zone): Hawaii/Guam/Alaska map to "USA", Asiatic Russia and
+# Kaliningrad to "European Russia", the Canaries/Ceuta to "Spain", and bare
+# R<digit> Russian calls don't resolve at all. These curated overrides map each
+# split to the right entity (which fixes the zone and rarity checks too). Order
+# matters only where patterns overlap (the Russian digit rules are disjoint).
+# Add a row here if another umbrella/split prefix turns up mis-resolved.
 _PREFIX_OVERRIDES = [
     (re.compile(r"^KP[34]"), "Puerto Rico"),
     (re.compile(r"^KP2"), "Virgin Is."),
-    (re.compile(r"^R1(?!F)"), "European Russia"),   # R1FJ stays Franz Josef Land
+    (re.compile(r"^[AKNW]H6"), "Hawaii"),
+    (re.compile(r"^[AKNW]H7(?!K)"), "Hawaii"),         # KH7K = rare Kure, leave it
+    (re.compile(r"^[AKNW]H2"), "Guam"),
+    (re.compile(r"^[AKNW]H0"), "Mariana Is."),
+    (re.compile(r"^[AKNW]L\d"), "Alaska"),
+    (re.compile(r"^E[A-H]8"), "Canary Is."),           # Spanish call area 8
+    (re.compile(r"^E[A-H]9"), "Ceuta & Melilla"),      # Spanish call area 9
+    (re.compile(r"^(?:R[A-Z]?|U[A-I])[890]"), "Asiatic Russia"),  # districts 8/9/0
+    (re.compile(r"^(?:R[A-Z]?|U[A-I])2F"), "Kaliningrad"),        # the "2F" series
+    (re.compile(r"^R1(?!F)"), "European Russia"),      # R1x except Franz Josef R1F
+    (re.compile(r"^(?:R[A-Z]?|U[A-I])[2-7]"), "European Russia"), # other districts 2-7
 ]
 
 
@@ -312,7 +336,7 @@ def _dxcc_match(call):
     A curated override (see _PREFIX_OVERRIDES) wins outright when it applies."""
     ent = _override_entity(call)
     if ent:
-        return {"entity": ent}, True
+        return ENTITY_REC.get(ent, {"entity": ent}), True
     for core in _call_cores(call):
         rec, key, head = _lookup_head(core)
         if rec:
@@ -363,6 +387,125 @@ def rare_rank(call):
     if code is not None and str(code) in RARE:
         return int(RARE[str(code)])
     return None
+
+
+# ==========================================================================
+# Zone vs. entity   /   callsign plausibility   /   near-dupe (UBN) checks
+# ==========================================================================
+
+def _parse_zones(spec):
+    """A CQ/ITU zone field -> set of ints, or None if indeterminate.
+
+    Handles '25', '3,4,5' and '1-5'. Parenthetical markers like '(G)' (a
+    footnote in the ARRL table) and empty fields yield None, so multi-zone or
+    unknown entities are skipped rather than mis-flagged."""
+    if not spec:
+        return None
+    out = set()
+    for tok in str(spec).split(","):
+        tok = tok.strip()
+        m = re.fullmatch(r"(\d+)-(\d+)", tok)
+        if m:
+            a, b = int(m.group(1)), int(m.group(2))
+            out.update(range(min(a, b), max(a, b) + 1))
+        elif tok.isdigit():
+            out.add(int(tok))
+        # anything else (e.g. "(G)") is a marker we can't resolve -> ignore
+    return out or None
+
+
+def expected_zones(call, kind):
+    """Set of valid CQ ('cq') or ITU ('itu') zones for a call's entity, or None.
+
+    Only a confident DXCC match is used; an unknown/override entity returns
+    None so the zone check stays silent rather than guessing."""
+    rec, confident = _dxcc_match(call)
+    if not (rec and confident):
+        return None
+    return _parse_zones(rec.get(kind))
+
+
+def zone_problem(qso):
+    """(field, logged_zone, expected_set) if a logged zone conflicts with the
+    worked entity, else None. Uses CQZ (vs CQ zone) first, then ITUZ.
+
+    Only fires when the entity's zone set is known *and* the logged value is a
+    plain integer outside it — so a wrong call that N1MM auto-zoned, or a
+    hand-typed zone, stands out, while multi-zone giants never false-flag."""
+    call = qso.get("CALL", "")
+    for field, kind in (("CQZ", "cq"), ("ITUZ", "itu")):
+        v = (qso.get(field, "") or "").strip()
+        if not (v and v.isdigit()):
+            continue
+        exp = expected_zones(call, kind)
+        if exp is not None and int(v) not in exp:
+            return field, int(v), exp
+        return None                      # primary zone field present & OK/unknown
+    return None
+
+
+_CALL_OK = re.compile(r"^[A-Z0-9/]+$")
+
+
+@lru_cache(maxsize=20000)
+def call_problem(call):
+    """'' if the callsign is fine, else 'malformed' or 'unresolved'.
+
+    malformed  — wrong shape (no letter+digit, illegal chars, bad length).
+    unresolved — well-formed but maps to no DXCC *or* ITU country (an exotic
+                 prefix that's almost always a typo in a contest log)."""
+    c = (call or "").upper().strip()
+    if not (3 <= len(c) <= 15 and _CALL_OK.match(c)
+            and any(ch.isalpha() for ch in c) and any(ch.isdigit() for ch in c)):
+        return "malformed"
+    return "" if entity_of(c) else "unresolved"
+
+
+def _suffix_split(call):
+    """(prefix-through-last-digit, trailing-letter suffix), or None.
+
+    'K3EST' -> ('K3', 'EST'); 'JR2HCZ' -> ('JR2', 'HCZ'). Comparing only within
+    a shared prefix keeps the near-dupe check from matching calls that differ in
+    their region/number (almost always a *different* station, not a mis-copy)."""
+    last = -1
+    for i, ch in enumerate(call):
+        if ch.isdigit():
+            last = i
+    if last < 0 or last == len(call) - 1:
+        return None
+    return call[:last + 1], call[last + 1:]
+
+
+def near_dupes(records, freq_min=3, suffix_min=3):
+    """Map {busted_call -> likely_correct_call} for UBN-style near-dupes.
+
+    A call worked exactly once whose suffix is one character (a single
+    substitution) off a call worked `freq_min`+ times with the *same prefix* is
+    flagged as a probable mis-copy of that busier station. The suffix must be at
+    least `suffix_min` letters: with 1-2 letter contest calls (S53A vs S53D)
+    a one-letter difference is just two distinct stations, so only longer
+    suffixes carry a real copy-error signal."""
+    counts = Counter((r.get("CALL", "") or "").upper().strip() for r in records)
+    counts.pop("", None)
+    by_prefix = defaultdict(list)
+    for c in sorted((c for c, n in counts.items() if n >= freq_min),
+                    key=lambda c: -counts[c]):
+        sp = _suffix_split(c)
+        if sp and len(sp[1]) >= suffix_min:
+            by_prefix[sp[0]].append((c, sp[1]))
+    out = {}
+    for call, n in counts.items():
+        if n != 1:
+            continue
+        sp = _suffix_split(call)
+        if not sp or len(sp[1]) < suffix_min:
+            continue
+        pre, suf = sp
+        for anchor, asuf in by_prefix.get(pre, ()):
+            if len(asuf) == len(suf) and sum(x != y for x, y in zip(suf, asuf)) == 1:
+                out[call] = anchor
+                break
+    return out
 
 
 # ==========================================================================
@@ -442,10 +585,14 @@ def analyze(records, exchange_field=None, fixed_threshold=0.9,
         per_record[i] = {
             "entity": str, "rank": int|None,            # rare check
             "exch": str, "exch_bust": bool,             # exchange check
+            "zone_bust": bool, "zone_exp": str, "zone_logged": str,  # zone check
+            "call_bad": str,                            # ''/'malformed'/'unresolved'
+            "dupe_of": str,                             # suggested correct call, or ''
         }
     plus log-level summary fields:
         exchange_field, majority_value, majority_share, is_fixed,
-        is_serial, exch_applicable, rare_count, bust_count, fixes
+        is_serial, exch_applicable, rare_count, bust_count, fixes,
+        zone_count, callbad_count, dupe_count
     `fixes` is a list of (index, old_value, new_value) proposals (see
     propose_fixes); apply them with apply_fixes().
     """
@@ -453,9 +600,28 @@ def analyze(records, exchange_field=None, fixed_threshold=0.9,
     field = exchange_field if exchange_field is not None else detect_exchange_field(records)
 
     per = [{"entity": entity_of(r.get("CALL", "")), "rank": rare_rank(r.get("CALL", "")),
-            "exch": _val(r, field) if field else "", "exch_bust": False}
+            "exch": _val(r, field) if field else "", "exch_bust": False,
+            "zone_bust": False, "zone_exp": "", "zone_logged": "",
+            "call_bad": call_problem(r.get("CALL", "")), "dupe_of": ""}
            for r in records]
     rare_count = sum(1 for p in per if p["rank"] is not None)
+
+    # --- zone vs. entity, and UBN near-dupe -----------------------------
+    for i, r in enumerate(records):
+        zp = zone_problem(r)
+        if zp:
+            fld, logged, exp = zp
+            per[i]["zone_bust"] = True
+            per[i]["zone_logged"] = f"{fld}={logged}"
+            per[i]["zone_exp"] = ",".join(str(z) for z in sorted(exp))
+    dupes = near_dupes(records)
+    for i, r in enumerate(records):
+        sug = dupes.get((r.get("CALL", "") or "").upper().strip())
+        if sug:
+            per[i]["dupe_of"] = sug
+    zone_count = sum(1 for p in per if p["zone_bust"])
+    callbad_count = sum(1 for p in per if p["call_bad"])
+    dupe_count = sum(1 for p in per if p["dupe_of"])
 
     # --- exchange check -------------------------------------------------
     maj_val, maj_share, is_fixed, is_serial, applicable = "", 0.0, False, False, False
@@ -506,6 +672,9 @@ def analyze(records, exchange_field=None, fixed_threshold=0.9,
         "rare_count": rare_count,
         "bust_count": bust_count,
         "fixes": fixes,
+        "zone_count": zone_count,
+        "callbad_count": callbad_count,
+        "dupe_count": dupe_count,
     }
 
 

@@ -175,11 +175,11 @@ class LogCheck(QMainWindow):
         act.addWidget(self.btn_del)
         act.addStretch(1)
 
-        legend = QLabel("Legend:  ▮ rare DXCC   ▮ exchange bust   ▮ both")
+        legend = QLabel()
         legend.setText(
             '<span style="background:#ffcdd2">&nbsp;rare DXCC&nbsp;</span> &nbsp; '
-            '<span style="background:#fff59d">&nbsp;exchange bust&nbsp;</span> &nbsp; '
-            '<span style="background:#ffb778">&nbsp;both&nbsp;</span>')
+            '<span style="background:#fff59d">&nbsp;exchange / zone / call / dupe&nbsp;</span> &nbsp; '
+            '<span style="background:#ffb778">&nbsp;rare + another&nbsp;</span>')
         act.addWidget(legend)
         root.addLayout(act)
 
@@ -248,9 +248,10 @@ class LogCheck(QMainWindow):
         for i, qso in enumerate(self.records):
             info = per[i]
             rare = info["rank"] is not None
-            bust = info["exch_bust"]
-            bg = (COL_BOTH if rare and bust else COL_RARE if rare
-                  else COL_EXCH if bust else COL_PLAIN)
+            other = (info["exch_bust"] or info["zone_bust"]
+                     or info["call_bad"] or info["dupe_of"])
+            bg = (COL_BOTH if rare and other else COL_RARE if rare
+                  else COL_EXCH if other else COL_PLAIN)
             for c, (_h, key) in enumerate(COLUMNS):
                 text = self._cell_text(i, qso, info, key)
                 item = QTableWidgetItem(text)
@@ -281,6 +282,12 @@ class LogCheck(QMainWindow):
                 f.append("RARE")
             if info["exch_bust"]:
                 f.append("EXCH")
+            if info["zone_bust"]:
+                f.append("ZONE")
+            if info["call_bad"]:
+                f.append("CALL!" if info["call_bad"] == "malformed" else "CALL?")
+            if info["dupe_of"]:
+                f.append("DUPE?")
             return " ".join(f)
         if key == "EXCH":
             return info["exch"]
@@ -305,6 +312,9 @@ class LogCheck(QMainWindow):
                              f"check skipped (tick ‘force check’ to run it)")
         else:
             parts.append("no exchange field selected")
+        parts.append(f"<b>{r['zone_count']}</b> zone, "
+                     f"<b>{r['callbad_count']}</b> bad-call, "
+                     f"<b>{r['dupe_count']}</b> near-dupe")
         self.lbl_summary.setText("&nbsp;|&nbsp; ".join(parts))
         self.btn_fix.setEnabled(bool(r["fixes"]))
 

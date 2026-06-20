@@ -119,6 +119,90 @@ class TestRare(unittest.TestCase):
 
 
 # --------------------------------------------------------------------------
+# Zone vs. entity
+# --------------------------------------------------------------------------
+class TestZone(unittest.TestCase):
+    def test_zone_parse(self):
+        self.assertEqual(lc._parse_zones("25"), {25})
+        self.assertEqual(lc._parse_zones("3,4,5"), {3, 4, 5})
+        self.assertEqual(lc._parse_zones("1-5"), {1, 2, 3, 4, 5})
+        self.assertIsNone(lc._parse_zones("(G)"))      # marker -> indeterminate
+        self.assertIsNone(lc._parse_zones(None))
+
+    def test_zone_mismatch(self):
+        self.assertEqual(lc.zone_problem({"CALL": "JA1ABC", "CQZ": "5"})[1], 5)  # JA is 25
+        self.assertIsNone(lc.zone_problem({"CALL": "JA1ABC", "CQZ": "25"}))
+
+    def test_multizone_giant_not_flagged(self):
+        self.assertIsNone(lc.zone_problem({"CALL": "W1AW", "CQZ": "5"}))     # US 3,4,5
+        self.assertIsNone(lc.zone_problem({"CALL": "VE3XYZ", "CQZ": "5"}))   # VE 1-5
+        self.assertEqual(lc.zone_problem({"CALL": "W1AW", "CQZ": "8"})[1], 8)  # outside 3-5
+
+    def test_analyze_zone_count(self):
+        recs = [qso("JA1ABC", CQZ="25"), qso("JA2DEF", CQZ="5")]
+        res = lc.analyze(recs, exchange_field="")
+        self.assertEqual(res["zone_count"], 1)
+        self.assertTrue(res["per_record"][1]["zone_bust"])
+        self.assertEqual(res["per_record"][1]["zone_exp"], "25")
+
+
+# --------------------------------------------------------------------------
+# Callsign plausibility
+# --------------------------------------------------------------------------
+class TestCallProblem(unittest.TestCase):
+    def test_good_call(self):
+        self.assertEqual(lc.call_problem("W1AW"), "")
+        self.assertEqual(lc.call_problem("JX9X"), "")
+
+    def test_malformed(self):
+        self.assertEqual(lc.call_problem("ABCDEF"), "malformed")   # no digit
+        self.assertEqual(lc.call_problem(""), "malformed")
+        self.assertEqual(lc.call_problem("12345"), "malformed")    # no letter
+
+    def test_unresolved(self):
+        self.assertEqual(lc.call_problem("0Q1QQ"), "unresolved")   # well-formed, no country
+
+    def test_analyze_callbad_count(self):
+        res = lc.analyze([qso("W1AW"), qso("0Q1QQ")], exchange_field="")
+        self.assertEqual(res["callbad_count"], 1)
+        self.assertEqual(res["per_record"][1]["call_bad"], "unresolved")
+
+
+# --------------------------------------------------------------------------
+# Near-dupe (UBN-style)
+# --------------------------------------------------------------------------
+class TestNearDupe(unittest.TestCase):
+    def test_suffix_split(self):
+        self.assertEqual(lc._suffix_split("K3EST"), ("K3", "EST"))
+        self.assertEqual(lc._suffix_split("JR2HCZ"), ("JR2", "HCZ"))
+        self.assertIsNone(lc._suffix_split("NODIGIT"))   # no number
+        self.assertIsNone(lc._suffix_split("K3"))        # no suffix
+
+    def test_near_dupe_of_busy_station(self):
+        recs = [qso("K3EST")] * 3 + [qso("K3FST")] + [qso("W1AW")]
+        d = lc.near_dupes(recs)
+        self.assertEqual(d.get("K3FST"), "K3EST")        # suffix EST vs FST
+        self.assertNotIn("W1AW", d)
+
+    def test_number_or_prefix_diff_not_flagged(self):
+        # IO8T vs IO3T differ in the number, JE1X vs JH1X in the prefix —
+        # different stations, not a suffix mis-copy.
+        self.assertEqual(lc.near_dupes([qso("IO3T")] * 3 + [qso("IO8T")]), {})
+        self.assertEqual(lc.near_dupes([qso("JH1JNJ")] * 3 + [qso("JE1JNJ")]), {})
+
+    def test_no_dupe_when_anchor_rare(self):
+        # K3EST worked only twice (< freq_min) -> not a confident anchor.
+        recs = [qso("K3EST")] * 2 + [qso("K3FST")]
+        self.assertEqual(lc.near_dupes(recs), {})
+
+    def test_analyze_dupe_flag(self):
+        recs = [qso("K3EST")] * 3 + [qso("K3FST")]
+        res = lc.analyze(recs, exchange_field="")
+        self.assertEqual(res["dupe_count"], 1)
+        self.assertEqual(res["per_record"][3]["dupe_of"], "K3EST")
+
+
+# --------------------------------------------------------------------------
 # Exchange detection
 # --------------------------------------------------------------------------
 class TestExchangeDetect(unittest.TestCase):

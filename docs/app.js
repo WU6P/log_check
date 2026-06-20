@@ -118,8 +118,9 @@ function render() {
     const info = per[i];
     const tr = document.createElement("tr");
     tr.dataset.i = i;
-    const rare = info.rank != null, bust = info.exch_bust;
-    tr.className = (rare && bust) ? "both" : rare ? "rare" : bust ? "exch" : "";
+    const rare = info.rank != null;
+    const other = info.exch_bust || info.zone_bust || info.call_bad || info.dupe_of;
+    tr.className = (rare && other) ? "both" : rare ? "rare" : other ? "exch" : "";
     if (selected.has(i)) tr.classList.add("sel");
     for (const [, key] of COLUMNS) tr.appendChild(cell(i, records[i], info, key));
     frag.appendChild(tr);
@@ -143,8 +144,7 @@ function cell(i, qso, info, key) {
   if (key === "_RARE") { td.textContent = info.rank == null ? "" : "#" + info.rank; return td; }
   if (key === "_FLAGS") {
     td.className = "flags";
-    td.textContent = [info.rank != null ? "RARE" : "", info.exch_bust ? "EXCH" : ""]
-      .filter(Boolean).join(" ");
+    td.textContent = flagTokens(info).join(" ");
     return td;
   }
   if (key === "EXCH") {
@@ -155,6 +155,16 @@ function cell(i, qso, info, key) {
   td.textContent = qso[key] || "";
   if (EDITABLE.has(key)) makeEditable(td, i, key);
   return td;
+}
+
+function flagTokens(info) {
+  return [
+    info.rank != null ? "RARE" : "",
+    info.exch_bust ? "EXCH" : "",
+    info.zone_bust ? "ZONE" : "",
+    info.call_bad === "malformed" ? "CALL!" : info.call_bad === "unresolved" ? "CALL?" : "",
+    info.dupe_of ? "DUPE?" : "",
+  ].filter(Boolean);
 }
 
 function makeEditable(td, i, key) {
@@ -215,6 +225,8 @@ function updateSummary() {
   } else {
     parts.push("no exchange field selected");
   }
+  parts.push(`<b>${r.zone_count}</b> zone, <b>${r.callbad_count}</b> bad-call, ` +
+             `<b>${r.dupe_count}</b> near-dupe`);
   el.summary.innerHTML = parts.join(" &nbsp;|&nbsp; ");
 }
 
@@ -296,18 +308,23 @@ function buildIssues() {
       const da = lc.qsoDatetime(records[a]), db = lc.qsoDatetime(records[b]);
       return (da == null ? -Infinity : da) - (db == null ? -Infinity : db) || a - b;
     });
-    let rank = null, entity = "", hasBust = false;
+    let rank = null, entity = "", hasBust = false, hasZone = false;
+    let zoneInfo = null, callBad = "", dupeOf = "";
     const fixes = [];
     for (const i of idxs) {
       const p = per[i];
       if (p.rank != null) { rank = p.rank; entity = p.entity; }
       if (p.exch_bust) hasBust = true;
+      if (p.zone_bust && !zoneInfo) { hasZone = true; zoneInfo = { logged: p.zone_logged, exp: p.zone_exp }; }
+      if (p.call_bad) callBad = p.call_bad;
+      if (p.dupe_of) dupeOf = p.dupe_of;
       if (fixByIdx.has(i)) fixes.push(fixByIdx.get(i));
     }
-    if (rank == null && !hasBust) continue;
-    out.push({ call, idxs, rank, entity: entity || per[idxs[0]].entity, hasBust, fixes });
+    if (rank == null && !hasBust && !hasZone && !callBad && !dupeOf) continue;
+    out.push({ call, idxs, rank, entity: entity || per[idxs[0]].entity,
+               hasBust, hasZone, zoneInfo, callBad, dupeOf, fixes });
   }
-  // rarest first, then exchange-only stations alphabetically
+  // rarest first, then everything else alphabetically
   out.sort((a, b) =>
     (a.rank == null) - (b.rank == null) || (a.rank || 0) - (b.rank || 0) ||
     a.call.localeCompare(b.call));
@@ -361,6 +378,9 @@ function renderIssue() {
   const badges = [];
   if (it.rank != null) badges.push(`<span class="badge rare">RARE #${it.rank}</span>`);
   if (it.hasBust) badges.push(`<span class="badge exch">EXCHANGE</span>`);
+  if (it.hasZone) badges.push(`<span class="badge exch">ZONE</span>`);
+  if (it.callBad) badges.push(`<span class="badge exch">CALL ${it.callBad === "malformed" ? "!" : "?"}</span>`);
+  if (it.dupeOf) badges.push(`<span class="badge exch">NEAR-DUPE</span>`);
   title.innerHTML = `${badges.join(" ")} <span class="rv-call">${it.call}</span>` +
                     `<span class="rv-ent">${it.entity || ""}</span>`;
   body.appendChild(title);
@@ -375,6 +395,18 @@ function renderIssue() {
     msgs.push(`This station's received exchange isn't consistent across its ` +
               `${it.idxs.length} QSO(s); a station sends the same exchange all contest, ` +
               `so the odd one out is the likely copying error.`);
+  if (it.hasZone)
+    msgs.push(`Logged <b>${it.zoneInfo.logged}</b> but ${it.entity} is zone ` +
+              `<b>${it.zoneInfo.exp}</b> — usually the callsign was busted (so the zone no ` +
+              `longer matches the country) or the zone was mis-typed.`);
+  if (it.callBad === "unresolved")
+    msgs.push(`This callsign maps to <b>no DXCC or ITU country</b> — an exotic prefix ` +
+              `that in a contest log is almost always a typo.`);
+  if (it.callBad === "malformed")
+    msgs.push(`This callsign isn't a valid shape — likely a logging slip.`);
+  if (it.dupeOf)
+    msgs.push(`Worked once, and one letter off <b>${it.dupeOf}</b> (a station worked on ` +
+              `several bands) — a likely mis-copy of that busier call.`);
   ex.innerHTML = msgs.join(" ");
   body.appendChild(ex);
 
@@ -390,6 +422,23 @@ function renderIssue() {
     btn.addEventListener("click", () => {
       pendingCall = it.call;
       lc.applyFixes(records, result.exchange_field, it.fixes);
+      analyze();
+    });
+    fb.append(span, btn);
+    body.appendChild(fb);
+  }
+
+  if (it.dupeOf) {
+    const fb = document.createElement("div");
+    fb.className = "rv-fix";
+    const span = document.createElement("span");
+    span.innerHTML = `If this was a mis-copy, correct the callsign:`;
+    const btn = document.createElement("button");
+    btn.className = "btn primary";
+    btn.textContent = `Change call to ${it.dupeOf}`;
+    btn.addEventListener("click", () => {
+      pendingCall = it.dupeOf;
+      records[it.idxs[0]].CALL = it.dupeOf;
       analyze();
     });
     fb.append(span, btn);

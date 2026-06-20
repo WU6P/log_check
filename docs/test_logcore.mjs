@@ -109,6 +109,66 @@ test("analyze counts rare", () => {
   assert.equal(res.per_record[0].rank, null);
 });
 
+// --- call-area split overrides ---------------------------------------------
+test("call-area splits resolve correctly", () => {
+  assert.equal(lc.entityOf("AH6AA"), "Hawaii");
+  assert.equal(lc.entityOf("AH2R"), "Guam");
+  assert.equal(lc.entityOf("KL7AA"), "Alaska");
+  assert.equal(lc.entityOf("ED8X"), "Canary Is.");
+  assert.equal(lc.entityOf("UA0D"), "Asiatic Russia");
+  assert.equal(lc.entityOf("R5AJ"), "European Russia");
+  assert.equal(lc.entityOf("R2FK"), "Kaliningrad");
+  assert.equal(lc.entityOf("R2QA"), "European Russia");
+  assert.equal(lc.rareRank("KH7K"), 7);          // full-call key, Kure restored
+  assert.equal(lc.rareRank("R1FJ"), 51);         // Franz Josef still rare
+});
+
+// --- zone vs. entity -------------------------------------------------------
+test("zone parse", () => {
+  assert.deepEqual([...lc.expectedZones("JA1ABC", "cq")], [25]);
+  assert.equal(lc.expectedZones("UA0DX", "cq"), null);   // Asiatic Russia marker
+});
+test("zone mismatch flagged, giants safe", () => {
+  assert.equal(lc.zoneProblem({ CALL: "JA1ABC", CQZ: "5" }).logged, 5);
+  assert.equal(lc.zoneProblem({ CALL: "JA1ABC", CQZ: "25" }), null);
+  assert.equal(lc.zoneProblem({ CALL: "W1AW", CQZ: "5" }), null);    // US 3,4,5
+  assert.equal(lc.zoneProblem({ CALL: "W1AW", CQZ: "8" }).logged, 8);
+});
+test("analyze zone count", () => {
+  const res = lc.analyze([qso("JA1ABC", "20260101", "000000", { CQZ: "25" }),
+                          qso("JA2DEF", "20260101", "000000", { CQZ: "5" })], "");
+  assert.equal(res.zone_count, 1);
+  assert.ok(res.per_record[1].zone_bust);
+  assert.equal(res.per_record[1].zone_exp, "25");
+});
+
+// --- callsign plausibility -------------------------------------------------
+test("call problem", () => {
+  assert.equal(lc.callProblem("W1AW"), "");
+  assert.equal(lc.callProblem("ABCDEF"), "malformed");
+  assert.equal(lc.callProblem("12345"), "malformed");
+  assert.equal(lc.callProblem("0Q1QQ"), "unresolved");
+  const res = lc.analyze([qso("W1AW"), qso("0Q1QQ")], "");
+  assert.equal(res.callbad_count, 1);
+  assert.equal(res.per_record[1].call_bad, "unresolved");
+});
+
+// --- near-dupe (UBN) -------------------------------------------------------
+test("suffix split", () => {
+  assert.deepEqual(lc.nearDupes(Array(3).fill(qso("K3EST")).concat([qso("K3FST")])),
+                   new Map([["K3FST", "K3EST"]]));
+});
+test("near-dupe ignores number/prefix and short suffixes", () => {
+  assert.equal(lc.nearDupes(Array(3).fill(qso("IO3T")).concat([qso("IO8T")])).size, 0);
+  assert.equal(lc.nearDupes(Array(3).fill(qso("S53A")).concat([qso("S53D")])).size, 0);
+  assert.equal(lc.nearDupes(Array(2).fill(qso("K3EST")).concat([qso("K3FST")])).size, 0);
+});
+test("analyze dupe flag", () => {
+  const res = lc.analyze(Array(3).fill(qso("K3EST")).concat([qso("K3FST")]), "");
+  assert.equal(res.dupe_count, 1);
+  assert.equal(res.per_record[3].dupe_of, "K3EST");
+});
+
 // --- exchange detection ----------------------------------------------------
 test("candidates exclude universal and app", () => {
   const cands = lc.exchangeCandidates([qso("W1AW", "20260101", "000000",
