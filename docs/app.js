@@ -27,6 +27,8 @@ let records = [];
 let result = null;
 let field = "";
 let fileName = "log";
+let srcText = "";                // original file text, for verbatim Cabrillo save
+let srcFormat = "adif";          // 'adif' | 'cabrillo'
 const selected = new Set();      // selected record indices
 
 // Review-window state
@@ -66,6 +68,8 @@ function loadFromText(text, name) {
   if (!recs.length) { alert("No QSO records found in that file."); return false; }
   fileName = name;
   records = recs;
+  srcText = text;
+  srcFormat = lc.detectFormat(text);
   selected.clear();
   populateFieldSelect();
   analyze();
@@ -276,10 +280,14 @@ el.modal.addEventListener("click", (ev) => { if (ev.target === el.modal) el.moda
 // --- save ------------------------------------------------------------------
 el.save.addEventListener("click", () => {
   if (!records.length) return;
-  const blob = new Blob([lc.serializeAdif(records)], { type: "text/plain" });
+  // Save in the format the log was loaded in: Cabrillo .log in → Cabrillo out,
+  // ADIF in → ADIF out.
+  const cabrillo = srcFormat === "cabrillo";
+  const text = cabrillo ? lc.serializeCabrillo(records, srcText) : lc.serializeAdif(records);
+  const blob = new Blob([text], { type: "text/plain" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = fileName + "_checked.adi";
+  a.download = fileName + "_checked" + (cabrillo ? ".log" : ".adi");
   a.click();
   URL.revokeObjectURL(a.href);
 });

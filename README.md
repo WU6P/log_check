@@ -100,7 +100,11 @@ correction with one click.
 * **Full editor:** double-click the row number (or select a row and press
   *Edit fields…*) to edit every ADIF field of that QSO, or add a new field.
 * **Delete:** select one or more rows and press *Delete QSO* (asks to confirm).
-* **Save…** writes the (edited) log back out as ADIF.
+* **Save…** writes the (edited) log back out **in the format it was loaded in**
+  — an ADIF in gives an ADIF (`.adi`) out, a Cabrillo `.log` in gives a Cabrillo
+  `.log` out. Cabrillo saves are rebuilt in place over the original file, so the
+  header, footer and every untouched token (the whole sent side) are preserved
+  verbatim; only edited calls / exchanges / times change and deleted QSOs drop.
 
 ## Running
 

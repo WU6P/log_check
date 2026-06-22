@@ -67,6 +67,48 @@ class TestParsing(unittest.TestCase):
         self.assertEqual(again[0]["BAND"], "20M")
         self.assertNotIn("_INTERNAL", again[0])     # underscore keys not written
 
+    def test_detect_format(self):
+        self.assertEqual(lc.detect_format("<EOH> <CALL:4>W1AW <EOR>"), "adif")
+        self.assertEqual(
+            lc.detect_format("START-OF-LOG: 3.0\nQSO: 14025 CW 2026-01-01 0000 "
+                             "N6RO 599 25 W1AW 599 1"), "cabrillo")
+
+    def test_cabrillo_roundtrip_preserves_file(self):
+        text = ("START-OF-LOG: 3.0\n"
+                "CONTEST: CQ-WW-CW\n"
+                "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 JJ0VNR 599 KW\n"
+                "X-QSO: 21025 CW 2026-01-01 0002 N6RO 599 25 DUPE 599 100\n"
+                "END-OF-LOG:\n")
+        recs = lc.records_from_text(text)
+        out = lc.serialize_cabrillo(recs, text)
+        # header / footer / X-QSO kept verbatim, QSO untouched round-trips
+        self.assertIn("CONTEST: CQ-WW-CW", out)
+        self.assertIn("END-OF-LOG:", out)
+        self.assertIn("X-QSO: 21025 CW 2026-01-01 0002 N6RO 599 25 DUPE 599 100", out)
+        self.assertIn("JJ0VNR", out)
+        self.assertEqual(len(lc.parse_cabrillo_records(out)), 1)
+
+    def test_cabrillo_roundtrip_applies_call_edit(self):
+        text = ("QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 JJ0VNR 599 KW\n"
+                "QSO: 21025 CW 2026-01-01 0001 N6RO 599 25 BD3TE 599 100\n")
+        recs = lc.records_from_text(text)
+        recs[0]["CALL"] = "JA0VNR"          # fix a busted call
+        del recs[1]                          # delete the second QSO
+        out = lc.serialize_cabrillo(recs, text)
+        self.assertIn("JA0VNR", out)
+        self.assertNotIn("JJ0VNR", out)
+        self.assertNotIn("BD3TE", out)       # deleted line dropped
+        # sent side (MYCALL N6RO, sent exch 599 25) survives untouched
+        self.assertIn("N6RO 599 25 JA0VNR", out)
+
+    def test_cabrillo_roundtrip_applies_exchange_edit(self):
+        text = "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 W1AW 599 5\n"
+        recs = lc.records_from_text(text)
+        recs[0]["SRX_STRING"] = "3"          # corrected received exchange
+        out = lc.serialize_cabrillo(recs, text)
+        self.assertIn("W1AW 599 3", out)
+        self.assertNotIn("599 5", out)
+
     def test_qso_datetime(self):
         self.assertIsNone(lc.qso_datetime({"QSO_DATE": "bad"}))
         dt = lc.qso_datetime({"QSO_DATE": "20260101", "TIME_ON": "0102"})

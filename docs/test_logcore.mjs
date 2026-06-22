@@ -64,6 +64,42 @@ test("serialize roundtrip", () => {
   assert.ok(!("_INTERNAL" in again[0]));
 });
 
+test("detectFormat", () => {
+  assert.equal(lc.detectFormat("<EOH> <CALL:4>W1AW <EOR>"), "adif");
+  assert.equal(
+    lc.detectFormat("START-OF-LOG: 3.0\nQSO: 14025 CW 2026-01-01 0000 " +
+                    "N6RO 599 25 W1AW 599 1"), "cabrillo");
+});
+
+test("serializeCabrillo preserves file, applies edits, drops deletes", () => {
+  const text =
+    "START-OF-LOG: 3.0\n" +
+    "CONTEST: CQ-WW-CW\n" +
+    "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 JJ0VNR 599 KW\n" +
+    "QSO: 21025 CW 2026-01-01 0001 N6RO 599 25 BD3TE 599 100\n" +
+    "X-QSO: 21025 CW 2026-01-01 0002 N6RO 599 25 DUPE 599 100\n" +
+    "END-OF-LOG:\n";
+  const recs = lc.recordsFromText(text);
+  recs[0].CALL = "JA0VNR";       // fix a busted call
+  recs.splice(1, 1);             // delete the second QSO
+  const out = lc.serializeCabrillo(recs, text);
+  assert.ok(out.includes("CONTEST: CQ-WW-CW"));   // header verbatim
+  assert.ok(out.includes("END-OF-LOG:"));         // footer verbatim
+  assert.ok(out.includes("X-QSO: 21025 CW 2026-01-01 0002")); // X-QSO kept
+  assert.ok(out.includes("N6RO 599 25 JA0VNR"));  // sent side survives, call fixed
+  assert.ok(!out.includes("JJ0VNR"));
+  assert.ok(!out.includes("BD3TE"));              // deleted line dropped
+});
+
+test("serializeCabrillo applies exchange edit", () => {
+  const text = "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 W1AW 599 5\n";
+  const recs = lc.recordsFromText(text);
+  recs[0].SRX_STRING = "3";
+  const out = lc.serializeCabrillo(recs, text);
+  assert.ok(out.includes("W1AW 599 3"));
+  assert.ok(!out.includes("599 5"));
+});
+
 test("qsoDatetime", () => {
   assert.equal(lc.qsoDatetime({ QSO_DATE: "bad" }), null);
   const ts = lc.qsoDatetime({ QSO_DATE: "20260101", TIME_ON: "0102" });

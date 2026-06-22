@@ -19,7 +19,8 @@ integrity checks, highlighting the suspect QSOs right in an editable table:
 
 You can edit any cell inline, open a full-field editor (double-click the row
 number or the Edit button), delete the selected QSO (with confirmation), and
-save back to ADIF.
+save back out in the same format the log was loaded in (ADIF in → ADIF out,
+Cabrillo .log in → Cabrillo out).
 
 Run:  python3 log_check.py   (needs PyQt5:  pip install PyQt5)
 """
@@ -101,6 +102,8 @@ class LogCheck(QMainWindow):
         self.setWindowTitle("log_check — contest log checker")
         self.records = []
         self.path = None
+        self.src_text = ""
+        self.src_format = "adif"
         self.result = None
         self.exch_field = ""
         self._loading = False           # guard so programmatic fills don't edit
@@ -193,7 +196,8 @@ class LogCheck(QMainWindow):
         if not path:
             return
         try:
-            recs = lc.load_log(path)
+            text = Path(path).read_text(encoding="utf-8", errors="replace")
+            recs = lc.records_from_text(text)
         except Exception as e:
             QMessageBox.critical(self, "Open failed", f"Could not read log:\n{e}")
             return
@@ -203,6 +207,8 @@ class LogCheck(QMainWindow):
             return
         self.records = recs
         self.path = path
+        self.src_text = text                       # for verbatim Cabrillo save
+        self.src_format = lc.detect_format(text)   # 'adif' | 'cabrillo'
         self._populate_field_combo()
         self.analyze()
         self.btn_save.setEnabled(True)
@@ -389,16 +395,22 @@ class LogCheck(QMainWindow):
     def save_log(self):
         if not self.records:
             return
+        cabrillo = self.src_format == "cabrillo"
+        ext = ".log" if cabrillo else ".adi"
+        caption = "Save Cabrillo" if cabrillo else "Save ADIF"
+        filt = ("Cabrillo (*.log);;All files (*)" if cabrillo
+                else "ADIF (*.adi *.adif);;All files (*)")
         suggested = ""
         if self.path:
             p = Path(self.path)
-            suggested = str(p.with_name(p.stem + "_checked.adi"))
-        path, _ = QFileDialog.getSaveFileName(
-            self, "Save ADIF", suggested, "ADIF (*.adi *.adif);;All files (*)")
+            suggested = str(p.with_name(p.stem + "_checked" + ext))
+        path, _ = QFileDialog.getSaveFileName(self, caption, suggested, filt)
         if not path:
             return
         try:
-            Path(path).write_text(lc.serialize_adif(self.records), encoding="utf-8")
+            text = (lc.serialize_cabrillo(self.records, self.src_text) if cabrillo
+                    else lc.serialize_adif(self.records))
+            Path(path).write_text(text, encoding="utf-8")
         except Exception as e:
             QMessageBox.critical(self, "Save failed", str(e))
             return

@@ -128,29 +128,32 @@ function isCallsign(tok) {
          /^[A-Z0-9/]+$/.test(t);
 }
 
+// Returns [call, rcvdTokens, callIdx]; callIdx (-1 if not located) lets save
+// rebuild the line verbatim.
 function cabrilloSplit(body) {
-  if (body.length < 7) return [null, []];
+  if (body.length < 7) return [null, [], -1];
   let idx = 5 + Math.floor((body.length - 6) / 2);
   let cand = idx < body.length ? body[idx] : null;
   if (!(cand && isCallsign(cand))) {
     const shaped = body.slice(4).filter(isCallsign);
     cand = shaped.length >= 2 ? shaped[1] : cand;
-    if (cand == null) return [cand, []];
+    if (cand == null) return [cand, [], -1];
     idx = body.indexOf(cand);
-    if (idx < 0) return [cand, []];
+    if (idx < 0) return [cand, [], -1];
   }
-  return [cand, body.slice(idx + 1)];
+  return [cand, body.slice(idx + 1), idx];
 }
 
 export function parseCabrilloRecords(text) {
   const records = [];
-  for (const line of text.split(/\r?\n/)) {
-    const s = line.trim();
+  const lines = text.split(/\r?\n/);
+  for (let lineno = 0; lineno < lines.length; lineno++) {
+    const s = lines[lineno].trim();
     if (!s || !s.toUpperCase().startsWith("QSO:")) continue;
     const body = s.split(/\s+/).slice(1);
     if (body.length < 6) continue;
     const freq = body[0], mode = body[1].toUpperCase(), d = body[2], t = body[3];
-    const [call, rcvd] = cabrilloSplit(body);
+    const [call, rcvd, callIdx] = cabrilloSplit(body);
     if (!call) continue;
     const ds = d.replace(/-/g, "");
     if (ds.length !== 8 || !(t.length === 4 || t.length === 6)) continue;
@@ -161,6 +164,10 @@ export function parseCabrilloRecords(text) {
       TIME_ON: t.length === 4 ? t + "00" : t,
       BAND: khzToBand(freq), FREQ: freq, MODE: CAB_MODE[mode] || mode,
       RST_RCVD: rst, SRX_STRING: exch.join(" "),
+      // Bookkeeping for verbatim Cabrillo round-trip on save (serializeCabrillo);
+      // never written to ADIF (leading underscore).
+      _CAB_BODY: body, _CAB_CALL_IDX: callIdx, _CAB_RCVD_IDX: callIdx + 1,
+      _CAB_LINE: lineno,
     });
   }
   return records;
@@ -172,6 +179,54 @@ export function recordsFromText(text) {
     return parseCabrilloRecords(text);
   const recs = parseAdifRecords(text);
   return recs.length ? recs : parseCabrilloRecords(text);
+}
+
+// 'adif' | 'cabrillo' — mirrors recordsFromText so Save can preserve the input
+// format (ADIF in → ADIF out, Cabrillo .log in → Cabrillo out).
+export function detectFormat(text) {
+  if (/<EOH>/i.test(text) || /<CALL/i.test(text)) return "adif";
+  if (/^\s*QSO:/im.test(text) || text.toUpperCase().includes("START-OF-LOG"))
+    return "cabrillo";
+  return parseAdifRecords(text).length ? "adif" : "cabrillo";
+}
+
+function rebuildCabrilloLine(rec, originalLine) {
+  const orig = rec._CAB_BODY;
+  if (!orig || !orig.length) return originalLine;
+  const body = orig.slice();
+  const ci = rec._CAB_CALL_IDX != null ? rec._CAB_CALL_IDX : -1;
+  const ri = rec._CAB_RCVD_IDX != null ? rec._CAB_RCVD_IDX : body.length;
+  if (ci >= 0 && ci < body.length) body[ci] = rec.CALL || "";
+  const d = rec.QSO_DATE || "";
+  if (d.length === 8 && body.length > 2)
+    body[2] = `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`;
+  const t = (rec.TIME_ON || "").replace(/:/g, "");
+  if (t && body.length > 3) body[3] = t.slice(0, 4);
+  const rcvd = [];
+  if (rec.RST_RCVD) rcvd.push(rec.RST_RCVD);
+  for (const tok of (rec.SRX_STRING || "").split(/\s+/)) if (tok) rcvd.push(tok);
+  return "QSO: " + body.slice(0, ri).concat(rcvd).join(" ");
+}
+
+// Write `records` back as Cabrillo, preserving the original file: header,
+// footer, comments and X-QSO lines stay verbatim; each QSO: line is rebuilt in
+// place, deleted QSOs drop their line, unparsed QSO: lines are left untouched.
+export function serializeCabrillo(records, originalText) {
+  const lines = originalText.split(/\r?\n/);
+  const parsedLines = new Set(parseCabrilloRecords(originalText).map((r) => r._CAB_LINE));
+  const surviving = new Map();
+  for (const r of records) if (r._CAB_LINE != null) surviving.set(r._CAB_LINE, r);
+  const out = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim().toUpperCase().startsWith("QSO:")) {
+      if (surviving.has(i)) out.push(rebuildCabrilloLine(surviving.get(i), lines[i]));
+      else if (parsedLines.has(i)) continue;     // deleted QSO
+      else out.push(lines[i]);                    // unparsed QSO line, keep
+    } else {
+      out.push(lines[i]);
+    }
+  }
+  return out.join("\n") + "\n";
 }
 
 // ==========================================================================

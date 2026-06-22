@@ -147,13 +147,15 @@ def _is_callsign(tok):
 
 
 def _cabrillo_split(body):
-    """Split a Cabrillo QSO: line body into (their_call, exchange_tokens).
+    """Split a Cabrillo QSO: body into (their_call, exchange_tokens, call_idx).
 
     Layout is symmetric: freq mode date time MYCALL <sent...> THEIR <rcvd...>.
     The received call sits at index 5 + floor((n-6)/2); everything after it is
-    the received exchange. Falls back to the 2nd callsign-shaped token."""
+    the received exchange. Falls back to the 2nd callsign-shaped token.
+    call_idx is the body index of the received call (-1 if not located), used to
+    rebuild the line verbatim on save."""
     if len(body) < 7:
-        return None, []
+        return None, [], -1
     idx = 5 + (len(body) - 6) // 2
     cand = body[idx] if idx < len(body) else None
     if not (cand and _is_callsign(cand)):
@@ -162,8 +164,8 @@ def _cabrillo_split(body):
         try:
             idx = body.index(cand)
         except (ValueError, TypeError):
-            return cand, []
-    return cand, body[idx + 1:]
+            return cand, [], -1
+    return cand, body[idx + 1:], idx
 
 
 def parse_cabrillo_records(text):
@@ -174,7 +176,7 @@ def parse_cabrillo_records(text):
     the report, so the exchange check has something to work on. X-QSO lines are
     skipped."""
     records = []
-    for line in text.splitlines():
+    for lineno, line in enumerate(text.splitlines()):
         s = line.strip()
         if not s or not s.upper().startswith("QSO:"):
             continue
@@ -182,7 +184,7 @@ def parse_cabrillo_records(text):
         if len(body) < 6:
             continue
         freq, mode, d, t = body[0], body[1].upper(), body[2], body[3]
-        call, rcvd = _cabrillo_split(body)
+        call, rcvd, call_idx = _cabrillo_split(body)
         if not call:
             continue
         ds = d.replace("-", "")
@@ -199,6 +201,12 @@ def parse_cabrillo_records(text):
             "MODE": _CAB_MODE.get(mode, mode),
             "RST_RCVD": rst,
             "SRX_STRING": " ".join(exch),
+            # Bookkeeping for verbatim Cabrillo round-trip on save (see
+            # serialize_cabrillo); never written to ADIF (leading underscore).
+            "_CAB_BODY": body,
+            "_CAB_CALL_IDX": call_idx,
+            "_CAB_RCVD_IDX": call_idx + 1,
+            "_CAB_LINE": lineno,
         })
     return records
 
@@ -214,10 +222,75 @@ def records_from_text(text):
     return recs if recs else parse_cabrillo_records(text)
 
 
+def detect_format(text):
+    """'adif' or 'cabrillo' for a log's text, mirroring records_from_text.
+
+    Determines which format to write back out so Save preserves the input
+    format (ADIF in → ADIF out, Cabrillo .log in → Cabrillo out)."""
+    if re.search(r"<EOH>", text, re.IGNORECASE) or re.search(r"<CALL", text, re.IGNORECASE):
+        return "adif"
+    if re.search(r"^\s*QSO:", text, re.IGNORECASE | re.MULTILINE) or \
+       "START-OF-LOG" in text.upper():
+        return "cabrillo"
+    return "adif" if parse_adif_records(text) else "cabrillo"
+
+
 def load_log(path):
     """Read a .adi/.adif/.log file into a list of QSO dicts."""
     text = Path(path).read_text(encoding="utf-8", errors="replace")
     return records_from_text(text)
+
+
+def _rebuild_cabrillo_line(rec, original_line):
+    """One Cabrillo QSO: line rebuilt from `rec`, preserving every untouched
+    token (frequency, mode, the whole sent side) from the original body and
+    writing back only the fields this tool edits: call, date, time, and the
+    received report + exchange. Records with no stored body are left verbatim."""
+    body = rec.get("_CAB_BODY")
+    if not body:
+        return original_line
+    body = list(body)
+    ci = rec.get("_CAB_CALL_IDX", -1)
+    ri = rec.get("_CAB_RCVD_IDX", len(body))
+    if 0 <= ci < len(body):
+        body[ci] = rec.get("CALL", "") or ""
+    d = rec.get("QSO_DATE", "") or ""
+    if len(d) == 8 and len(body) > 2:
+        body[2] = f"{d[0:4]}-{d[4:6]}-{d[6:8]}"
+    t = (rec.get("TIME_ON", "") or "").replace(":", "")
+    if t and len(body) > 3:
+        body[3] = t[:4]
+    rcvd = []
+    rst = rec.get("RST_RCVD", "") or ""
+    if rst:
+        rcvd.append(rst)
+    rcvd.extend((rec.get("SRX_STRING", "") or "").split())
+    body = body[:ri] + rcvd
+    return "QSO: " + " ".join(body)
+
+
+def serialize_cabrillo(records, original_text):
+    """Write `records` back as a Cabrillo log, preserving the original file.
+
+    The header, footer, comments and any X-QSO lines are kept verbatim; each
+    QSO: line is rebuilt in place from its (possibly edited) record, deleted
+    QSOs drop their line, and QSO: lines the parser couldn't read are left
+    untouched. `original_text` is the text the log was loaded from."""
+    lines = original_text.splitlines()
+    parsed_lines = {r.get("_CAB_LINE") for r in parse_cabrillo_records(original_text)}
+    surviving = {r["_CAB_LINE"]: r for r in records if r.get("_CAB_LINE") is not None}
+    out = []
+    for i, line in enumerate(lines):
+        if line.strip().upper().startswith("QSO:"):
+            if i in surviving:
+                out.append(_rebuild_cabrillo_line(surviving[i], line))
+            elif i in parsed_lines:
+                continue                       # deleted QSO
+            else:
+                out.append(line)               # unparsed QSO line, keep as-is
+        else:
+            out.append(line)
+    return "\n".join(out) + "\n"
 
 
 # ==========================================================================

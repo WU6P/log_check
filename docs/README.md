@@ -24,7 +24,8 @@ Five checks (highlighted in the table, named in the **Flags** column):
   same-prefix station; one-click correction in the review window.
 * Edit any cell inline, open a full-field editor (double-click the row number or
   use *Edit fields…*), delete selected QSOs (with confirmation), and **Save…**
-  downloads the edited log as ADIF.
+  downloads the edited log in the format it was loaded in (ADIF in → `.adi` out,
+  Cabrillo `.log` in → `.log` out, rebuilt over the original file).
 
 ### Review window (work through issues one at a time)
 
