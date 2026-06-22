@@ -446,6 +446,8 @@ function renderIssue() {
   }
 
   body.appendChild(groupTable(it));
+
+  if (it.dupeOf) body.appendChild(refTable(it.dupeOf));
 }
 
 function groupTable(it) {
@@ -491,6 +493,57 @@ function groupTable(it) {
   }
   tbl.appendChild(tb);
   return tbl;
+}
+
+// Read-only listing of every QSO with `call` — the busier station a near-dupe
+// is suspected of being a mis-copy of, shown for side-by-side reference.
+function refTable(call) {
+  const per = result.per_record;
+  const f = result.exchange_field;
+  const want = (call || "").toUpperCase().trim();
+  const idxs = records
+    .map((r, i) => i)
+    .filter((i) => ((records[i].CALL || "") + "").toUpperCase().trim() === want)
+    .sort((a, b) => {
+      const da = lc.qsoDatetime(records[a]), db = lc.qsoDatetime(records[b]);
+      return (da == null ? -Infinity : da) - (db == null ? -Infinity : db) || a - b;
+    });
+
+  const wrap = document.createElement("div");
+  const cap = document.createElement("div");
+  cap.className = "rv-refcap";
+  const bands = [...new Set(idxs.map((i) => (records[i].BAND || "?").toUpperCase()))];
+  cap.innerHTML = `Reference — <b>${want}</b> worked ${idxs.length} time` +
+                  `${idxs.length === 1 ? "" : "s"}` +
+                  (bands.length ? ` on ${bands.join(", ")}` : "") +
+                  `, the busier call this may be a mis-copy of:`;
+  wrap.appendChild(cap);
+
+  const tbl = document.createElement("table");
+  tbl.className = "rv-table rv-ref";
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  for (const c of ["#", "Date", "Time", "Call", "Band", "Mode", "RST",
+                   `Exch: ${f || "—"}`]) {
+    const th = document.createElement("th"); th.textContent = c; htr.appendChild(th);
+  }
+  thead.appendChild(htr); tbl.appendChild(thead);
+
+  const tb = document.createElement("tbody");
+  for (const i of idxs) {
+    const r = records[i], p = per[i];
+    const tr = document.createElement("tr");
+    const cells = [String(i + 1), r.QSO_DATE || "", r.TIME_ON || "",
+                   r.CALL || "", r.BAND || "", r.MODE || "", r.RST_RCVD || "",
+                   (p && p.exch) || ""];
+    for (const val of cells) {
+      const td = document.createElement("td"); td.textContent = val; tr.appendChild(td);
+    }
+    tb.appendChild(tr);
+  }
+  tbl.appendChild(tb);
+  wrap.appendChild(tbl);
+  return wrap;
 }
 
 function rvEditable(td, i, key) {

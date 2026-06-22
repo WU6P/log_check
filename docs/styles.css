@@ -82,6 +82,9 @@ table.rv-table td { border-bottom: 1px solid var(--line); padding: 4px 8px; whit
 table.rv-table tr.exch td { background: var(--exch); }
 table.rv-table td.editable { background: rgba(0,0,0,.02); }
 table.rv-table td.editable:focus { outline: 2px solid var(--accent); background: #fff; }
+.rv-refcap { margin: 12px 0 4px; color: #555; font-size: 13px; }
+table.rv-ref { opacity: .85; }
+table.rv-ref th, table.rv-ref td { color: #555; }
 .rv-actions { display: flex; gap: 6px; }
 .mini { border: 1px solid var(--line); background: #fff; border-radius: 5px;
         padding: 2px 8px; font-size: 12px; cursor: pointer; }

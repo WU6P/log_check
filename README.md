@@ -8,6 +8,14 @@ delete them.
 It reuses the ADIF/Cabrillo parsing and the ARRL-DXCC → ITU callsign-series
 country-resolution chain from the **Contest_Plan** project.
 
+## Repository & status
+
+- **GitHub:** <https://github.com/WU6P/log_check> — public, MIT licensed.
+- **Live web app (GitHub Pages):** <https://wu6p.github.io/log_check/> — served
+  from the `docs/` folder; no install, runs entirely in the browser.
+- **Tests:** 34 Python (`python3 test_log_check.py`) + 29 JavaScript
+  (`cd docs && node test_logcore.mjs`), all passing.
+
 ## The checks
 
 Rows are highlighted **pink** for a rare-DXCC hit and **yellow** for any of the
