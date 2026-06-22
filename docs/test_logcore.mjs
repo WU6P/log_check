@@ -303,6 +303,15 @@ test("early wrong then consistent", () => {
   assert.equal(recs[0].RX_PWR, "KW");
 });
 
+test("two-QSO disagreement fixes the older", () => {
+  const recs = [
+    qso("DL1ABC", "20260101", "000000", { CQZ: "14" }),   // older
+    qso("DL1ABC", "20260101", "010000", { CQZ: "99" }),   // newer
+  ];
+  assert.deepEqual(lc.analyze(recs, "CQZ", { forceExchange: true }).fixes,
+                   [[0, "14", "99"]]);                      // change the older
+});
+
 test("no fix when tied", () => {
   const recs = [
     qso("DL1ABC", "20260101", "000000", { CQZ: "14" }),

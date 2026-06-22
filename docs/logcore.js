@@ -600,6 +600,12 @@ export function analyze(records, exchangeField = null, opts = {}) {
 function groupFixes(idxs, vals) {
   const n = vals.length;
   if (n < 2) return [];
+  // Exactly two QSOs that disagree: no majority to lean on, so treat the more
+  // recent exchange as correct and propose changing the older QSO to match it.
+  if (n === 2) {
+    const [oldv, newv] = vals;
+    return oldv && newv && oldv !== newv ? [[idxs[0], oldv, newv]] : [];
+  }
   const x = vals[n - 1];
   if (!x) return [];
   let suffix = 0;

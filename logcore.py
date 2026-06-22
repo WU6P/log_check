@@ -800,6 +800,13 @@ def _group_fixes(idxs, vals):
     n = len(vals)
     if n < 2:
         return []
+    # Exactly two QSOs that disagree: no majority to lean on, so treat the more
+    # recent exchange as correct and propose changing the older QSO to match it.
+    if n == 2:
+        old, new = vals[0], vals[1]
+        if old and new and old != new:
+            return [(idxs[0], old, new)]
+        return []
     x = vals[-1]
     if not x:                                   # can't fix toward a blank
         return []

@@ -129,8 +129,12 @@ window.addEventListener("error", (e) => {
   // exchange fix: find & click the "Apply fix" button
   const applyBtn = findBtn(/Apply fix/);
   ok(!!applyBtn, "exchange 'Apply fix' button present");
+  const posBefore = pos();                       // remember which issue we're on
   applyBtn.click(); await wait();
   ok(/0 busts/.test(summary()), "no exchange busts after Apply fix");
+  // after applying, STAY on the same issue and show a resolved confirmation
+  ok(pos() === posBefore, `stays on same issue after fix (was ${posBefore}, now ${pos()})`);
+  ok(/resolved/i.test(rvBody()), "shows resolved confirmation after fix");
 
   document.getElementById("rv-close").click();
   ok(document.getElementById("review-win").classList.contains("hidden"), "review window closed");

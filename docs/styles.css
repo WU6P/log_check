@@ -46,6 +46,7 @@ td.num { color: #888; cursor: pointer; user-select: none; }
 td.num:hover { text-decoration: underline; }
 td.flags { font-size: 11px; font-weight: 600; letter-spacing: .3px; color: #555; }
 .legend { display: inline-flex; align-items: center; gap: 6px; color: #555; }
+.privacy { margin: 10px 16px 16px; color: #2a7d46; font-size: 13px; }
 .sw { display: inline-block; width: 13px; height: 13px; border: 1px solid var(--line);
       border-radius: 3px; margin-left: 10px; vertical-align: -2px; }
 .sw.rare { background: var(--rare); } .sw.exch { background: var(--exch); } .sw.both { background: var(--both); }
@@ -71,6 +72,8 @@ footer { display: flex; align-items: center; gap: 10px; padding: 8px 14px;
 .badge.rare { background: var(--rare); }
 .badge.exch { background: var(--exch); }
 .rv-explain { margin: 6px 0 10px; color: #333; }
+.rv-done { margin: 6px 0 12px; padding: 10px 12px; border-radius: 8px;
+           background: #e7f6ec; border: 1px solid #b6e0c2; color: #1d6b34; }
 .rv-fix { background: #eef7ff; border: 1px solid #bcdcff; border-radius: 8px;
           padding: 8px 10px; margin: 0 0 12px; display: flex; align-items: center; gap: 10px;
           flex-wrap: wrap; }

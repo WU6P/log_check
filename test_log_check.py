@@ -347,6 +347,14 @@ class TestAutoFix(unittest.TestCase):
         lc.apply_fixes(recs, "RX_PWR", res["fixes"])
         self.assertEqual(recs[0]["RX_PWR"], "KW")
 
+    def test_two_qso_disagreement_fixes_older(self):
+        recs = [
+            qso("DL1ABC", time="000000", CQZ="14"),   # older
+            qso("DL1ABC", time="010000", CQZ="99"),   # newer
+        ]
+        res = lc.analyze(recs, exchange_field="CQZ", force_exchange=True)
+        self.assertEqual(res["fixes"], [(0, "14", "99")])   # change the older one
+
     def test_no_fix_when_tied(self):
         recs = [
             qso("DL1ABC", time="000000", CQZ="14"),

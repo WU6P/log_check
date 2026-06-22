@@ -1,6 +1,6 @@
 // log_check web UI — DOM glue around logcore.js. All logic lives in logcore;
 // this file only loads the file, renders the table, and wires the buttons.
-import * as lc from "./logcore.js?v=4";
+import * as lc from "./logcore.js?v=5";
 
 // Column layout: key is the ADIF field for editable cells, "EXCH" is rebound
 // to the chosen exchange field, the rest (leading "_") are computed.
@@ -272,8 +272,8 @@ el.mOk.addEventListener("click", () => {
   const nk = el.newKey.value.trim().toUpperCase();
   if (nk) qso[nk] = el.newVal.value;
   el.modal.classList.add("hidden");
-  if (reviewOpen) pendingCall = issues[issueIdx]?.call;
-  analyze();
+  if (reviewOpen) stayRefresh();              // stay on the current station
+  else analyze();
 });
 el.modal.addEventListener("click", (ev) => { if (ev.target === el.modal) el.modal.classList.add("hidden"); });
 
@@ -339,6 +339,57 @@ function buildIssues() {
   return out;
 }
 
+// Current state of one station (by call) from the latest analysis, whether or
+// not it is still flagged — so after a fix we can keep showing it (now resolved)
+// instead of jumping to the next issue. `flagged` is false once it's clean.
+function liveIssue(call) {
+  const per = result.per_record;
+  const k = ((call || "") + "").toUpperCase().trim();
+  const idxs = [];
+  records.forEach((r, i) => {
+    if (((r.CALL || "") + "").toUpperCase().trim() === k) idxs.push(i);
+  });
+  if (!idxs.length)
+    return { call, idxs: [], rank: null, entity: "", hasBust: false, hasZone: false,
+             zoneInfo: null, callBad: "", dupeOf: "", fixes: [], flagged: false, gone: true };
+  idxs.sort((a, b) => {
+    const da = lc.qsoDatetime(records[a]), db = lc.qsoDatetime(records[b]);
+    return (da == null ? -Infinity : da) - (db == null ? -Infinity : db) || a - b;
+  });
+  const fixByIdx = new Map();
+  for (const f of result.fixes) fixByIdx.set(f[0], f);
+  let rank = null, entity = "", hasBust = false, hasZone = false;
+  let zoneInfo = null, callBad = "", dupeOf = "";
+  const fixes = [];
+  for (const i of idxs) {
+    const p = per[i];
+    if (p.rank != null) { rank = p.rank; entity = p.entity; }
+    if (p.exch_bust) hasBust = true;
+    if (p.zone_bust && !zoneInfo) { hasZone = true; zoneInfo = { logged: p.zone_logged, exp: p.zone_exp }; }
+    if (p.call_bad) callBad = p.call_bad;
+    if (p.dupe_of) dupeOf = p.dupe_of;
+    if (fixByIdx.has(i)) fixes.push(fixByIdx.get(i));
+  }
+  const flagged = rank != null || hasBust || hasZone || !!callBad || !!dupeOf;
+  return { call: records[idxs[0]].CALL || call, idxs, rank,
+           entity: entity || per[idxs[0]].entity, hasBust, hasZone, zoneInfo,
+           callBad, dupeOf, fixes, flagged, gone: false };
+}
+
+// Apply an in-review change then STAY on the current station: refresh the data,
+// table and summary, but don't rebuild the issue list or advance — re-render the
+// same slot so the user sees the change take effect, then moves on themselves.
+function stayRefresh(navCall) {
+  result = lc.analyze(records, field, { forceExchange: el.force.checked });
+  render();
+  updateSummary();
+  const n = buildIssues().length;            // live count for the button only
+  el.review.textContent = `▸ Review issues (${n})`;
+  el.review.disabled = n === 0;
+  if (navCall && issues[issueIdx]) issues[issueIdx] = { call: navCall };
+  renderIssue();
+}
+
 function updateReview() {
   issues = result ? buildIssues() : [];
   el.review.textContent = `▸ Review issues (${issues.length})`;
@@ -355,6 +406,7 @@ function updateReview() {
 }
 
 function openReview() {
+  issues = result ? buildIssues() : [];       // fresh list, frozen for the session
   if (!issues.length) return;
   reviewOpen = true;
   issueIdx = 0;
@@ -371,8 +423,9 @@ function go(delta) {
 }
 
 function renderIssue() {
-  const it = issues[issueIdx];
-  if (!it) return;
+  const nav = issues[issueIdx];
+  if (!nav) return;
+  const it = liveIssue(nav.call);            // live state, resolved or not
   el.rvPos.textContent = `Issue ${issueIdx + 1} of ${issues.length}`;
   const atStart = issueIdx === 0, atEnd = issueIdx === issues.length - 1;
   el.rvPrev.disabled = el.rvPrev2.disabled = atStart;
@@ -380,6 +433,20 @@ function renderIssue() {
 
   const body = el.rvBody;
   body.innerHTML = "";
+
+  // Once a station's issues are cleared, keep it on screen with a confirmation
+  // so the change is visible; the user moves on with Next › when ready.
+  if (!it.flagged) {
+    const done = document.createElement("div");
+    done.className = "rv-done";
+    done.innerHTML = it.gone
+      ? `✓ <b>${it.call}</b> — all QSOs removed.`
+      : `✓ <b>${it.call}</b> — resolved, this station's values are now consistent. ` +
+        `Press <b>Next ›</b> for the next issue.`;
+    body.appendChild(done);
+    if (!it.gone) body.appendChild(groupTable(it));
+    return;
+  }
 
   const title = document.createElement("div");
   title.className = "rv-title";
@@ -428,9 +495,8 @@ function renderIssue() {
     btn.className = "btn primary";
     btn.textContent = "Apply fix";
     btn.addEventListener("click", () => {
-      pendingCall = it.call;
       lc.applyFixes(records, result.exchange_field, it.fixes);
-      analyze();
+      stayRefresh();                          // stay so the user sees the fix
     });
     fb.append(span, btn);
     body.appendChild(fb);
@@ -445,9 +511,8 @@ function renderIssue() {
     btn.className = "btn primary";
     btn.textContent = `Change call to ${it.dupeOf}`;
     btn.addEventListener("click", () => {
-      pendingCall = it.dupeOf;
       records[it.idxs[0]].CALL = it.dupeOf;
-      analyze();
+      stayRefresh(it.dupeOf);                 // stay on the now-corrected station
     });
     fb.append(span, btn);
     body.appendChild(fb);
@@ -491,7 +556,7 @@ function groupTable(it) {
     act.className = "rv-actions";
     const eb = document.createElement("button");
     eb.className = "mini"; eb.textContent = "Edit";
-    eb.addEventListener("click", () => { pendingCall = it.call; openEditor(i); });
+    eb.addEventListener("click", () => openEditor(i));
     const db = document.createElement("button");
     db.className = "mini danger"; db.textContent = "Del";
     db.addEventListener("click", () => rvDelete(i, it.call));
@@ -563,9 +628,8 @@ function rvEditable(td, i, key) {
     if (!target) return;
     const v = td.textContent.trim();
     if ((records[i][target] || "") === v) return;
-    pendingCall = issues[issueIdx]?.call;
     records[i][target] = v;
-    analyze();
+    stayRefresh();                            // stay on the current station
   });
 }
 
@@ -574,10 +638,10 @@ function rvDelete(i, call) {
   if (!confirm(`Delete this QSO?\n\n#${i + 1}  ${r.CALL || "?"}  ${r.BAND || ""}  ` +
                `${r.QSO_DATE || ""} ${r.TIME_ON || ""}\n\nThis cannot be undone ` +
                "(until you reload the file).")) return;
-  pendingCall = call;
   records.splice(i, 1);
   selected.clear();
-  analyze();
+  if (reviewOpen) stayRefresh();              // stay on the current station
+  else analyze();
 }
 
 el.review.addEventListener("click", openReview);
