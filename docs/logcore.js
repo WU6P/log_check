@@ -210,7 +210,38 @@ function rebuildCabrilloLine(rec, originalLine) {
   // preserves the file's column alignment and trailing whitespace exactly.
   if (rebuilt.length === orig.length && rebuilt.every((v, k) => v === orig[k]))
     return originalLine;
-  return "QSO: " + rebuilt.join(" ");
+  // Edited QSO: splice the new values into the original line in place so the
+  // column alignment matches the untouched lines (only when the token count is
+  // unchanged, which holds for every value edit; else fall back to single space).
+  const spans = tokenSpans(originalLine, orig);
+  if (!spans || rebuilt.length !== orig.length) return "QSO: " + rebuilt.join(" ");
+  let out = originalLine.slice(0, spans[0][0]);          // "QSO:" + leading pad
+  for (let i = 0; i < spans.length; i++) {
+    out += rebuilt[i];
+    const gapEnd = i + 1 < spans.length ? spans[i + 1][0] : originalLine.length;
+    let gap = originalLine.slice(spans[i][1], gapEnd);   // spaces after token
+    const delta = rebuilt[i].length - orig[i].length;    // absorb length change
+    if (delta && gap) {                                  // in the trailing pad so
+      const floor = i + 1 === spans.length ? 0 : 1;      // next column stays put
+      gap = " ".repeat(Math.max(floor, gap.length - delta));
+    }
+    out += gap;
+  }
+  return out;
+}
+
+// [start, end] char span of each token in `line`, scanning left to right, or
+// null if a token can't be located (then the caller reformats instead).
+function tokenSpans(line, tokens) {
+  const spans = [];
+  let pos = 0;
+  for (const tok of tokens) {
+    const i = line.indexOf(tok, pos);
+    if (i < 0) return null;
+    spans.push([i, i + tok.length]);
+    pos = i + tok.length;
+  }
+  return spans;
 }
 
 // Write `records` back as Cabrillo, preserving the original file: header,

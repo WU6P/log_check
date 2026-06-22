@@ -1,6 +1,6 @@
 // log_check web UI — DOM glue around logcore.js. All logic lives in logcore;
 // this file only loads the file, renders the table, and wires the buttons.
-import * as lc from "./logcore.js?v=3";
+import * as lc from "./logcore.js?v=4";
 
 // Column layout: key is the ADIF field for editable cells, "EXCH" is rebound
 // to the chosen exchange field, the rest (leading "_") are computed.

@@ -111,6 +111,31 @@ class TestParsing(unittest.TestCase):
         recs = lc.records_from_text(text)
         self.assertEqual(lc.serialize_cabrillo(recs, text), text)
 
+    def test_cabrillo_edit_keeps_column_alignment(self):
+        # an edited line must keep the same column layout as untouched lines
+        line = ("QSO:   14036 CW 2026-06-20 0000 K3EST         599 77     "
+                "JH4UYB        599 61       ")
+        text = "START-OF-LOG: 3.0\r\n" + line + "\r\n" + line.replace(
+            "JH4UYB", "JA8RUZ") + "\r\nEND-OF-LOG:\r\n"
+        recs = lc.records_from_text(text)
+        recs[0]["SRX_STRING"] = "71"          # same-length exchange fix
+        out = lc.serialize_cabrillo(recs, text)
+        edited = [ln for ln in out.splitlines() if "JH4UYB" in ln][0]
+        # value changed, but the call still starts at the same column as before
+        self.assertIn("599 71", edited)
+        self.assertEqual(line.index("JH4UYB"), edited.index("JH4UYB"))
+        self.assertEqual(len(edited), len(line))         # width preserved
+
+    def test_cabrillo_edit_shorter_value_pads(self):
+        line = ("QSO:   14008 CW 2026-06-20 0416 K3EST         599 77     "
+                "JA4MLR        599 2672     ")
+        text = line + "\r\n"
+        recs = lc.records_from_text(text)
+        recs[0]["SRX_STRING"] = "72"          # 2672 -> 72 (shorter)
+        out = lc.serialize_cabrillo(recs, text).rstrip("\r\n")
+        self.assertIn("599 72", out)
+        self.assertEqual(len(out), len(line))            # trailing pad absorbs it
+
     def test_cabrillo_roundtrip_applies_exchange_edit(self):
         text = "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 W1AW 599 5\n"
         recs = lc.records_from_text(text)

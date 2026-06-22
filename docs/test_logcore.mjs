@@ -103,6 +103,30 @@ test("serializeCabrillo no-edit save is byte-identical", () => {
   assert.equal(lc.serializeCabrillo(recs, text), text);
 });
 
+test("serializeCabrillo edit keeps column alignment", () => {
+  const line = "QSO:   14036 CW 2026-06-20 0000 K3EST         599 77     " +
+               "JH4UYB        599 61       ";
+  const text = "START-OF-LOG: 3.0\r\n" + line + "\r\n" +
+               line.replace("JH4UYB", "JA8RUZ") + "\r\nEND-OF-LOG:\r\n";
+  const recs = lc.recordsFromText(text);
+  recs[0].SRX_STRING = "71";                 // same-length exchange fix
+  const out = lc.serializeCabrillo(recs, text);
+  const edited = out.split(/\r?\n/).find((l) => l.includes("JH4UYB"));
+  assert.ok(edited.includes("599 71"));
+  assert.equal(line.indexOf("JH4UYB"), edited.indexOf("JH4UYB")); // column kept
+  assert.equal(edited.length, line.length);                       // width kept
+});
+
+test("serializeCabrillo shorter edit pads to keep width", () => {
+  const line = "QSO:   14008 CW 2026-06-20 0416 K3EST         599 77     " +
+               "JA4MLR        599 2672     ";
+  const recs = lc.recordsFromText(line + "\r\n");
+  recs[0].SRX_STRING = "72";                  // 2672 -> 72 (shorter)
+  const out = lc.serializeCabrillo(recs, line + "\r\n").replace(/\r?\n$/, "");
+  assert.ok(out.includes("599 72"));
+  assert.equal(out.length, line.length);      // trailing pad absorbs it
+});
+
 test("serializeCabrillo applies exchange edit", () => {
   const text = "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 W1AW 599 5\n";
   const recs = lc.recordsFromText(text);

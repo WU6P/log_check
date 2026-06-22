@@ -270,7 +270,36 @@ def _rebuild_cabrillo_line(rec, original_line):
     # preserves the file's column alignment and trailing whitespace exactly.
     if body == orig:
         return original_line
-    return "QSO: " + " ".join(body)
+    # Edited QSO: splice the new values into the original line in place so the
+    # column alignment matches the untouched lines (only when the token count is
+    # unchanged, which holds for every value edit; else fall back to single space).
+    spans = _token_spans(original_line, orig)
+    if spans is None or len(body) != len(orig):
+        return "QSO: " + " ".join(body)
+    out = original_line[:spans[0][0]]                  # "QSO:" + leading pad
+    for i, (s, e) in enumerate(spans):
+        out += body[i]
+        gap_end = spans[i + 1][0] if i + 1 < len(spans) else len(original_line)
+        gap = original_line[e:gap_end]                 # spaces after this token
+        delta = len(body[i]) - len(orig[i])            # absorb length change in
+        if delta and gap:                              # the trailing pad so the
+            floor = 0 if i + 1 == len(spans) else 1    # next column stays put
+            gap = " " * max(floor, len(gap) - delta)
+        out += gap
+    return out
+
+
+def _token_spans(line, tokens):
+    """(start, end) char span of each token in `line`, scanning left to right,
+    or None if a token can't be located (then the caller reformats instead)."""
+    spans, pos = [], 0
+    for tok in tokens:
+        i = line.find(tok, pos)
+        if i < 0:
+            return None
+        spans.append((i, i + len(tok)))
+        pos = i + len(tok)
+    return spans
 
 
 def serialize_cabrillo(records, original_text):
