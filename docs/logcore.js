@@ -205,13 +205,20 @@ function rebuildCabrilloLine(rec, originalLine) {
   const rcvd = [];
   if (rec.RST_RCVD) rcvd.push(rec.RST_RCVD);
   for (const tok of (rec.SRX_STRING || "").split(/\s+/)) if (tok) rcvd.push(tok);
-  return "QSO: " + body.slice(0, ri).concat(rcvd).join(" ");
+  const rebuilt = body.slice(0, ri).concat(rcvd);
+  // Untouched QSO: pass the original line through verbatim so a no-edit save
+  // preserves the file's column alignment and trailing whitespace exactly.
+  if (rebuilt.length === orig.length && rebuilt.every((v, k) => v === orig[k]))
+    return originalLine;
+  return "QSO: " + rebuilt.join(" ");
 }
 
 // Write `records` back as Cabrillo, preserving the original file: header,
 // footer, comments and X-QSO lines stay verbatim; each QSO: line is rebuilt in
 // place, deleted QSOs drop their line, unparsed QSO: lines are left untouched.
+// Original line endings (CRLF vs LF) and the trailing newline are preserved.
 export function serializeCabrillo(records, originalText) {
+  const nl = originalText.includes("\r\n") ? "\r\n" : "\n";
   const lines = originalText.split(/\r?\n/);
   const parsedLines = new Set(parseCabrilloRecords(originalText).map((r) => r._CAB_LINE));
   const surviving = new Map();
@@ -226,7 +233,9 @@ export function serializeCabrillo(records, originalText) {
       out.push(lines[i]);
     }
   }
-  return out.join("\n") + "\n";
+  // split(/\r?\n/) leaves a trailing "" when the text ended with a newline, so
+  // join alone restores the original trailing newline (no extra one appended).
+  return out.join(nl);
 }
 
 // ==========================================================================

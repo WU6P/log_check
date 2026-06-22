@@ -246,10 +246,10 @@ def _rebuild_cabrillo_line(rec, original_line):
     token (frequency, mode, the whole sent side) from the original body and
     writing back only the fields this tool edits: call, date, time, and the
     received report + exchange. Records with no stored body are left verbatim."""
-    body = rec.get("_CAB_BODY")
-    if not body:
+    orig = rec.get("_CAB_BODY")
+    if not orig:
         return original_line
-    body = list(body)
+    body = list(orig)
     ci = rec.get("_CAB_CALL_IDX", -1)
     ri = rec.get("_CAB_RCVD_IDX", len(body))
     if 0 <= ci < len(body):
@@ -266,6 +266,10 @@ def _rebuild_cabrillo_line(rec, original_line):
         rcvd.append(rst)
     rcvd.extend((rec.get("SRX_STRING", "") or "").split())
     body = body[:ri] + rcvd
+    # Untouched QSO: pass the original line through verbatim so a no-edit save
+    # preserves the file's column alignment and trailing whitespace exactly.
+    if body == orig:
+        return original_line
     return "QSO: " + " ".join(body)
 
 
@@ -276,6 +280,7 @@ def serialize_cabrillo(records, original_text):
     QSO: line is rebuilt in place from its (possibly edited) record, deleted
     QSOs drop their line, and QSO: lines the parser couldn't read are left
     untouched. `original_text` is the text the log was loaded from."""
+    nl = "\r\n" if "\r\n" in original_text else "\n"
     lines = original_text.splitlines()
     parsed_lines = {r.get("_CAB_LINE") for r in parse_cabrillo_records(original_text)}
     surviving = {r["_CAB_LINE"]: r for r in records if r.get("_CAB_LINE") is not None}
@@ -290,7 +295,10 @@ def serialize_cabrillo(records, original_text):
                 out.append(line)               # unparsed QSO line, keep as-is
         else:
             out.append(line)
-    return "\n".join(out) + "\n"
+    text = nl.join(out)
+    if original_text.endswith(("\n", "\r")):   # preserve trailing newline if any
+        text += nl
+    return text
 
 
 # ==========================================================================

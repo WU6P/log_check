@@ -91,6 +91,18 @@ test("serializeCabrillo preserves file, applies edits, drops deletes", () => {
   assert.ok(!out.includes("BD3TE"));              // deleted line dropped
 });
 
+test("serializeCabrillo no-edit save is byte-identical", () => {
+  // padded columns + trailing spaces + CRLF must survive an untouched save
+  const text =
+    "START-OF-LOG: 3.0\r\n" +
+    "CALLSIGN: K3EST\r\n" +
+    "QSO:   14036 CW 2026-06-20 0000 K3EST    599 77   JH4UYB   599 61   \r\n" +
+    "QSO:   21025 CW 2026-06-20 0001 K3EST    599 77   JA8RUZ   599 67   \r\n" +
+    "END-OF-LOG:\r\n";
+  const recs = lc.recordsFromText(text);
+  assert.equal(lc.serializeCabrillo(recs, text), text);
+});
+
 test("serializeCabrillo applies exchange edit", () => {
   const text = "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 W1AW 599 5\n";
   const recs = lc.recordsFromText(text);

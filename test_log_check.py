@@ -101,6 +101,16 @@ class TestParsing(unittest.TestCase):
         # sent side (MYCALL N6RO, sent exch 599 25) survives untouched
         self.assertIn("N6RO 599 25 JA0VNR", out)
 
+    def test_cabrillo_no_edit_byte_identical(self):
+        # padded columns + trailing spaces + CRLF must survive an untouched save
+        text = ("START-OF-LOG: 3.0\r\n"
+                "CALLSIGN: K3EST\r\n"
+                "QSO:   14036 CW 2026-06-20 0000 K3EST    599 77   JH4UYB   599 61   \r\n"
+                "QSO:   21025 CW 2026-06-20 0001 K3EST    599 77   JA8RUZ   599 67   \r\n"
+                "END-OF-LOG:\r\n")
+        recs = lc.records_from_text(text)
+        self.assertEqual(lc.serialize_cabrillo(recs, text), text)
+
     def test_cabrillo_roundtrip_applies_exchange_edit(self):
         text = "QSO: 14025 CW 2026-01-01 0000 N6RO 599 25 W1AW 599 5\n"
         recs = lc.records_from_text(text)
