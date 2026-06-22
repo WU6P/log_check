@@ -837,3 +837,208 @@ def apply_fixes(records, field, fixes):
             records[i][field] = new
             applied += 1
     return applied
+
+
+# --------------------------------------------------------------------------
+# Change report — a plain-text record of exactly what was edited, written
+# alongside the saved log so the operator (and a contest committee) can see the
+# before/after at a glance. Mirrored in docs/logcore.js.
+# --------------------------------------------------------------------------
+def summary_text(result, count):
+    """Plain-text version of the on-screen summary line (no HTML markup)."""
+    r = result
+    parts = [f"{count} QSOs", f"{r['rare_count']} rare DXCC"]
+    if r["exchange_field"]:
+        if r["exch_applicable"]:
+            pct = round(r["majority_share"] * 100)
+            fixed = (f"FIXED at '{r['majority_value']}' ({pct}%)" if r["is_fixed"]
+                     else f"top '{r['majority_value']}' {pct}%")
+            parts.append(f"exchange '{r['exchange_field']}' [{fixed}] — "
+                         f"{r['bust_count']} busts, {len(r['fixes'])} auto-fixable")
+        else:
+            parts.append(f"exchange '{r['exchange_field']}' looks like serial "
+                         f"numbers — check skipped")
+    else:
+        parts.append("no exchange field selected")
+    parts.append(f"{r['zone_count']} zone, {r['callbad_count']} bad-call, "
+                 f"{r['dupe_count']} near-dupe")
+    return " | ".join(parts)
+
+
+def _qso_desc(r):
+    return " ".join(str(r[k]) for k in ("BAND", "MODE", "QSO_DATE", "TIME_ON")
+                    if r.get(k))
+
+
+def change_details(orig, cur):
+    """Field-level changes between two record lists tagged with a stable _LCID.
+
+    Returns {"modified", "removed", "added"}; `n` is the 1-based row in the
+    original log (removed/modified) or the saved log (added).
+    """
+    def fields_of(r):
+        return [k for k in r if not k.startswith("_")]
+
+    cur_by_id = {r["_LCID"]: r for r in cur if r.get("_LCID") is not None}
+    orig_ids = {r["_LCID"] for r in orig if r.get("_LCID") is not None}
+
+    modified, removed = [], []
+    for i, o in enumerate(orig):
+        c = cur_by_id.get(o.get("_LCID")) if o.get("_LCID") is not None else None
+        if c is None:
+            removed.append({"n": i + 1, "call": o.get("CALL", "?"),
+                            "desc": _qso_desc(o)})
+            continue
+        fields = []
+        for k in sorted(set(fields_of(o)) | set(fields_of(c))):
+            a = "" if o.get(k) is None else str(o.get(k, ""))
+            b = "" if c.get(k) is None else str(c.get(k, ""))
+            if a != b:
+                fields.append({"key": k, "from": a, "to": b})
+        if fields:
+            modified.append({"n": i + 1, "call": c.get("CALL") or o.get("CALL", "?"),
+                             "fields": fields})
+    added = []
+    for i, c in enumerate(cur):
+        if c.get("_LCID") is None or c["_LCID"] not in orig_ids:
+            added.append({"n": i + 1, "call": c.get("CALL", "?"),
+                          "desc": _qso_desc(c)})
+    return {"modified": modified, "removed": removed, "added": added}
+
+
+def _lcs_diff(a, b):
+    n, m = len(a), len(b)
+    if n == 0:
+        return [("+", s) for s in b]
+    if m == 0:
+        return [("-", s) for s in a]
+    if n * m > 4_000_000:                       # pathological: coarse replace
+        return [("-", s) for s in a] + [("+", s) for s in b]
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(n - 1, -1, -1):
+        for j in range(m - 1, -1, -1):
+            dp[i][j] = (dp[i + 1][j + 1] + 1 if a[i] == b[j]
+                        else max(dp[i + 1][j], dp[i][j + 1]))
+    out = []
+    i = j = 0
+    while i < n and j < m:
+        if a[i] == b[j]:
+            out.append((" ", a[i])); i += 1; j += 1
+        elif dp[i + 1][j] >= dp[i][j + 1]:
+            out.append(("-", a[i])); i += 1
+        else:
+            out.append(("+", b[j])); j += 1
+    while i < n:
+        out.append(("-", a[i])); i += 1
+    while j < m:
+        out.append(("+", b[j])); j += 1
+    return out
+
+
+def unified_diff(a, b, from_label="original", to_label="modified", context=3):
+    """Unified text diff of two lists of lines; "" when they are identical.
+
+    Trims the common prefix/suffix first (cheap for near-identical files), then
+    runs an LCS on the middle.
+    """
+    lo = 0
+    while lo < len(a) and lo < len(b) and a[lo] == b[lo]:
+        lo += 1
+    ha, hb = len(a), len(b)
+    while ha > lo and hb > lo and a[ha - 1] == b[hb - 1]:
+        ha -= 1; hb -= 1
+
+    # ops: [tag, text, a_lineno, b_lineno]
+    ops = [[" ", a[i], 0, 0] for i in range(lo)]
+    ops += [[t, s, 0, 0] for t, s in _lcs_diff(a[lo:ha], b[lo:hb])]
+    ops += [[" ", a[i], 0, 0] for i in range(ha, len(a))]
+    if not any(o[0] != " " for o in ops):
+        return ""
+
+    al = bl = 0
+    for o in ops:
+        if o[0] != "+":
+            al += 1; o[2] = al
+        if o[0] != "-":
+            bl += 1; o[3] = bl
+
+    wins = []
+    for k, o in enumerate(ops):
+        if o[0] == " ":
+            continue
+        s = max(0, k - context)
+        e = min(len(ops) - 1, k + context)
+        if wins and s <= wins[-1][1] + 1:
+            wins[-1][1] = max(wins[-1][1], e)
+        else:
+            wins.append([s, e])
+
+    out = [f"--- {from_label}", f"+++ {to_label}"]
+    for s, e in wins:
+        a_start = a_count = b_start = b_count = 0
+        for k in range(s, e + 1):
+            tag, _txt, an, bn = ops[k]
+            if tag != "+":
+                if not a_start:
+                    a_start = an
+                a_count += 1
+            if tag != "-":
+                if not b_start:
+                    b_start = bn
+                b_count += 1
+        out.append(f"@@ -{a_start or 0},{a_count} +{b_start or 0},{b_count} @@")
+        for k in range(s, e + 1):
+            out.append(ops[k][0] + ops[k][1])
+    return "\n".join(out) + "\n"
+
+
+def build_change_report(orig, cur, file_name="log", fmt="adif", src_text="",
+                        check_summary=""):
+    """Full change-report text: header, the check-results line, a human summary
+    of every edit, and a unified diff of the original vs the saved log."""
+    ext = ".log" if fmt == "cabrillo" else ".adi"
+    old_text = (serialize_cabrillo(orig, src_text) if fmt == "cabrillo"
+                else serialize_adif(orig))
+    new_text = (serialize_cabrillo(cur, src_text) if fmt == "cabrillo"
+                else serialize_adif(cur))
+    det = change_details(orig, cur)
+    stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    L = ["log_check — change report",
+         f"File:      {file_name}{ext}",
+         f"Generated: {stamp}",
+         f"Format:    {'Cabrillo' if fmt == 'cabrillo' else 'ADIF'}",
+         ""]
+    if check_summary:
+        L += ["== Check results ==", check_summary, ""]
+
+    L.append("== Summary of changes ==")
+    L.append(f"QSOs: {len(orig)} (original) -> {len(cur)} (saved)")
+    L.append(f"  modified: {len(det['modified'])}   removed: {len(det['removed'])}"
+             f"   added: {len(det['added'])}")
+    L.append("")
+    if det["modified"]:
+        L.append("Modified QSOs:")
+        for m in det["modified"]:
+            chg = ", ".join(f"{x['key']}: '{x['from']}' -> '{x['to']}'"
+                            for x in m["fields"])
+            L.append(f"  #{m['n']} {m['call']}  {chg}")
+        L.append("")
+    if det["removed"]:
+        L.append("Removed QSOs:")
+        for r in det["removed"]:
+            L.append(f"  #{r['n']} {r['call']}  {r['desc']}")
+        L.append("")
+    if det["added"]:
+        L.append("Added QSOs:")
+        for r in det["added"]:
+            L.append(f"  #{r['n']} {r['call']}  {r['desc']}")
+        L.append("")
+    if not (det["modified"] or det["removed"] or det["added"]):
+        L.append("(no changes — the saved log is identical to the original)\n")
+
+    L.append("== Unified diff (original -> saved) ==")
+    diff = unified_diff(old_text.split("\n"), new_text.split("\n"),
+                        f"{file_name}{ext} (original)", f"{file_name}{ext} (saved)")
+    L.append(diff or "(no differences)")
+    return "\n".join(L) + "\n"

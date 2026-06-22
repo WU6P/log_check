@@ -345,5 +345,70 @@ test("fix multiple early", () => {
   assert.ok(recs.every((r) => r.RX_PWR === "KW"));
 });
 
+// --- change report ---------------------------------------------------------
+const tag = (recs) => { recs.forEach((r, k) => (r._LCID = k)); return recs; };
+
+test("summaryText is plain", () => {
+  const recs = [qso("W1AW"), qso("DL1ABC")];
+  const res = lc.analyze(recs, "");
+  const s = lc.summaryText(res, recs.length);
+  assert.ok(s.includes("2 QSOs"));
+  assert.ok(!s.includes("<b>"));
+});
+
+test("changeDetails modified", () => {
+  const orig = tag([qso("W1AW", "20260101", "000000", { CQZ: "05" }),
+                    qso("K3EST", "20260101", "000000", { CQZ: "05" })]);
+  const cur = orig.map((r) => ({ ...r }));
+  cur[0].CQZ = "04";
+  const det = lc.changeDetails(orig, cur);
+  assert.equal(det.modified.length, 1);
+  assert.equal(det.modified[0].n, 1);
+  assert.deepEqual(det.modified[0].fields, [{ key: "CQZ", from: "05", to: "04" }]);
+  assert.deepEqual(det.removed, []);
+  assert.deepEqual(det.added, []);
+});
+
+test("changeDetails removed and added", () => {
+  const orig = tag([qso("W1AW"), qso("K3EST")]);
+  const cur = [{ ...orig[0] }, qso("N6RO")];     // dropped K3EST, added N6RO (no id)
+  const det = lc.changeDetails(orig, cur);
+  assert.deepEqual(det.removed.map((r) => r.call), ["K3EST"]);
+  assert.deepEqual(det.added.map((r) => r.call), ["N6RO"]);
+});
+
+test("unifiedDiff identical is empty", () => {
+  assert.equal(lc.unifiedDiff(["a", "b"], ["a", "b"]), "");
+});
+
+test("unifiedDiff change", () => {
+  const d = lc.unifiedDiff(["a", "b", "c"], ["a", "B", "c"]);
+  assert.ok(d.includes("-b"));
+  assert.ok(d.includes("+B"));
+  assert.ok(d.includes(" a"));
+  assert.ok(d.startsWith("--- original"));
+});
+
+test("buildChangeReport roundtrip", () => {
+  const orig = tag([qso("W1AW", "20260101", "000000", { CQZ: "05" }),
+                    qso("K3EST", "20260101", "000000", { CQZ: "05" })]);
+  const cur = orig.map((r) => ({ ...r }));
+  cur[0].CQZ = "04";
+  const rep = lc.buildChangeReport(orig, cur,
+    { fileName: "mylog", format: "adif", checkSummary: "2 QSOs" });
+  assert.ok(rep.includes("log_check — change report"));
+  assert.ok(rep.includes("mylog.adi"));
+  assert.ok(rep.includes("Modified QSOs:"));
+  assert.ok(rep.includes("CQZ: '05' -> '04'"));
+  assert.ok(rep.includes("== Unified diff"));
+});
+
+test("buildChangeReport no changes", () => {
+  const orig = tag([qso("W1AW")]);
+  const cur = orig.map((r) => ({ ...r }));
+  const rep = lc.buildChangeReport(orig, cur);
+  assert.ok(rep.includes("no changes"));
+});
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

@@ -105,6 +105,12 @@ correction with one click.
   `.log` out. Cabrillo saves are rebuilt in place over the original file, so the
   header, footer and every untouched token (the whole sent side) are preserved
   verbatim; only edited calls / exchanges / times change and deleted QSOs drop.
+  Save also writes a companion **`<name>_changes.txt`** report: the check-results
+  summary, a field-by-field summary of every QSO modified / removed / added, and a
+  unified diff of the original vs the saved log — keep it with your log entry as a
+  record of exactly what you corrected.
+* **Help** opens a panel describing the checks, the local-data policy, and the
+  accepted input / output formats.
 
 ## Running
 
@@ -121,7 +127,7 @@ python3 -m venv .venv
 The whole engine (`logcore.py`) is GUI-free and unit-tested:
 
 ```sh
-python3 test_log_check.py    # 34 tests, pure stdlib — no PyQt5 needed
+python3 test_log_check.py    # 49 tests, pure stdlib — no PyQt5 needed
 ```
 
 ## Files

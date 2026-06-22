@@ -8,10 +8,15 @@
     <label class="btn">Open<input type="file" id="file" hidden></label>
     <span class="grp">Exchange field: <select id="field" disabled></select></span>
     <label class="chk"><input type="checkbox" id="force"> force</label>
-    <span class="spacer"></span><button id="save" class="btn" disabled>Save…</button>
+    <span class="spacer"></span><button id="help" class="btn">Help</button>
+    <button id="save" class="btn" disabled>Save…</button>
   </div>
   <p id="summary" class="summary">Loading…</p>
 </header>
+<div id="help-win" class="modal hidden"><div class="help-box">
+  <div class="help-head"><h2>Help</h2><span class="spacer"></span>
+    <button id="help-close" class="btn">Close</button></div>
+  <div class="help-body"></div></div></div>
 <main><table id="table"><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table>
   <p id="empty" class="empty">No log loaded.</p></main>
 <footer>
@@ -37,6 +42,7 @@
 <pre id="result">running…</pre>
 <script type="module" src="app.js"></script>
 <script type="module">
+import * as lc from "./logcore.js";
 const out = document.getElementById("result");
 const log = [];
 let failed = 0;
@@ -144,6 +150,19 @@ window.addEventListener("error", (e) => {
   cb.checked = true; cb.dispatchEvent(new Event("change", { bubbles: true }));
   document.getElementById("del").click(); await wait();
   ok(rows() === 17, `17 rows after delete (got ${rows()})`);
+
+  // --- help window opens and closes ---
+  document.getElementById("help").click();
+  ok(!document.getElementById("help-win").classList.contains("hidden"), "help opens");
+  document.getElementById("help-close").click();
+  ok(document.getElementById("help-win").classList.contains("hidden"), "help closes");
+
+  // --- change report: a field edit shows up as a modification + diff ---
+  const a = [{ CALL: "W1AW", QSO_DATE: "20260101", TIME_ON: "000000", CQZ: "05", _LCID: 0 }];
+  const b = [{ ...a[0], CQZ: "04" }];
+  const rep = lc.buildChangeReport(a, b, { fileName: "x", format: "adif" });
+  ok(/Modified QSOs:/.test(rep) && /CQZ: '05' -> '04'/.test(rep), "report lists the field change");
+  ok(/== Unified diff/.test(rep) && /-<CALL/.test(rep) && /\+<CALL/.test(rep), "report has a unified diff");
 
   out.textContent = log.join("\n") + `\n\nSELFTEST: ${failed ? "FAIL (" + failed + ")" : "PASS"}`;
   document.title = failed ? "SELFTEST FAIL" : "SELFTEST PASS";

@@ -32,7 +32,7 @@ from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
     QLabel, QComboBox, QCheckBox, QTableWidget, QTableWidgetItem, QFileDialog,
     QMessageBox, QAbstractItemView, QHeaderView, QDialog, QFormLayout,
-    QLineEdit, QDialogButtonBox, QScrollArea,
+    QLineEdit, QDialogButtonBox, QScrollArea, QTextBrowser,
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QBrush
@@ -48,6 +48,59 @@ COLUMNS = [
     ("Flags", "_FLAGS"),
 ]
 EDITABLE = {"QSO_DATE", "TIME_ON", "CALL", "BAND", "MODE", "RST_RCVD", "EXCH"}
+
+HELP_HTML = """
+<h2>log_check — Help</h2>
+
+<h3>What it checks</h3>
+<p>log_check runs five integrity checks over a contest log and highlights the
+suspect QSOs right in the table:</p>
+<ul>
+  <li><b>Rare DXCC</b> — QSOs whose worked entity is on the &ldquo;most-wanted&rdquo;
+      list. In a normal log a stray rare country is almost always a busted
+      callsign. Highlighted <span style="background:#ffcdd2">&nbsp;pink&nbsp;</span>.</li>
+  <li><b>Exchange bust</b> — a station sends the same exchange all contest, so
+      when its received-exchange value disagrees across that station&rsquo;s QSOs
+      the odd one out is flagged. If 90%+ of the log carries one value the
+      exchange is treated as <i>fixed</i> and lone deviations are flagged too.
+      The exchange field is auto-detected (override in the drop-down).
+      Highlighted <span style="background:#fff59d">&nbsp;yellow&nbsp;</span>.</li>
+  <li><b>Zone vs. entity</b> — the logged CQ/ITU zone is checked against the
+      zone(s) the worked country actually lies in; a mismatch usually means a
+      busted callsign or a mis-typed zone.</li>
+  <li><b>Callsign plausibility</b> — flags callsigns that map to no DXCC/ITU
+      country (an exotic prefix, almost always a typo) or aren&rsquo;t a valid
+      call shape.</li>
+  <li><b>Near-dupe / UBN</b> — a callsign worked once that is one letter off a
+      busier multi-band station &mdash; a likely mis-copy of that call.</li>
+</ul>
+
+<h3>Local data policy</h3>
+<p>&#128274; Everything runs <b>locally on this computer</b>. Your log is never
+uploaded, sent to a server, or stored in the cloud. The lookup tables (DXCC /
+ITU / most-wanted) are local data files shipped with the app; nothing about your
+log leaves your machine.</p>
+
+<h3>Log / ADI in</h3>
+<p>Open a contest log with <b>Open log&hellip;</b>. Two formats are accepted and
+the format is auto-detected:</p>
+<ul>
+  <li><b>ADIF</b> &mdash; <code>.adi</code> / <code>.adif</code></li>
+  <li><b>Cabrillo</b> &mdash; <code>.log</code> (the <code>QSO:</code> lines)</li>
+</ul>
+
+<h3>Log / ADI out</h3>
+<p><b>Save&hellip;</b> writes your corrected log back in the <i>same</i> format it
+was loaded in (ADIF in &rarr; ADIF out, Cabrillo in &rarr; Cabrillo out), as
+<code>&lt;name&gt;_checked.adi</code> / <code>.log</code>. Cabrillo saves
+preserve the original header, footer and column alignment; only edited
+<code>QSO:</code> lines change.</p>
+<p>Save also writes a companion <code>&lt;name&gt;_changes.txt</code> containing
+the <b>check-results</b> summary, a <b>summary of changes</b> (every QSO
+modified field-by-field, removed, or added), and a <b>unified diff</b> of the
+original vs the saved log &mdash; keep it with your log entry as a record of
+exactly what you corrected.</p>
+"""
 
 COL_RARE = QColor(255, 205, 210)     # pink
 COL_EXCH = QColor(255, 245, 157)     # yellow
@@ -101,6 +154,7 @@ class LogCheck(QMainWindow):
         super().__init__()
         self.setWindowTitle("log_check — contest log checker")
         self.records = []
+        self.orig_records = []
         self.path = None
         self.src_text = ""
         self.src_format = "adif"
@@ -135,6 +189,10 @@ class LogCheck(QMainWindow):
         self.chk_force.stateChanged.connect(lambda _: self.analyze())
         bar.addWidget(self.chk_force)
         bar.addStretch(1)
+
+        self.btn_help = QPushButton("Help")
+        self.btn_help.clicked.connect(self.show_help)
+        bar.addWidget(self.btn_help)
 
         self.btn_save = QPushButton("Save…")
         self.btn_save.clicked.connect(self.save_log)
@@ -207,6 +265,11 @@ class LogCheck(QMainWindow):
             QMessageBox.warning(self, "No QSOs",
                                 "No QSO records were found in that file.")
             return
+        # Tag each record with a stable id and snapshot the originals so Save can
+        # emit a change report (ids are leading-underscore, so never serialized).
+        for k, r in enumerate(recs):
+            r["_LCID"] = k
+        self.orig_records = [dict(r) for r in recs]
         self.records = recs
         self.path = path
         self.src_text = text                       # for verbatim Cabrillo save
@@ -393,6 +456,22 @@ class LogCheck(QMainWindow):
         self.analyze()
         QMessageBox.information(self, "Auto-fix", f"Corrected {n} QSO(s).")
 
+    # ---- Help -----------------------------------------------------------
+    def show_help(self):
+        dlg = QDialog(self)
+        dlg.setWindowTitle("log_check — Help")
+        lay = QVBoxLayout(dlg)
+        browser = QTextBrowser()
+        browser.setOpenExternalLinks(True)
+        browser.setHtml(HELP_HTML)
+        lay.addWidget(browser)
+        bb = QDialogButtonBox(QDialogButtonBox.Close)
+        bb.rejected.connect(dlg.reject)
+        bb.accepted.connect(dlg.accept)
+        lay.addWidget(bb)
+        dlg.resize(640, 560)
+        dlg.exec_()
+
     # ---- Saving ---------------------------------------------------------
     def save_log(self):
         if not self.records:
@@ -413,12 +492,24 @@ class LogCheck(QMainWindow):
             text = (lc.serialize_cabrillo(self.records, self.src_text) if cabrillo
                     else lc.serialize_adif(self.records))
             # write bytes so the serializer's exact line endings aren't re-translated
-            Path(path).write_bytes(text.encode("utf-8"))
+            out = Path(path)
+            out.write_bytes(text.encode("utf-8"))
+            # Alongside the log, write a plain-text change report: check results,
+            # a summary of every edit/delete, and a unified diff vs the original.
+            report = lc.build_change_report(
+                self.orig_records, self.records, file_name=out.stem,
+                fmt=self.src_format, src_text=self.src_text,
+                check_summary=(lc.summary_text(self.result, len(self.records))
+                               if self.result else ""))
+            report_path = out.with_name(out.stem + "_changes.txt")
+            report_path.write_text(report, encoding="utf-8")
         except Exception as e:
             QMessageBox.critical(self, "Save failed", str(e))
             return
-        QMessageBox.information(self, "Saved",
-                                f"Wrote {len(self.records)} QSOs to\n{path}")
+        QMessageBox.information(
+            self, "Saved",
+            f"Wrote {len(self.records)} QSOs to\n{path}\n\n"
+            f"Change report:\n{report_path}")
 
     # ---- helpers --------------------------------------------------------
     def _selected_rows(self):

@@ -1,6 +1,6 @@
 // log_check web UI — DOM glue around logcore.js. All logic lives in logcore;
 // this file only loads the file, renders the table, and wires the buttons.
-import * as lc from "./logcore.js?v=5";
+import * as lc from "./logcore.js?v=6";
 
 // Column layout: key is the ADIF field for editable cells, "EXCH" is rebound
 // to the chosen exchange field, the rest (leading "_") are computed.
@@ -14,6 +14,7 @@ const EDITABLE = new Set(["QSO_DATE", "TIME_ON", "CALL", "BAND", "MODE", "RST_RC
 const $ = (id) => document.getElementById(id);
 const el = {
   file: $("file"), field: $("field"), force: $("force"), save: $("save"),
+  help: $("help"), helpWin: $("help-win"), helpClose: $("help-close"),
   summary: $("summary"), head: $("head"), body: $("body"), empty: $("empty"),
   table: $("table"), edit: $("edit"), del: $("del"),
   modal: $("modal"), mTitle: $("modal-title"), mFields: $("modal-fields"),
@@ -24,6 +25,7 @@ const el = {
 };
 
 let records = [];
+let origRecords = [];            // snapshot at load, for the change report on save
 let result = null;
 let field = "";
 let fileName = "log";
@@ -68,6 +70,11 @@ function loadFromText(text, name) {
   if (!recs.length) { alert("No QSO records found in that file."); return false; }
   fileName = name;
   records = recs;
+  // Tag each record with a stable id so the change report can match edits and
+  // deletes back to the original even after rows move (ignored on save: the
+  // serializer skips leading-underscore keys). Snapshot the originals.
+  records.forEach((r, k) => { r._LCID = k; });
+  origRecords = records.map((r) => ({ ...r }));
   srcText = text;
   srcFormat = lc.detectFormat(text);
   selected.clear();
@@ -284,13 +291,35 @@ el.save.addEventListener("click", () => {
   // ADIF in → ADIF out.
   const cabrillo = srcFormat === "cabrillo";
   const text = cabrillo ? lc.serializeCabrillo(records, srcText) : lc.serializeAdif(records);
-  const blob = new Blob([text], { type: "text/plain" });
+  download(text, fileName + "_checked" + (cabrillo ? ".log" : ".adi"));
+
+  // Alongside the log, write a plain-text change report: the check results, a
+  // summary of every edit/delete, and a unified diff of original vs saved.
+  const report = lc.buildChangeReport(origRecords, records, {
+    fileName, format: srcFormat, srcText,
+    checkSummary: result ? lc.summaryText(result, records.length) : "",
+  });
+  download(report, fileName + "_changes.txt");
+});
+
+// --- help ------------------------------------------------------------------
+el.help.addEventListener("click", () => el.helpWin.classList.remove("hidden"));
+el.helpClose.addEventListener("click", () => el.helpWin.classList.add("hidden"));
+el.helpWin.addEventListener("click", (ev) => {
+  if (ev.target === el.helpWin) el.helpWin.classList.add("hidden");
+});
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape" && !el.helpWin.classList.contains("hidden"))
+    el.helpWin.classList.add("hidden");
+});
+
+function download(text, name) {
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = fileName + "_checked" + (cabrillo ? ".log" : ".adi");
+  a.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+  a.download = name;
   a.click();
   URL.revokeObjectURL(a.href);
-});
+}
 
 // ==========================================================================
 // Review window — step through issues one at a time. Exchange issues show the

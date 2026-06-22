@@ -94,6 +94,21 @@ table.rv-ref th, table.rv-ref td { color: #555; }
 .mini:hover { background: var(--head); }
 .mini.danger { color: var(--danger); border-color: #e2b6b1; }
 
+/* help window */
+#help-win { z-index: 40; }
+.help-box { background: #fff; border-radius: 10px; width: 720px; max-width: 94vw;
+            max-height: 88vh; display: flex; flex-direction: column; }
+.help-head { display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+             border-bottom: 1px solid var(--line); }
+.help-head h2 { margin: 0; font-size: 17px; }
+.help-body { padding: 4px 18px 16px; overflow: auto; }
+.help-body section { margin: 14px 0; }
+.help-body h3 { margin: 0 0 6px; font-size: 14px; color: var(--accent); }
+.help-body p { margin: 6px 0; color: #333; }
+.help-body ul { margin: 6px 0; padding-left: 22px; }
+.help-body li { margin: 4px 0; color: #333; }
+.help-body .sw { margin-left: 4px; }
+
 /* modal */
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,.4);
          display: flex; align-items: center; justify-content: center; z-index: 10; }

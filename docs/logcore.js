@@ -624,3 +624,188 @@ export function applyFixes(records, field, fixes) {
     if (i >= 0 && i < records.length) { records[i][field] = nw; applied++; }
   return applied;
 }
+
+// ==========================================================================
+// Change report — a plain-text record of exactly what was edited, written
+// alongside the saved log so the operator (and a contest committee) can see
+// the before/after at a glance. Pure functions, mirrored in logcore.py.
+// ==========================================================================
+
+// Plain-text version of the on-screen summary line (no HTML markup).
+export function summaryText(result, count) {
+  const r = result;
+  const parts = [`${count} QSOs`, `${r.rare_count} rare DXCC`];
+  if (r.exchange_field) {
+    if (r.exch_applicable) {
+      const pct = Math.round(r.majority_share * 100);
+      const fixed = r.is_fixed ? `FIXED at '${r.majority_value}' (${pct}%)`
+                               : `top '${r.majority_value}' ${pct}%`;
+      parts.push(`exchange '${r.exchange_field}' [${fixed}] — ` +
+                 `${r.bust_count} busts, ${r.fixes.length} auto-fixable`);
+    } else {
+      parts.push(`exchange '${r.exchange_field}' looks like serial numbers — check skipped`);
+    }
+  } else {
+    parts.push("no exchange field selected");
+  }
+  parts.push(`${r.zone_count} zone, ${r.callbad_count} bad-call, ${r.dupe_count} near-dupe`);
+  return parts.join(" | ");
+}
+
+function qsoDesc(r) {
+  return [r.BAND, r.MODE, r.QSO_DATE, r.TIME_ON].filter(Boolean).join(" ");
+}
+
+// Field-level changes between two record lists tagged with a stable `_LCID`
+// (the UI tags each record at load, so edits/deletes preserve identity).
+// Returns { modified, removed, added }; `n` is the 1-based row in the original
+// log (removed/modified) or the saved log (added).
+export function changeDetails(orig, cur) {
+  const fieldsOf = (r) => Object.keys(r).filter((k) => !k.startsWith("_"));
+  const curById = new Map();
+  cur.forEach((r) => { if (r._LCID != null) curById.set(r._LCID, r); });
+  const origIds = new Set(orig.map((r) => r._LCID).filter((x) => x != null));
+
+  const modified = [], removed = [];
+  orig.forEach((o, i) => {
+    const c = o._LCID != null ? curById.get(o._LCID) : null;
+    if (!c) { removed.push({ n: i + 1, call: o.CALL || "?", desc: qsoDesc(o) }); return; }
+    const keys = [...new Set([...fieldsOf(o), ...fieldsOf(c)])].sort();
+    const fields = [];
+    for (const k of keys) {
+      const a = o[k] == null ? "" : String(o[k]);
+      const b = c[k] == null ? "" : String(c[k]);
+      if (a !== b) fields.push({ key: k, from: a, to: b });
+    }
+    if (fields.length) modified.push({ n: i + 1, call: c.CALL || o.CALL || "?", fields });
+  });
+  const added = [];
+  cur.forEach((c, i) => {
+    if (c._LCID == null || !origIds.has(c._LCID))
+      added.push({ n: i + 1, call: c.CALL || "?", desc: qsoDesc(c) });
+  });
+  return { modified, removed, added };
+}
+
+// Unified text diff of two arrays of lines. Trims the common prefix/suffix
+// first (so a near-identical pair is cheap), then runs an LCS on the middle.
+// Returns "" when the inputs are identical.
+export function unifiedDiff(a, b, fromLabel = "original", toLabel = "modified", context = 3) {
+  let lo = 0;
+  while (lo < a.length && lo < b.length && a[lo] === b[lo]) lo++;
+  let ha = a.length, hb = b.length;
+  while (ha > lo && hb > lo && a[ha - 1] === b[hb - 1]) { ha--; hb--; }
+
+  const ops = [];
+  for (let i = 0; i < lo; i++) ops.push({ t: " ", s: a[i] });
+  for (const op of lcsDiff(a.slice(lo, ha), b.slice(lo, hb))) ops.push(op);
+  for (let i = ha; i < a.length; i++) ops.push({ t: " ", s: a[i] });
+  if (!ops.some((o) => o.t !== " ")) return "";
+
+  // assign 1-based source (a) and target (b) line numbers
+  let al = 0, bl = 0;
+  for (const o of ops) {
+    if (o.t !== "+") o.a = ++al;
+    if (o.t !== "-") o.b = ++bl;
+  }
+  // windows of `context` lines around each change, merged when they touch
+  const wins = [];
+  ops.forEach((o, k) => {
+    if (o.t === " ") return;
+    const s = Math.max(0, k - context), e = Math.min(ops.length - 1, k + context);
+    if (wins.length && s <= wins[wins.length - 1][1] + 1)
+      wins[wins.length - 1][1] = Math.max(wins[wins.length - 1][1], e);
+    else wins.push([s, e]);
+  });
+
+  const out = [`--- ${fromLabel}`, `+++ ${toLabel}`];
+  for (const [s, e] of wins) {
+    let aStart = 0, aCount = 0, bStart = 0, bCount = 0;
+    for (let k = s; k <= e; k++) {
+      const o = ops[k];
+      if (o.t !== "+") { if (!aStart) aStart = o.a; aCount++; }
+      if (o.t !== "-") { if (!bStart) bStart = o.b; bCount++; }
+    }
+    out.push(`@@ -${aStart || 0},${aCount} +${bStart || 0},${bCount} @@`);
+    for (let k = s; k <= e; k++) out.push(ops[k].t + ops[k].s);
+  }
+  return out.join("\n") + "\n";
+}
+
+function lcsDiff(a, b) {
+  const n = a.length, m = b.length;
+  if (n === 0) return b.map((s) => ({ t: "+", s }));
+  if (m === 0) return a.map((s) => ({ t: "-", s }));
+  if (n * m > 4_000_000)                          // pathological: coarse replace
+    return [...a.map((s) => ({ t: "-", s })), ...b.map((s) => ({ t: "+", s }))];
+  const w = m + 1;
+  const dp = new Int32Array((n + 1) * w);
+  for (let i = n - 1; i >= 0; i--)
+    for (let j = m - 1; j >= 0; j--)
+      dp[i * w + j] = a[i] === b[j] ? dp[(i + 1) * w + (j + 1)] + 1
+        : Math.max(dp[(i + 1) * w + j], dp[i * w + (j + 1)]);
+  const out = [];
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { out.push({ t: " ", s: a[i] }); i++; j++; }
+    else if (dp[(i + 1) * w + j] >= dp[i * w + (j + 1)]) { out.push({ t: "-", s: a[i] }); i++; }
+    else { out.push({ t: "+", s: b[j] }); j++; }
+  }
+  while (i < n) out.push({ t: "-", s: a[i++] });
+  while (j < m) out.push({ t: "+", s: b[j++] });
+  return out;
+}
+
+// Full change-report text: header, the check-results line, a human summary of
+// every edit, and a unified diff of the original vs the saved log.
+export function buildChangeReport(orig, cur, opts = {}) {
+  const { fileName = "log", format = "adif", srcText = "", checkSummary = "" } = opts;
+  const ext = format === "cabrillo" ? ".log" : ".adi";
+  const oldText = format === "cabrillo" ? serializeCabrillo(orig, srcText) : serializeAdif(orig);
+  const newText = format === "cabrillo" ? serializeCabrillo(cur, srcText) : serializeAdif(cur);
+  const det = changeDetails(orig, cur);
+
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  const stamp = `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ` +
+                `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+
+  const L = [];
+  L.push("log_check — change report");
+  L.push(`File:      ${fileName}${ext}`);
+  L.push(`Generated: ${stamp}`);
+  L.push(`Format:    ${format === "cabrillo" ? "Cabrillo" : "ADIF"}`);
+  L.push("");
+  if (checkSummary) { L.push("== Check results =="); L.push(checkSummary); L.push(""); }
+
+  L.push("== Summary of changes ==");
+  L.push(`QSOs: ${orig.length} (original) -> ${cur.length} (saved)`);
+  L.push(`  modified: ${det.modified.length}   removed: ${det.removed.length}   ` +
+         `added: ${det.added.length}`);
+  L.push("");
+  if (det.modified.length) {
+    L.push("Modified QSOs:");
+    for (const m of det.modified)
+      L.push(`  #${m.n} ${m.call}  ` +
+             m.fields.map((x) => `${x.key}: '${x.from}' -> '${x.to}'`).join(", "));
+    L.push("");
+  }
+  if (det.removed.length) {
+    L.push("Removed QSOs:");
+    for (const r of det.removed) L.push(`  #${r.n} ${r.call}  ${r.desc}`);
+    L.push("");
+  }
+  if (det.added.length) {
+    L.push("Added QSOs:");
+    for (const r of det.added) L.push(`  #${r.n} ${r.call}  ${r.desc}`);
+    L.push("");
+  }
+  if (!det.modified.length && !det.removed.length && !det.added.length)
+    L.push("(no changes — the saved log is identical to the original)\n");
+
+  L.push("== Unified diff (original -> saved) ==");
+  const diff = unifiedDiff(oldText.split("\n"), newText.split("\n"),
+                           `${fileName}${ext} (original)`, `${fileName}${ext} (saved)`);
+  L.push(diff || "(no differences)");
+  return L.join("\n") + "\n";
+}

@@ -25,7 +25,12 @@ Five checks (highlighted in the table, named in the **Flags** column):
 * Edit any cell inline, open a full-field editor (double-click the row number or
   use *Edit fields…*), delete selected QSOs (with confirmation), and **Save…**
   downloads the edited log in the format it was loaded in (ADIF in → `.adi` out,
-  Cabrillo `.log` in → `.log` out, rebuilt over the original file).
+  Cabrillo `.log` in → `.log` out, rebuilt over the original file). Save also
+  downloads a **`<name>_changes.txt`** report — the check-results summary, a
+  field-by-field summary of every QSO modified / removed / added, and a unified
+  diff of the original vs the saved log.
+* **Help** opens a panel describing the checks, the local-data policy, and the
+  accepted input / output formats.
 
 ### Review window (work through issues one at a time)
 
@@ -59,7 +64,7 @@ There's a self-test page that drives the UI and reports PASS/FAIL:
 Run the core unit tests under Node (no browser, no dependencies):
 
 ```sh
-node test_logcore.mjs        # 29 tests, mirrors the Python suite
+node test_logcore.mjs        # 43 tests, mirrors the Python suite
 ```
 
 ## Deploy to GitHub Pages

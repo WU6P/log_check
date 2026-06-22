@@ -390,5 +390,69 @@ class TestAutoFix(unittest.TestCase):
         self.assertTrue(all(r["RX_PWR"] == "KW" for r in recs))
 
 
+class TestChangeReport(unittest.TestCase):
+    """summary_text / change_details / unified_diff / build_change_report."""
+
+    def _tag(self, recs):
+        for k, r in enumerate(recs):
+            r["_LCID"] = k
+        return recs
+
+    def test_summary_text_plain(self):
+        recs = [qso("W1AW"), qso("DL1ABC")]
+        res = lc.analyze(recs, exchange_field="")
+        s = lc.summary_text(res, len(recs))
+        self.assertIn("2 QSOs", s)
+        self.assertNotIn("<b>", s)              # no HTML
+
+    def test_change_details_modified(self):
+        orig = self._tag([qso("W1AW", CQZ="05"), qso("K3EST", CQZ="05")])
+        cur = [dict(r) for r in orig]
+        cur[0]["CQZ"] = "04"                     # edit one field
+        det = lc.change_details(orig, cur)
+        self.assertEqual(len(det["modified"]), 1)
+        self.assertEqual(det["modified"][0]["n"], 1)
+        self.assertEqual(det["modified"][0]["fields"],
+                         [{"key": "CQZ", "from": "05", "to": "04"}])
+        self.assertEqual(det["removed"], [])
+        self.assertEqual(det["added"], [])
+
+    def test_change_details_removed_and_added(self):
+        orig = self._tag([qso("W1AW"), qso("K3EST")])
+        cur = [dict(orig[0])]                    # dropped K3EST
+        cur.append(qso("N6RO"))                  # brand-new (no _LCID)
+        det = lc.change_details(orig, cur)
+        self.assertEqual([r["call"] for r in det["removed"]], ["K3EST"])
+        self.assertEqual([r["call"] for r in det["added"]], ["N6RO"])
+
+    def test_unified_diff_identical_is_empty(self):
+        self.assertEqual(lc.unified_diff(["a", "b"], ["a", "b"]), "")
+
+    def test_unified_diff_change(self):
+        d = lc.unified_diff(["a", "b", "c"], ["a", "B", "c"])
+        self.assertIn("-b", d)
+        self.assertIn("+B", d)
+        self.assertIn(" a", d)                   # context line kept
+        self.assertTrue(d.startswith("--- original"))
+
+    def test_build_change_report_roundtrip(self):
+        orig = self._tag([qso("W1AW", CQZ="05"), qso("K3EST", CQZ="05")])
+        cur = [dict(r) for r in orig]
+        cur[0]["CQZ"] = "04"
+        rep = lc.build_change_report(orig, cur, file_name="mylog", fmt="adif",
+                                     check_summary="2 QSOs")
+        self.assertIn("log_check — change report", rep)
+        self.assertIn("mylog.adi", rep)
+        self.assertIn("Modified QSOs:", rep)
+        self.assertIn("CQZ: '05' -> '04'", rep)
+        self.assertIn("== Unified diff", rep)
+
+    def test_build_change_report_no_changes(self):
+        orig = self._tag([qso("W1AW")])
+        cur = [dict(r) for r in orig]
+        rep = lc.build_change_report(orig, cur)
+        self.assertIn("no changes", rep)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

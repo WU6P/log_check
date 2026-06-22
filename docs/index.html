@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>log_check — contest log checker</title>
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <header>
@@ -21,6 +21,7 @@
       <input type="checkbox" id="force"> force check (serial-like field)
     </label>
     <span class="spacer"></span>
+    <button id="help" class="btn">Help</button>
     <button id="save" class="btn" disabled>Save…</button>
   </div>
   <p id="summary" class="summary">Loading lookups… then open an <code>.adi</code> / <code>.adif</code> / <code>.log</code> file.</p>
@@ -47,6 +48,82 @@
 </footer>
 <p class="privacy">🔒 Your log is processed entirely in your browser on this
   device. It is never uploaded, sent to a server, or stored in the cloud.</p>
+
+<!-- Help window -->
+<div id="help-win" class="modal hidden">
+  <div class="help-box">
+    <div class="help-head">
+      <h2>log_check — Help</h2>
+      <span class="spacer"></span>
+      <button id="help-close" class="btn">Close</button>
+    </div>
+    <div class="help-body">
+      <section>
+        <h3>What it checks</h3>
+        <p>log_check runs five integrity checks over a contest log and highlights
+           the suspect QSOs right in the table:</p>
+        <ul>
+          <li><b>Rare DXCC</b> — QSOs whose worked entity is on the “most-wanted”
+              list. In a normal log a stray rare country is almost always a busted
+              callsign. <span class="sw rare"></span> pink.</li>
+          <li><b>Exchange bust</b> — a station sends the same exchange all contest,
+              so when its received-exchange value disagrees across that station’s
+              QSOs the odd one out is flagged. If 90%+ of the log carries one value
+              the exchange is treated as <i>fixed</i> and lone deviations are flagged
+              too. The exchange field is auto-detected (override in the drop-down).
+              <span class="sw exch"></span> yellow.</li>
+          <li><b>Zone vs. entity</b> — the logged CQ/ITU zone is checked against the
+              zone(s) the worked country actually lies in; a mismatch usually means a
+              busted callsign or a mis-typed zone.</li>
+          <li><b>Callsign plausibility</b> — flags callsigns that map to no DXCC/ITU
+              country (an exotic prefix, almost always a typo) or aren’t a valid call
+              shape.</li>
+          <li><b>Near-dupe / UBN</b> — a callsign worked once that is one letter off a
+              busier multi-band station — a likely mis-copy of that call.</li>
+        </ul>
+        <p>Use <b>▸ Review issues</b> to step through the flags one at a time, apply
+           the suggested fix, edit a cell inline, or delete a QSO.</p>
+      </section>
+
+      <section>
+        <h3>Local data policy</h3>
+        <p>🔒 Your log is processed <b>entirely in your browser on this device</b>.
+           It is never uploaded, sent to a server, or stored in the cloud. The
+           lookup tables (DXCC / ITU / most-wanted) are static files served with the
+           page; nothing about your log leaves your computer. Closing the tab
+           discards everything — there is no account and no storage.</p>
+      </section>
+
+      <section>
+        <h3>Log / ADI in</h3>
+        <p>Open a contest log with <b>Open log…</b>. Two formats are accepted and the
+           format is auto-detected:</p>
+        <ul>
+          <li><b>ADIF</b> — <code>.adi</code> / <code>.adif</code></li>
+          <li><b>Cabrillo</b> — <code>.log</code> (the <code>QSO:</code> lines)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Log / ADI out</h3>
+        <p><b>Save…</b> writes your corrected log back in the <i>same</i> format it was
+           loaded in (ADIF in → ADIF out, Cabrillo in → Cabrillo out), as
+           <code>&lt;name&gt;_checked.adi</code> / <code>.log</code>. Cabrillo saves
+           preserve the original header, footer and column alignment; only edited
+           <code>QSO:</code> lines change.</p>
+        <p>Save also writes a companion <code>&lt;name&gt;_changes.txt</code>
+           containing:</p>
+        <ul>
+          <li>the <b>check-results</b> summary,</li>
+          <li>a <b>summary of changes</b> — every QSO modified (field by field),
+              removed, or added, and</li>
+          <li>a <b>unified diff</b> of the original vs the saved log.</li>
+        </ul>
+        <p>Keep it with your log entry as a record of exactly what you corrected.</p>
+      </section>
+    </div>
+  </div>
+</div>
 
 <!-- Issue review window: one issue at a time, exchange issues grouped by station -->
 <div id="review-win" class="modal hidden">
@@ -85,6 +162,6 @@
   </div>
 </div>
 
-<script type="module" src="app.js?v=5"></script>
+<script type="module" src="app.js?v=6"></script>
 </body>
 </html>
