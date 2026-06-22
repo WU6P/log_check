@@ -8,6 +8,24 @@ delete them.
 It reuses the ADIF/Cabrillo parsing and the ARRL-DXCC → ITU callsign-series
 country-resolution chain from the **Contest_Plan** project.
 
+## What it checks (at a glance)
+
+Each QSO is run through five independent checks; the **Flags** column names
+every hit and rows are colored **pink** (rare), **yellow** (any other issue),
+or **orange** (both).
+
+| Flag | Check | What it catches |
+|------|-------|-----------------|
+| `RARE` | **Rare DXCC** | A worked callsign that resolves to a "most-wanted" entity (`rare.json`, 82 entities) — in a normal log, almost always a busted call. Conservative: only a *confident* prefix match flags. |
+| `EXCH` | **Exchange bust** | A station whose received exchange isn't consistent across its QSOs (a station sends the same exchange all contest). Field auto-detected (`CQZ`, `RX_PWR`, `STATE`, …); offers one-click fixes. |
+| `ZONE` | **Zone vs. entity** | A logged CQ/ITU zone that doesn't match the zone implied by the resolved DXCC entity — usually a busted call or a mis-typed zone. |
+| `CALL!` / `CALL?` | **Callsign plausibility** | A callsign that's **malformed** (`CALL!`, wrong shape) or **unresolved** (`CALL?`, maps to no DXCC/ITU country — an exotic prefix that's usually a typo). |
+| `DUPE?` | **Near-dupe / UBN** | A call worked **once** that's a single letter off a busier call worked 3+ times with the same prefix — a likely mis-copy. The Review window lists the busier station's QSOs for reference and offers a one-click correction. |
+
+Flagged QSOs appear in an editable table and in a step-through **Review**
+window; fixes you apply are written back when you **Save…**. Each check is
+described in full below.
+
 ## Repository & status
 
 - **GitHub:** <https://github.com/WU6P/log_check> — public, MIT licensed.
@@ -70,8 +88,10 @@ A call worked **once** whose suffix is a single letter off a call worked 3+
 times **with the same prefix** (e.g. `JR2HCZ` vs a busy `JR2SCZ`) is flagged as
 a probable mis-copy of that busier station — the classic copy error. The shared
 prefix and a suffix of ≥ 3 letters keep it from flagging genuinely different
-short contest calls (`S53A` vs `S53D`). In the review window you can apply the
-suggested correction with one click.
+short contest calls (`S53A` vs `S53D`). In the review window the busier
+station's own QSOs are listed in a read-only reference table (band / time /
+mode) so you can confirm the mis-copy at a glance, then apply the suggested
+correction with one click.
 
 ## Editing
 
