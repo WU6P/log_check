@@ -196,7 +196,9 @@ class LogCheck(QMainWindow):
         if not path:
             return
         try:
-            text = Path(path).read_text(encoding="utf-8", errors="replace")
+            # read bytes + decode (not read_text) so CRLF line endings survive
+            # universal-newline translation and a Cabrillo save round-trips exactly
+            text = Path(path).read_bytes().decode("utf-8", errors="replace")
             recs = lc.records_from_text(text)
         except Exception as e:
             QMessageBox.critical(self, "Open failed", f"Could not read log:\n{e}")
@@ -410,7 +412,8 @@ class LogCheck(QMainWindow):
         try:
             text = (lc.serialize_cabrillo(self.records, self.src_text) if cabrillo
                     else lc.serialize_adif(self.records))
-            Path(path).write_text(text, encoding="utf-8")
+            # write bytes so the serializer's exact line endings aren't re-translated
+            Path(path).write_bytes(text.encode("utf-8"))
         except Exception as e:
             QMessageBox.critical(self, "Save failed", str(e))
             return
