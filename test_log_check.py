@@ -4,7 +4,11 @@
     python3 test_log_check.py        # or: python3 -m unittest -v
 """
 
+import json
+import pathlib
 import unittest
+
+import hamcore
 
 import logcore as lc
 
@@ -452,6 +456,32 @@ class TestChangeReport(unittest.TestCase):
         cur = [dict(r) for r in orig]
         rep = lc.build_change_report(orig, cur)
         self.assertIn("no changes", rep)
+
+
+class TestVendoredHamcore(unittest.TestCase):
+    """locate/sun/bands/solar/adif live in hamcore now. Editing the vendored
+    copy here instead of the source is the exact failure that let log_check
+    resolve India to the South Pole for months, so it is a test."""
+
+    def test_the_vendored_copy_has_not_been_edited(self):
+        self.assertEqual(hamcore.verify(), [])
+
+    def test_data_files_match_hamcore(self):
+        """These projects still read their own dxcc/itu/rare.json — logan
+        generates them — so hamcore does not own them yet. What it can do is
+        make divergence loud: this is the exact drift that left log_check
+        resolving India to the South Pole, and nine sub-Antarctic entities
+        stranded at (-90, 0) in every copy but one."""
+        import hamcore
+        here = pathlib.Path(__file__).resolve().parent
+        for name in ("dxcc.json", "itu.json", "rare.json"):
+            mine = here / name
+            if not mine.exists():
+                continue
+            self.assertEqual(
+                json.loads(mine.read_text()),
+                json.loads(hamcore.data_path(name).read_text()),
+                f"{name} has drifted from hamcore — copy one over the other")
 
 
 if __name__ == "__main__":
