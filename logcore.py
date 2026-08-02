@@ -40,6 +40,7 @@ HERE = Path(__file__).resolve().parent
 # tested against each other over 314 cases (300 of them fuzzed) and agreed
 # exactly, so this is one implementation instead of four. The names are
 # re-exported because log_check.py and the tests import them from here.
+from hamcore import data_path
 from hamcore.adif import (                                    # noqa: E402
     TAG_RE, parse_adif_records, qso_datetime, serialize_qso)
 from hamcore import adif as _adif                             # noqa: E402
@@ -275,7 +276,10 @@ def serialize_cabrillo(records, original_text):
 # ==========================================================================
 
 def _load_lookup(name):
-    path = HERE / name
+    # hamcore owns dxcc/itu/rare.json now — and, more to the point, owns the
+    # builders that generate them, so a fix cannot be quietly undone by the
+    # next rebuild the way nine wrong entity coordinates were.
+    path = data_path(name)
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8")).get("lookup", {})
@@ -286,7 +290,7 @@ ITU = _load_lookup("itu.json")
 
 
 def _load_dxcc_codes():
-    path = HERE / "dxcc.json"
+    path = data_path("dxcc.json")
     if not path.exists():
         return {}
     ents = json.loads(path.read_text(encoding="utf-8")).get("entities", [])
@@ -295,7 +299,7 @@ def _load_dxcc_codes():
 
 def _load_entity_recs():
     """entity name -> full record (with cq/itu zones), for prefix overrides."""
-    path = HERE / "dxcc.json"
+    path = data_path("dxcc.json")
     if not path.exists():
         return {}
     ents = json.loads(path.read_text(encoding="utf-8")).get("entities", [])
@@ -304,8 +308,8 @@ def _load_entity_recs():
 
 DXCC_CODE = _load_dxcc_codes()
 ENTITY_REC = _load_entity_recs()
-RARE = (json.loads((HERE / "rare.json").read_text(encoding="utf-8")).get("rare", {})
-        if (HERE / "rare.json").exists() else {})
+RARE = (json.loads((data_path("rare.json")).read_text(encoding="utf-8")).get("rare", {})
+        if (data_path("rare.json")).exists() else {})
 
 _SUFFIXES = {"P", "M", "MM", "AM", "QRP", "A", "B"}
 

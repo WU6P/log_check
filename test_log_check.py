@@ -473,7 +473,9 @@ class TestVendoredHamcore(unittest.TestCase):
         resolving India to the South Pole, and nine sub-Antarctic entities
         stranded at (-90, 0) in every copy but one."""
         import hamcore
-        here = pathlib.Path(__file__).resolve().parent
+        # The app reads hamcore's copies directly now; docs/ still ships
+        # them to the browser for the web build, so that is what can drift.
+        here = pathlib.Path(__file__).resolve().parent / "docs"
         for name in ("dxcc.json", "itu.json", "rare.json"):
             mine = here / name
             if not mine.exists():
